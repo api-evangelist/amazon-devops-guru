@@ -8,11 +8,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Machine Learning
-  - DevOps
-  - Operational Intelligence
   - Anomaly Detection
   - AWS
+  - DevOps
+  - Machine Learning
+  - Operational Intelligence
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/apis.yml
 created: '2026-03-16'
