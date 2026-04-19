@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-schema/amazon-devops-guru-event-sources-config-schema.json",
+  "title": "EventSourcesConfig",
+  "description": "Information about the integration of DevOps Guru as consumer with another AWS service, such as AWS CodeGuru Profiler via EventBridge.",
+  "type": "object",
+  "properties": {
+    "AmazonCodeGuruProfiler": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AmazonCodeGuruProfilerIntegration"
+        },
+        {
+          "description": "Information about whether DevOps Guru is configured to consume recommendations which are generated from AWS CodeGuru Profiler."
+        }
+      ]
+    }
+  }
+}

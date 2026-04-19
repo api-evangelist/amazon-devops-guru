@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-structure/amazon-devops-guru-ops-center-integration-structure.json",
+  "description": "Information about whether DevOps Guru is configured to create an OpsItem in Amazon Web Services Systems Manager OpsCenter for each created insight.",
+  "type": "object",
+  "properties": {
+    "OptInStatus": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/OptInStatus"
+        },
+        {
+          "description": " Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. "
+        }
+      ]
+    }
+  },
+  "name": "OpsCenterIntegration"
+}

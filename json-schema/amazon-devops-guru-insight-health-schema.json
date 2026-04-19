@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-schema/amazon-devops-guru-insight-health-schema.json",
+  "title": "InsightHealth",
+  "description": "Information about the number of open reactive and proactive insights that can be used to gauge the health of your system.",
+  "type": "object",
+  "properties": {
+    "OpenProactiveInsights": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NumOpenProactiveInsights"
+        },
+        {
+          "description": " The number of open proactive insights. "
+        }
+      ]
+    },
+    "OpenReactiveInsights": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NumOpenReactiveInsights"
+        },
+        {
+          "description": " The number of open reactive insights. "
+        }
+      ]
+    },
+    "MeanTimeToRecoverInMilliseconds": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/MeanTimeToRecoverInMilliseconds"
+        },
+        {
+          "description": " The Meant Time to Recover (MTTR) for the insight. "
+        }
+      ]
+    }
+  }
+}

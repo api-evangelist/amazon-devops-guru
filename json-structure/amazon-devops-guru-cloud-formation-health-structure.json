@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-structure/amazon-devops-guru-cloud-formation-health-structure.json",
+  "description": "Information about the health of Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack.",
+  "type": "object",
+  "properties": {
+    "StackName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/StackName"
+        },
+        {
+          "description": " The name of the CloudFormation stack. "
+        }
+      ]
+    },
+    "Insight": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InsightHealth"
+        },
+        {
+          "description": " Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. "
+        }
+      ]
+    },
+    "AnalyzedResourceCount": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnalyzedResourceCount"
+        },
+        {
+          "description": " Number of resources that DevOps Guru is monitoring in your account that are specified by an Amazon Web Services CloudFormation stack. "
+        }
+      ]
+    }
+  },
+  "name": "CloudFormationHealth"
+}

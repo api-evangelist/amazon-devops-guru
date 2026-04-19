@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-schema/amazon-devops-guru-recommendation-schema.json",
+  "title": "Recommendation",
+  "description": "Recommendation information to help you remediate detected anomalous behavior that generated an insight.",
+  "type": "object",
+  "properties": {
+    "Description": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/RecommendationDescription"
+        },
+        {
+          "description": " A description of the problem. "
+        }
+      ]
+    },
+    "Link": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/RecommendationLink"
+        },
+        {
+          "description": " A hyperlink to information to help you address the problem. "
+        }
+      ]
+    },
+    "Name": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/RecommendationName"
+        },
+        {
+          "description": " The name of the recommendation. "
+        }
+      ]
+    },
+    "Reason": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/RecommendationReason"
+        },
+        {
+          "description": " The reason DevOps Guru flagged the anomalous behavior as a problem. "
+        }
+      ]
+    },
+    "RelatedEvents": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/RecommendationRelatedEvents"
+        },
+        {
+          "description": " Events that are related to the problem. Use these events to learn more about what's happening and to help address the issue. "
+        }
+      ]
+    },
+    "RelatedAnomalies": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/RecommendationRelatedAnomalies"
+        },
+        {
+          "description": " Anomalies that are related to the problem. Use these Anomalies to learn more about what's happening and to help address the issue. "
+        }
+      ]
+    },
+    "Category": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/RecommendationCategory"
+        },
+        {
+          "description": "The category type of the recommendation."
+        }
+      ]
+    }
+  }
+}

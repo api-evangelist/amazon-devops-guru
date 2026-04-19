@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-schema/amazon-devops-guru-sns-channel-config-schema.json",
+  "title": "SnsChannelConfig",
+  "description": "Contains the Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic.  If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications",
+  "type": "object",
+  "properties": {
+    "TopicArn": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/TopicArn"
+        },
+        {
+          "description": " The Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic. "
+        }
+      ]
+    }
+  }
+}

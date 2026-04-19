@@ -1,0 +1,9 @@
+{
+  "Description": "example-Description",
+  "Link": "example-Link",
+  "Name": "ExampleName",
+  "Reason": "example-Reason",
+  "RelatedEvents": "example-RelatedEvents",
+  "RelatedAnomalies": "example-RelatedAnomalie",
+  "Category": "example-Category"
+}

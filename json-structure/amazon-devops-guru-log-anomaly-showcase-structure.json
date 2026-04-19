@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-structure/amazon-devops-guru-log-anomaly-showcase-structure.json",
+  "description": "A cluster of similar anomalous log events found within a log group.",
+  "type": "object",
+  "properties": {
+    "LogAnomalyClasses": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LogAnomalyClasses"
+        },
+        {
+          "description": " A list of anomalous log events that may be related. "
+        }
+      ]
+    }
+  },
+  "name": "LogAnomalyShowcase"
+}

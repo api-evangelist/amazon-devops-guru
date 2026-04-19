@@ -1,0 +1,5 @@
+{
+  "Metric": "example-Metric",
+  "GroupBy": "example-GroupBy",
+  "Filter": "example-Filter"
+}

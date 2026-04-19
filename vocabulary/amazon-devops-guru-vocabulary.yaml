@@ -1,0 +1,235 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Amazon DevOps Guru
+  description: Unified taxonomy mapping operational (OpenAPI) and capability (Naftiko) dimensions for Amazon DevOps Guru ML-powered operational intelligence service.
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: devops-guru
+      version: "2020-12-01"
+      baseUrl: https://devops-guru.us-east-1.amazonaws.com
+      status: active
+      description: Amazon DevOps Guru REST API
+
+  resources:
+    - name: insights
+      description: ML-generated operational insights about anomalous application behavior
+      api: devops-guru
+      actions: [list, search, describe]
+    - name: anomalies
+      description: Individual behavioral anomalies detected by machine learning
+      api: devops-guru
+      actions: [list, describe]
+    - name: recommendations
+      description: Actionable recommendations for resolving insights
+      api: devops-guru
+      actions: [list]
+    - name: events
+      description: AWS events correlated with insight time windows
+      api: devops-guru
+      actions: [list]
+    - name: resource-collections
+      description: CloudFormation stacks and tag-based resource groupings under monitoring
+      api: devops-guru
+      actions: [get, update]
+    - name: notification-channels
+      description: SNS channels for insight notifications
+      api: devops-guru
+      actions: [list, add, remove]
+    - name: service-integrations
+      description: Integrations with OpsCenter, CloudWatch Logs Insights, and other AWS services
+      api: devops-guru
+      actions: [describe, update]
+    - name: cost-estimation
+      description: Monthly cost estimation for DevOps Guru monitoring
+      api: devops-guru
+      actions: [get, start]
+    - name: account-health
+      description: Account-level health metrics including open insight counts
+      api: devops-guru
+      actions: [describe]
+    - name: log-anomalies
+      description: Anomalies detected in CloudWatch log groups
+      api: devops-guru
+      actions: [list]
+
+  actions:
+    - name: list
+      httpMethod: POST
+      pattern: read
+      description: List resources with pagination
+    - name: search
+      httpMethod: POST
+      pattern: read
+      description: Search resources with filters
+    - name: describe
+      httpMethod: GET
+      pattern: read
+      description: Get detailed information about a resource
+    - name: get
+      httpMethod: GET
+      pattern: read
+      description: Retrieve a specific resource configuration
+    - name: update
+      httpMethod: PUT
+      pattern: write
+      description: Update a resource configuration
+    - name: add
+      httpMethod: PUT
+      pattern: write
+      description: Add a resource
+    - name: remove
+      httpMethod: DELETE
+      pattern: destructive
+      description: Remove a resource
+    - name: start
+      httpMethod: PUT
+      pattern: write
+      description: Start an operation
+
+  schemas:
+    core:
+      - name: ProactiveInsight
+        description: An insight detected before an issue impacts customers
+        properties: [id, name, severity, status, insightTimeRange, predictionTimeRange]
+      - name: ReactiveInsight
+        description: An insight detected in response to an active operational issue
+        properties: [id, name, severity, status, insightTimeRange]
+      - name: Recommendation
+        description: A recommended remediation action for an insight
+        properties: [description, link, name, reason, relatedEvents, relatedAnomalies]
+
+    anomaly:
+      - name: ProactiveAnomaly
+        description: A proactive anomaly detected before an issue occurs
+        properties: [id, severity, status, anomalyTimeRange, predictionTimeRange]
+      - name: ReactiveAnomaly
+        description: A reactive anomaly associated with an active insight
+        properties: [id, severity, status, anomalyTimeRange, causalAnomalyId]
+
+    configuration:
+      - name: ResourceCollection
+        description: Collection of AWS resources for DevOps Guru to analyze
+        properties: [cloudFormation, tags]
+      - name: NotificationChannel
+        description: An SNS channel for receiving DevOps Guru notifications
+        properties: [id, config]
+      - name: InsightHealth
+        description: Aggregated health metrics for insights
+        properties: [openProactiveInsights, openReactiveInsights, meanTimeToRecoverInMilliseconds]
+
+  parameters:
+    pagination:
+      - name: NextToken
+        description: Pagination token for next page
+        type: string
+      - name: MaxResults
+        description: Maximum number of results per page
+        type: integer
+    filters:
+      - name: StatusFilter
+        description: Filter insights by status (ONGOING, CLOSED)
+        type: object
+      - name: Severity
+        description: Filter by insight severity (LOW, MEDIUM, HIGH)
+        type: string
+      - name: StartTimeRange
+        description: Filter by insight start time range
+        type: object
+
+  enums:
+    insightSeverity:
+      - LOW
+      - MEDIUM
+      - HIGH
+    insightStatus:
+      - ONGOING
+      - CLOSED
+    insightType:
+      - REACTIVE
+      - PROACTIVE
+    anomalyStatus:
+      - ONGOING
+      - CLOSED
+    anomalySeverity:
+      - LOW
+      - MEDIUM
+      - HIGH
+    resourceCollectionType:
+      - AWS_CLOUD_FORMATION
+      - AWS_SERVICE
+      - AWS_TAGS
+
+  authentication:
+    schemes:
+      - name: sigv4
+        type: apikey
+        description: AWS Signature Version 4
+
+capability:
+  workflows:
+    - name: Operational Intelligence
+      file: capabilities/operational-intelligence.yaml
+      description: End-to-end operational intelligence workflow for DevOps engineers and SREs
+      apisConsumed: [devops-guru]
+      toolCount: 14
+      personas:
+        - DevOps Engineer
+        - Site Reliability Engineer
+      domains:
+        - Operational Intelligence
+        - Anomaly Detection
+
+  personas:
+    - id: devops-engineer
+      name: DevOps Engineer
+      description: DevOps engineer using ML insights to proactively identify and resolve operational issues
+      workflows: [Operational Intelligence]
+    - id: sre
+      name: Site Reliability Engineer
+      description: SRE using DevOps Guru to maintain service level objectives and reduce MTTR
+      workflows: [Operational Intelligence]
+
+  domains:
+    - name: Operational Intelligence
+      description: ML-powered detection and analysis of operational anomalies
+      resources: [insights, anomalies, recommendations]
+    - name: Monitoring Configuration
+      description: Configuring resource coverage and notification channels
+      resources: [resource-collections, notification-channels, service-integrations]
+
+  namespaces:
+    - type: consumed
+      name: devops-guru
+      description: Amazon DevOps Guru REST API
+    - type: rest
+      name: operational-intelligence-api
+      port: 8080
+    - type: mcp
+      name: operational-intelligence-mcp
+      port: 9090
+
+  binds:
+    - name: AWS_ACCESS_KEY_ID
+      workflows: [Operational Intelligence]
+    - name: AWS_SECRET_ACCESS_KEY
+      workflows: [Operational Intelligence]
+    - name: AWS_REGION
+      workflows: [Operational Intelligence]
+
+crossReference:
+  - resource: insights
+    operations: [listInsights, searchInsights, describeInsight]
+    workflows: [Operational Intelligence]
+    personas: [DevOps Engineer, Site Reliability Engineer]
+  - resource: anomalies
+    operations: [listAnomaliesForInsight, describeAnomaly]
+    workflows: [Operational Intelligence]
+    personas: [DevOps Engineer, Site Reliability Engineer]
+  - resource: recommendations
+    operations: [listRecommendations]
+    workflows: [Operational Intelligence]
+    personas: [DevOps Engineer, Site Reliability Engineer]

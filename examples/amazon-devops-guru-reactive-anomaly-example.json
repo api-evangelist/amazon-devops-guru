@@ -1,0 +1,15 @@
+{
+  "Id": "insight-abc123",
+  "Severity": "MEDIUM",
+  "Status": "CLOSED",
+  "AnomalyTimeRange": "example-AnomalyTimeRang",
+  "AnomalyReportedTimeRange": "example-AnomalyReported",
+  "SourceDetails": "example-SourceDetails",
+  "AssociatedInsightId": "insight-abc123",
+  "ResourceCollection": "example-ResourceCollect",
+  "Type": "REACTIVE",
+  "Name": "ExampleName",
+  "Description": "example-Description",
+  "CausalAnomalyId": "insight-abc123",
+  "AnomalyResources": "example-AnomalyResource"
+}

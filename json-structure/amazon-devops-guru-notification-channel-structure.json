@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-structure/amazon-devops-guru-notification-channel-structure.json",
+  "description": "Information about a notification channel. A notification channel is used to notify you when DevOps Guru creates an insight. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS).  If you use an Amazon SNS topic in another account, you must attach a policy to it th",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NotificationChannelId"
+        },
+        {
+          "description": " The ID of a notification channel. "
+        }
+      ]
+    },
+    "Config": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NotificationChannelConfig"
+        },
+        {
+          "description": " A <code>NotificationChannelConfig</code> object that contains information about configured notification channels. "
+        }
+      ]
+    }
+  },
+  "name": "NotificationChannel"
+}

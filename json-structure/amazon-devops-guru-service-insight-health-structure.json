@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-structure/amazon-devops-guru-service-insight-health-structure.json",
+  "description": "Contains the number of open proactive and reactive insights in an analyzed Amazon Web Services service.",
+  "type": "object",
+  "properties": {
+    "OpenProactiveInsights": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NumOpenProactiveInsights"
+        },
+        {
+          "description": "The number of open proactive insights in the Amazon Web Services service"
+        }
+      ]
+    },
+    "OpenReactiveInsights": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NumOpenReactiveInsights"
+        },
+        {
+          "description": "The number of open reactive insights in the Amazon Web Services service"
+        }
+      ]
+    }
+  },
+  "name": "ServiceInsightHealth"
+}

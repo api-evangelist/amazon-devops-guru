@@ -1,0 +1,16 @@
+{
+  "Id": "insight-abc123",
+  "Severity": "MEDIUM",
+  "Status": "CLOSED",
+  "UpdateTime": "example-UpdateTime",
+  "AnomalyTimeRange": "example-AnomalyTimeRang",
+  "AnomalyReportedTimeRange": "example-AnomalyReported",
+  "PredictionTimeRange": "example-PredictionTimeR",
+  "SourceDetails": "example-SourceDetails",
+  "AssociatedInsightId": "insight-abc123",
+  "ResourceCollection": "example-ResourceCollect",
+  "Limit": "example-Limit",
+  "SourceMetadata": "example-SourceMetadata",
+  "AnomalyResources": "example-AnomalyResource",
+  "Description": "example-Description"
+}

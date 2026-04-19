@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-structure/amazon-devops-guru-anomalous-log-group-structure.json",
+  "description": "An Amazon CloudWatch log group that contains log anomalies and is used to generate an insight.",
+  "type": "object",
+  "properties": {
+    "LogGroupName": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LogGroupName"
+        },
+        {
+          "description": " The name of the CloudWatch log group. "
+        }
+      ]
+    },
+    "ImpactStartTime": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Timestamp"
+        },
+        {
+          "description": " The time the anomalous log events began. The impact start time indicates the time of the first log anomaly event that occurs. "
+        }
+      ]
+    },
+    "ImpactEndTime": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Timestamp"
+        },
+        {
+          "description": " The time the anomalous log events stopped. "
+        }
+      ]
+    },
+    "NumberOfLogLinesScanned": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NumberOfLogLinesScanned"
+        },
+        {
+          "description": " The number of log lines that were scanned for anomalous log events. "
+        }
+      ]
+    },
+    "LogAnomalyShowcases": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LogAnomalyShowcases"
+        },
+        {
+          "description": " The log anomalies in the log group. Each log anomaly displayed represents a cluster of similar anomalous log events. "
+        }
+      ]
+    }
+  },
+  "name": "AnomalousLogGroup"
+}

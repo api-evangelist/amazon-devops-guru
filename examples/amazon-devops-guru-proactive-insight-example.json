@@ -1,0 +1,11 @@
+{
+  "Id": "insight-abc123",
+  "Name": "ExampleName",
+  "Severity": "MEDIUM",
+  "Status": "CLOSED",
+  "InsightTimeRange": "example-InsightTimeRang",
+  "PredictionTimeRange": "example-PredictionTimeR",
+  "ResourceCollection": "example-ResourceCollect",
+  "SsmOpsItemId": "insight-abc123",
+  "Description": "example-Description"
+}

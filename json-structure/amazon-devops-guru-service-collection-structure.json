@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-structure/amazon-devops-guru-service-collection-structure.json",
+  "description": "A collection of the names of Amazon Web Services services.",
+  "type": "object",
+  "properties": {
+    "ServiceNames": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ServiceNames"
+        },
+        {
+          "description": "An array of strings that each specifies the name of an Amazon Web Services service."
+        }
+      ]
+    }
+  },
+  "name": "ServiceCollection"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-schema/amazon-devops-guru-log-anomaly-showcase-schema.json",
+  "title": "LogAnomalyShowcase",
+  "description": "A cluster of similar anomalous log events found within a log group.",
+  "type": "object",
+  "properties": {
+    "LogAnomalyClasses": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LogAnomalyClasses"
+        },
+        {
+          "description": " A list of anomalous log events that may be related. "
+        }
+      ]
+    }
+  }
+}

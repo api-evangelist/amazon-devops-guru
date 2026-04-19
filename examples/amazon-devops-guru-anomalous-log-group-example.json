@@ -1,0 +1,7 @@
+{
+  "LogGroupName": "ExampleLogGroupName",
+  "ImpactStartTime": "example-ImpactStartTime",
+  "ImpactEndTime": "example-ImpactEndTime",
+  "NumberOfLogLinesScanned": "example-NumberOfLogLine",
+  "LogAnomalyShowcases": "example-LogAnomalyShowc"
+}

@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-schema/amazon-devops-guru-proactive-anomaly-schema.json",
+  "title": "ProactiveAnomaly",
+  "description": "Information about an anomaly. This object is returned by ListAnomalies.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyId"
+        },
+        {
+          "description": " The ID of a proactive anomaly. "
+        }
+      ]
+    },
+    "Severity": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalySeverity"
+        },
+        {
+          "description": "The severity of the anomaly. The severity of anomalies that generate an insight determine that insight's severity. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>."
+        }
+      ]
+    },
+    "Status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyStatus"
+        },
+        {
+          "description": " The status of a proactive anomaly. "
+        }
+      ]
+    },
+    "UpdateTime": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Timestamp"
+        },
+        {
+          "description": " The time of the anomaly's most recent update. "
+        }
+      ]
+    },
+    "AnomalyTimeRange": {
+      "$ref": "#/components/schemas/AnomalyTimeRange"
+    },
+    "AnomalyReportedTimeRange": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyReportedTimeRange"
+        },
+        {
+          "description": " An <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. "
+        }
+      ]
+    },
+    "PredictionTimeRange": {
+      "$ref": "#/components/schemas/PredictionTimeRange"
+    },
+    "SourceDetails": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalySourceDetails"
+        },
+        {
+          "description": " Details about the source of the analyzed operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. "
+        }
+      ]
+    },
+    "AssociatedInsightId": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InsightId"
+        },
+        {
+          "description": " The ID of the insight that contains this anomaly. An insight is composed of related anomalies. "
+        }
+      ]
+    },
+    "ResourceCollection": {
+      "$ref": "#/components/schemas/ResourceCollection"
+    },
+    "Limit": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyLimit"
+        },
+        {
+          "description": " A threshold that was exceeded by behavior in analyzed resources. Exceeding this threshold is related to the anomalous behavior that generated this anomaly. "
+        }
+      ]
+    },
+    "SourceMetadata": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalySourceMetadata"
+        },
+        {
+          "description": "The metadata for the anomaly."
+        }
+      ]
+    },
+    "AnomalyResources": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyResources"
+        },
+        {
+          "description": "Information about a resource in which DevOps Guru detected anomalous behavior."
+        }
+      ]
+    },
+    "Description": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyDescription"
+        },
+        {
+          "description": " A description of the proactive anomaly. "
+        }
+      ]
+    }
+  }
+}

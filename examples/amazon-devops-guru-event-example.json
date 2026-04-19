@@ -1,0 +1,10 @@
+{
+  "ResourceCollection": "example-ResourceCollect",
+  "Id": "insight-abc123",
+  "Time": "example-Time",
+  "EventSource": "example-EventSource",
+  "Name": "ExampleName",
+  "DataSource": "example-DataSource",
+  "EventClass": "example-EventClass",
+  "Resources": "example-Resources"
+}

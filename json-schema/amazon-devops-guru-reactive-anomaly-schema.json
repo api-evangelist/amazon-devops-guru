@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-schema/amazon-devops-guru-reactive-anomaly-schema.json",
+  "title": "ReactiveAnomaly",
+  "description": "Details about a reactive anomaly. This object is returned by ListAnomalies.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyId"
+        },
+        {
+          "description": "The ID of the reactive anomaly. "
+        }
+      ]
+    },
+    "Severity": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalySeverity"
+        },
+        {
+          "description": "The severity of the anomaly. The severity of anomalies that generate an insight determine that insight's severity. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>."
+        }
+      ]
+    },
+    "Status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyStatus"
+        },
+        {
+          "description": " The status of the anomaly. "
+        }
+      ]
+    },
+    "AnomalyTimeRange": {
+      "$ref": "#/components/schemas/AnomalyTimeRange"
+    },
+    "AnomalyReportedTimeRange": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyReportedTimeRange"
+        },
+        {
+          "description": " An <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. "
+        }
+      ]
+    },
+    "SourceDetails": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalySourceDetails"
+        },
+        {
+          "description": " Details about the source of the analyzed operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. "
+        }
+      ]
+    },
+    "AssociatedInsightId": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InsightId"
+        },
+        {
+          "description": " The ID of the insight that contains this anomaly. An insight is composed of related anomalies. "
+        }
+      ]
+    },
+    "ResourceCollection": {
+      "$ref": "#/components/schemas/ResourceCollection"
+    },
+    "Type": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyType"
+        },
+        {
+          "description": "<p>The type of the reactive anomaly. It can be one of the following types.</p> <ul> <li> <p> <code>CAUSAL</code> - the anomaly can cause a new insight.</p> </li> <li> <p> <code>CONTEXTUAL</code> - the anomaly contains additional information about an insight or its causal anomaly.</p> </li> </ul>"
+        }
+      ]
+    },
+    "Name": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyName"
+        },
+        {
+          "description": "The name of the reactive anomaly."
+        }
+      ]
+    },
+    "Description": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyDescription"
+        },
+        {
+          "description": "A description of the reactive anomaly."
+        }
+      ]
+    },
+    "CausalAnomalyId": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyId"
+        },
+        {
+          "description": "The ID of the causal anomaly that is associated with this reactive anomaly. The ID of a `CAUSAL` anomaly is always `NULL`."
+        }
+      ]
+    },
+    "AnomalyResources": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/AnomalyResources"
+        },
+        {
+          "description": "The Amazon Web Services resources in which anomalous behavior was detected by DevOps Guru."
+        }
+      ]
+    }
+  }
+}

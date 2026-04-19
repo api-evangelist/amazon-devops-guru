@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-devops-guru/refs/heads/main/json-schema/amazon-devops-guru-proactive-insight-schema.json",
+  "title": "ProactiveInsight",
+  "description": "Details about a proactive insight. This object is returned by ListInsights.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InsightId"
+        },
+        {
+          "description": "The ID of the proactive insight. "
+        }
+      ]
+    },
+    "Name": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InsightName"
+        },
+        {
+          "description": "The name of the proactive insight. "
+        }
+      ]
+    },
+    "Severity": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InsightSeverity"
+        },
+        {
+          "description": "The severity of the insight. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>."
+        }
+      ]
+    },
+    "Status": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InsightStatus"
+        },
+        {
+          "description": "The status of the proactive insight. "
+        }
+      ]
+    },
+    "InsightTimeRange": {
+      "$ref": "#/components/schemas/InsightTimeRange"
+    },
+    "PredictionTimeRange": {
+      "$ref": "#/components/schemas/PredictionTimeRange"
+    },
+    "ResourceCollection": {
+      "$ref": "#/components/schemas/ResourceCollection"
+    },
+    "SsmOpsItemId": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/SsmOpsItemId"
+        },
+        {
+          "description": " The ID of the Amazon Web Services System Manager OpsItem created for this insight. You must enable the creation of OpstItems insights before they are created for each insight. "
+        }
+      ]
+    },
+    "Description": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/InsightDescription"
+        },
+        {
+          "description": "Describes the proactive insight."
+        }
+      ]
+    }
+  }
+}
