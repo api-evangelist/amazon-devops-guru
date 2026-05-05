@@ -1,0 +1,13 @@
+{
+  "repo": "amazon-devops-guru",
+  "feeds": [
+    {
+      "source": "https://aws.amazon.com/blogs/devops/category/artificial-intelligence/amazon-devops-guru/",
+      "feed_url": "https://aws.amazon.com/blogs/devops/category/artificial-intelligence/amazon-devops-guru/feed/",
+      "saved": 10,
+      "title": "Amazon DevOps Guru \u2013 AWS DevOps & Developer Productivity Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:21:01Z"
+}
