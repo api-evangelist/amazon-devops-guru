@@ -1,303 +1,464 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
   label: Amazon DevOps Guru Operational Intelligence
-  description: >-
-    Workflow capability for DevOps engineers and SREs to monitor application health,
-    investigate anomalies, follow remediation recommendations, and configure
-    operational intelligence coverage using Amazon DevOps Guru's machine learning
+  description: Workflow capability for DevOps engineers and SREs to monitor application health, investigate anomalies, follow
+    remediation recommendations, and configure operational intelligence coverage using Amazon DevOps Guru's machine learning
     powered insights.
   tags:
-    - Amazon DevOps Guru
-    - Operational Intelligence
-    - Anomaly Detection
-    - Site Reliability Engineering
-    - AWS
-  created: "2026-04-19"
-  modified: "2026-04-19"
-
+  - Amazon DevOps Guru
+  - Operational Intelligence
+  - Anomaly Detection
+  - Site Reliability Engineering
+  - AWS
+  created: '2026-04-19'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
-      AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
-      AWS_REGION: AWS_REGION
-
+- namespace: env
+  keys:
+    AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+    AWS_REGION: AWS_REGION
 capability:
   consumes:
-    - import: devops-guru
-      location: ./shared/devops-guru-api.yaml
-
+  - type: http
+    namespace: devops-guru
+    baseUri: https://devops-guru.us-east-1.amazonaws.com
+    description: Amazon DevOps Guru REST API for operational intelligence.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{AWS_ACCESS_KEY_ID}}'
+      placement: header
+    resources:
+    - name: insights
+      path: /insights
+      description: Operational insights about application anomalies
+      operations:
+      - name: list-insights
+        method: POST
+        description: Lists insights with filtering by status and type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: search-insights
+        method: POST
+        description: Searches for insights on the account with optional filtering
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: describe-insight
+        method: GET
+        description: Returns details about an insight
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: anomalies
+      path: /anomalies
+      description: Anomalies detected in application behavior
+      operations:
+      - name: list-anomalies-for-insight
+        method: POST
+        description: Lists anomalies associated with a specific insight
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: describe-anomaly
+        method: GET
+        description: Returns details about an anomaly
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: recommendations
+      path: /recommendations
+      description: Recommendations for remediating issues
+      operations:
+      - name: list-recommendations
+        method: POST
+        description: Returns a list of recommendations for each insight
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: events
+      path: /events
+      description: Events that occurred during an insight
+      operations:
+      - name: list-events
+        method: POST
+        description: Returns a list of events during an insight time range
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: resource-collection
+      path: /resource-collections
+      description: Resource collection configuration
+      operations:
+      - name: get-resource-collection
+        method: GET
+        description: Returns the AWS resource collection configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-resource-collection
+        method: PUT
+        description: Updates the collection of resources that DevOps Guru analyzes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: service-integration
+      path: /service-integrations
+      description: AWS service integrations configuration
+      operations:
+      - name: describe-service-integration
+        method: GET
+        description: Returns the integration status with other AWS services
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-service-integration
+        method: PUT
+        description: Enables or disables integration with AWS services
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: notification-channels
+      path: /channels
+      description: Notification channel configuration
+      operations:
+      - name: list-notification-channels
+        method: GET
+        description: Lists all notification channels configured for DevOps Guru
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: add-notification-channel
+        method: PUT
+        description: Adds a notification channel to DevOps Guru
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: remove-notification-channel
+        method: DELETE
+        description: Removes a notification channel from DevOps Guru
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cost-estimation
+      path: /cost-estimation
+      description: Cost estimation for DevOps Guru analysis
+      operations:
+      - name: get-cost-estimation
+        method: GET
+        description: Returns an estimate of the monthly cost for DevOps Guru
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: start-cost-estimation
+        method: PUT
+        description: Starts the analysis of your AWS resources for cost estimation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: account-health
+      path: /accounts/health
+      description: Account health overview
+      operations:
+      - name: describe-account-health
+        method: GET
+        description: Returns the number of open reactive and proactive insights
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: describe-account-overview
+        method: POST
+        description: Returns the number of open and closed insights in a specified time period
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: operational-intelligence-api
-      description: Unified REST API for Amazon DevOps Guru operational intelligence workflows.
-      resources:
-        - path: /v1/account/health
-          name: account-health
-          description: Account-level operational health
-          operations:
-            - method: GET
-              name: describe-account-health
-              description: Get account health with open insight counts
-              call: "devops-guru.describe-account-health"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/insights
-          name: insights
-          description: Machine learning powered operational insights
-          operations:
-            - method: GET
-              name: list-insights
-              description: List proactive and reactive insights
-              call: "devops-guru.list-insights"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: search-insights
-              description: Search insights with filters
-              call: "devops-guru.search-insights"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/insights/{insightId}
-          name: insight
-          description: Individual insight details
-          operations:
-            - method: GET
-              name: describe-insight
-              description: Get details about a specific insight
-              call: "devops-guru.describe-insight"
-              with:
-                Id: "rest.insightId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/insights/{insightId}/anomalies
-          name: anomalies
-          description: Anomalies linked to an insight
-          operations:
-            - method: GET
-              name: list-anomalies
-              description: List anomalies associated with an insight
-              call: "devops-guru.list-anomalies-for-insight"
-              with:
-                InsightId: "rest.insightId"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/recommendations
-          name: recommendations
-          description: Remediation recommendations
-          operations:
-            - method: GET
-              name: list-recommendations
-              description: Get remediation recommendations for an insight
-              call: "devops-guru.list-recommendations"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/events
-          name: events
-          description: Events correlated with insights
-          operations:
-            - method: GET
-              name: list-events
-              description: List events during an insight's time range
-              call: "devops-guru.list-events"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/resource-collections
-          name: resource-collections
-          description: Resource coverage configuration
-          operations:
-            - method: GET
-              name: get-resource-collection
-              description: Get the resource collection DevOps Guru monitors
-              call: "devops-guru.get-resource-collection"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: update-resource-collection
-              description: Update which resources DevOps Guru monitors
-              call: "devops-guru.update-resource-collection"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/notification-channels
-          name: notification-channels
-          description: Alert notification configuration
-          operations:
-            - method: GET
-              name: list-notification-channels
-              description: List notification channels
-              call: "devops-guru.list-notification-channels"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: add-notification-channel
-              description: Add an SNS notification channel
-              call: "devops-guru.add-notification-channel"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: operational-intelligence-mcp
-      transport: http
-      description: MCP server for AI-assisted operational intelligence and anomaly investigation with Amazon DevOps Guru.
-      tools:
-        - name: describe-account-health
-          description: Get the current health of the account including counts of open proactive and reactive insights
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "devops-guru.describe-account-health"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: describe-account-overview
-          description: Get an overview of open and closed insights for a specified time period
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "devops-guru.describe-account-overview"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-insights
-          description: List machine learning powered operational insights by status (ongoing, closed) and type (proactive, reactive)
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "devops-guru.list-insights"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: search-insights
-          description: Search for insights with custom filters on severity, status, and service collection
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "devops-guru.search-insights"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: describe-insight
-          description: Get detailed information about a specific insight including its severity and resource details
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "devops-guru.describe-insight"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-anomalies-for-insight
-          description: List anomalies associated with a specific insight to understand the root cause
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "devops-guru.list-anomalies-for-insight"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: describe-anomaly
-          description: Get detailed information about a specific anomaly
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "devops-guru.describe-anomaly"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-recommendations
-          description: Get actionable recommendations to resolve a specific insight
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "devops-guru.list-recommendations"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-events
-          description: List CloudWatch Events correlated with an insight during its time window
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "devops-guru.list-events"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-resource-collection
-          description: Get the collection of AWS resources that DevOps Guru is currently monitoring
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "devops-guru.get-resource-collection"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: update-resource-collection
-          description: Add or remove CloudFormation stacks from the DevOps Guru monitoring scope
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "devops-guru.update-resource-collection"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: describe-service-integration
-          description: Check the integration status with OpsCenter, CloudWatch Logs, and other AWS services
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "devops-guru.describe-service-integration"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-notification-channels
-          description: List SNS notification channels configured for DevOps Guru alerts
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "devops-guru.list-notification-channels"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-cost-estimation
-          description: Get the estimated monthly cost for DevOps Guru monitoring your resources
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "devops-guru.get-cost-estimation"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: operational-intelligence-api
+    description: Unified REST API for Amazon DevOps Guru operational intelligence workflows.
+    resources:
+    - path: /v1/account/health
+      name: account-health
+      description: Account-level operational health
+      operations:
+      - method: GET
+        name: describe-account-health
+        description: Get account health with open insight counts
+        call: devops-guru.describe-account-health
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights
+      name: insights
+      description: Machine learning powered operational insights
+      operations:
+      - method: GET
+        name: list-insights
+        description: List proactive and reactive insights
+        call: devops-guru.list-insights
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: search-insights
+        description: Search insights with filters
+        call: devops-guru.search-insights
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{insightId}
+      name: insight
+      description: Individual insight details
+      operations:
+      - method: GET
+        name: describe-insight
+        description: Get details about a specific insight
+        call: devops-guru.describe-insight
+        with:
+          Id: rest.insightId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{insightId}/anomalies
+      name: anomalies
+      description: Anomalies linked to an insight
+      operations:
+      - method: GET
+        name: list-anomalies
+        description: List anomalies associated with an insight
+        call: devops-guru.list-anomalies-for-insight
+        with:
+          InsightId: rest.insightId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/recommendations
+      name: recommendations
+      description: Remediation recommendations
+      operations:
+      - method: GET
+        name: list-recommendations
+        description: Get remediation recommendations for an insight
+        call: devops-guru.list-recommendations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/events
+      name: events
+      description: Events correlated with insights
+      operations:
+      - method: GET
+        name: list-events
+        description: List events during an insight's time range
+        call: devops-guru.list-events
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resource-collections
+      name: resource-collections
+      description: Resource coverage configuration
+      operations:
+      - method: GET
+        name: get-resource-collection
+        description: Get the resource collection DevOps Guru monitors
+        call: devops-guru.get-resource-collection
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: update-resource-collection
+        description: Update which resources DevOps Guru monitors
+        call: devops-guru.update-resource-collection
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/notification-channels
+      name: notification-channels
+      description: Alert notification configuration
+      operations:
+      - method: GET
+        name: list-notification-channels
+        description: List notification channels
+        call: devops-guru.list-notification-channels
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: add-notification-channel
+        description: Add an SNS notification channel
+        call: devops-guru.add-notification-channel
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: operational-intelligence-mcp
+    transport: http
+    description: MCP server for AI-assisted operational intelligence and anomaly investigation with Amazon DevOps Guru.
+    tools:
+    - name: describe-account-health
+      description: Get the current health of the account including counts of open proactive and reactive insights
+      hints:
+        readOnly: true
+        openWorld: false
+      call: devops-guru.describe-account-health
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-account-overview
+      description: Get an overview of open and closed insights for a specified time period
+      hints:
+        readOnly: true
+        openWorld: false
+      call: devops-guru.describe-account-overview
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-insights
+      description: List machine learning powered operational insights by status (ongoing, closed) and type (proactive, reactive)
+      hints:
+        readOnly: true
+        openWorld: true
+      call: devops-guru.list-insights
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-insights
+      description: Search for insights with custom filters on severity, status, and service collection
+      hints:
+        readOnly: true
+        openWorld: true
+      call: devops-guru.search-insights
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-insight
+      description: Get detailed information about a specific insight including its severity and resource details
+      hints:
+        readOnly: true
+        openWorld: false
+      call: devops-guru.describe-insight
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-anomalies-for-insight
+      description: List anomalies associated with a specific insight to understand the root cause
+      hints:
+        readOnly: true
+        openWorld: true
+      call: devops-guru.list-anomalies-for-insight
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-anomaly
+      description: Get detailed information about a specific anomaly
+      hints:
+        readOnly: true
+        openWorld: false
+      call: devops-guru.describe-anomaly
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-recommendations
+      description: Get actionable recommendations to resolve a specific insight
+      hints:
+        readOnly: true
+        openWorld: true
+      call: devops-guru.list-recommendations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-events
+      description: List CloudWatch Events correlated with an insight during its time window
+      hints:
+        readOnly: true
+        openWorld: true
+      call: devops-guru.list-events
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-resource-collection
+      description: Get the collection of AWS resources that DevOps Guru is currently monitoring
+      hints:
+        readOnly: true
+        openWorld: false
+      call: devops-guru.get-resource-collection
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-resource-collection
+      description: Add or remove CloudFormation stacks from the DevOps Guru monitoring scope
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: devops-guru.update-resource-collection
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-service-integration
+      description: Check the integration status with OpsCenter, CloudWatch Logs, and other AWS services
+      hints:
+        readOnly: true
+        openWorld: false
+      call: devops-guru.describe-service-integration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-notification-channels
+      description: List SNS notification channels configured for DevOps Guru alerts
+      hints:
+        readOnly: true
+        openWorld: true
+      call: devops-guru.list-notification-channels
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-cost-estimation
+      description: Get the estimated monthly cost for DevOps Guru monitoring your resources
+      hints:
+        readOnly: true
+        openWorld: false
+      call: devops-guru.get-cost-estimation
+      outputParameters:
+      - type: object
+        mapping: $.
