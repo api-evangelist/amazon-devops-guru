@@ -135,6 +135,18 @@ common:
         description: Enables organization-wide monitoring by aggregating insights across multiple AWS accounts.
       - name: Amazon EventBridge
         description: Emits DevOps Guru events to EventBridge for custom automation and routing workflows.
+  - type: Integrations
+    url: https://aws.amazon.com/marketplace
+integrations:
+  - name: Sign in
+  - name: Agent Mode
+  - name: 'Why AWS Marketplace?'
+  - name: Get started in AWS Marketplace
+  - name: Industry
+  - name: Resources
+  - name: Become a Channel Partner
+  - name: Sell in AWS Marketplace
+  - name: Manage Your Account
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
