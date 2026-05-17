@@ -50,7 +50,7 @@ apis:
         url: json-structure/amazon-devops-guru-reactive-insight-structure.json
       - type: JSONStructure
         url: json-structure/amazon-devops-guru-recommendation-structure.json
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/amazon-devops-guru-context.jsonld
       - type: Example
         url: examples/amazon-devops-guru-proactive-insight-example.json
