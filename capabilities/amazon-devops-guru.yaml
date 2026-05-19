@@ -1,0 +1,1518 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon DevOps Guru
+  description: 'Amazon DevOps Guru. 31 operations. Lead operation: Amazon DevOps Guru. Self-contained Naftiko capability covering
+    one Amazon Devops Guru business surface.'
+  tags:
+  - Amazon Devops Guru
+  - Amazon DevOps Guru
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_DEVOPS_GURU_API_KEY: AMAZON_DEVOPS_GURU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-devops-guru
+    baseUri: http://devops-guru.{region}.amazonaws.com
+    description: Amazon DevOps Guru business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts-health
+      path: /accounts/health
+      operations:
+      - name: describeaccounthealth
+        method: GET
+        description: Returns the number of open reactive insights, the number of open proactive insights, and the number of
+          metrics analyzed in your Amazon Web Services account. Use these numbers to gauge the health of operations in your
+          Amazon Web Services acc
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounts-health-resource-collection-ResourceCollectionType
+      path: /accounts/health/resource-collection/{ResourceCollectionType}
+      operations:
+      - name: describeresourcecollectionhealth
+        method: GET
+        description: Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR)
+          for all closed insights in resource collections in your account. You specify the type of Amazon Web Services resources
+          collection. Th
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ResourceCollectionType
+          in: path
+          type: string
+          description: An Amazon Web Services resource collection type. This type specifies how analyzed Amazon Web Services
+            resources are defined. The two types of Amazon Web Service
+          required: true
+        - name: NextToken
+          in: query
+          type: string
+          description: The pagination token to use to retrieve the next page of results for this operation. If this value
+            is null, it retrieves the first page.
+    - name: accounts-overview
+      path: /accounts/overview
+      operations:
+      - name: describeaccountoverview
+        method: POST
+        description: For the time range passed in, returns the number of open reactive insight that were created, the number
+          of open proactive insights that were created, and the Mean Time to Recover (MTTR) for all closed reactive insights.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: anomalies-insight-InsightId
+      path: /anomalies/insight/{InsightId}
+      operations:
+      - name: listanomaliesforinsight
+        method: POST
+        description: Returns a list of the anomalies that belong to an insight that you specify using its ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: InsightId
+          in: path
+          type: string
+          description: The ID of the insight. The returned anomalies belong to this insight.
+          required: true
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: anomalies-Id
+      path: /anomalies/{Id}
+      operations:
+      - name: describeanomaly
+        method: GET
+        description: Returns details about an anomaly that you specify using its ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Id
+          in: path
+          type: string
+          description: The ID of the anomaly.
+          required: true
+        - name: AccountId
+          in: query
+          type: string
+          description: The ID of the member account.
+    - name: channels
+      path: /channels
+      operations:
+      - name: addnotificationchannel
+        method: PUT
+        description: <p> Adds a notification channel to DevOps Guru. A notification channel is used to notify you about important
+          DevOps Guru events, such as when an insight is generated. </p> <p>If you use an Amazon SNS topic in another account,
+          you must attac
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listnotificationchannels
+        method: POST
+        description: Returns a list of notification channels configured for DevOps Guru. Each notification channel is used
+          to notify you when DevOps Guru generates an insight that contains information about how to improve your operations.
+          The one supported noti
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: channels-Id
+      path: /channels/{Id}
+      operations:
+      - name: removenotificationchannel
+        method: DELETE
+        description: Removes a notification channel from DevOps Guru. A notification channel is used to notify you when DevOps
+          Guru generates an insight that contains information about how to improve your operations.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Id
+          in: path
+          type: string
+          description: The ID of the notification channel to be removed.
+          required: true
+    - name: cost-estimation
+      path: /cost-estimation
+      operations:
+      - name: getcostestimation
+        method: GET
+        description: Returns an estimate of the monthly cost for DevOps Guru to analyze your Amazon Web Services resources.
+          For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html">Estimate
+          your Amazon DevO
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: NextToken
+          in: query
+          type: string
+          description: The pagination token to use to retrieve the next page of results for this operation. If this value
+            is null, it retrieves the first page.
+      - name: startcostestimation
+        method: PUT
+        description: Starts the creation of an estimate of the monthly cost to analyze your Amazon Web Services resources.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: event-sources
+      path: /event-sources
+      operations:
+      - name: describeeventsourcesconfig
+        method: POST
+        description: Returns the integration status of services that are integrated with DevOps Guru as Consumer via EventBridge.
+          The one service that can be integrated with DevOps Guru is Amazon CodeGuru Profiler, which can produce proactive
+          recommendations wh
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateeventsourcesconfig
+        method: PUT
+        description: Enables or disables integration with a service that can be integrated with DevOps Guru. The one service
+          that can be integrated with DevOps Guru is Amazon CodeGuru Profiler, which can produce proactive recommendations
+          which can be stored and
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: events
+      path: /events
+      operations:
+      - name: listevents
+        method: POST
+        description: Returns a list of the events emitted by the resources that are evaluated by DevOps Guru. You can use
+          filters to specify which events are returned.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: feedback
+      path: /feedback
+      operations:
+      - name: describefeedback
+        method: POST
+        description: Returns the most recent feedback submitted in the current Amazon Web Services account and Region.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: putfeedback
+        method: PUT
+        description: Collects customer feedback about the specified insight.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: insights
+      path: /insights
+      operations:
+      - name: listinsights
+        method: POST
+        description: Returns a list of insights in your Amazon Web Services account. You can specify which insights are returned
+          by their start time and status (<code>ONGOING</code>, <code>CLOSED</code>, or <code>ANY</code>).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: insights-search
+      path: /insights/search
+      operations:
+      - name: searchinsights
+        method: POST
+        description: <p> Returns a list of insights in your Amazon Web Services account. You can specify which insights are
+          returned by their start time, one or more statuses (<code>ONGOING</code> or <code>CLOSED</code>), one or more severities
+          (<code>LOW</code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: insights-Id
+      path: /insights/{Id}
+      operations:
+      - name: deleteinsight
+        method: DELETE
+        description: Deletes the insight along with the associated anomalies, events and recommendations.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Id
+          in: path
+          type: string
+          description: The ID of the insight.
+          required: true
+      - name: describeinsight
+        method: GET
+        description: Returns details about an insight that you specify using its ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Id
+          in: path
+          type: string
+          description: The ID of the insight.
+          required: true
+        - name: AccountId
+          in: query
+          type: string
+          description: The ID of the member account in the organization.
+    - name: list-log-anomalies
+      path: /list-log-anomalies
+      operations:
+      - name: listanomalousloggroups
+        method: POST
+        description: Returns the list of log groups that contain log anomalies.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: monitoredResources
+      path: /monitoredResources
+      operations:
+      - name: listmonitoredresources
+        method: POST
+        description: Returns the list of all log groups that are being monitored and tagged by DevOps Guru.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: organization-health
+      path: /organization/health
+      operations:
+      - name: describeorganizationhealth
+        method: POST
+        description: Returns active insights, predictive insights, and resource hours analyzed in last hour.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: organization-health-resource-collection
+      path: /organization/health/resource-collection
+      operations:
+      - name: describeorganizationresourcecollectionhealth
+        method: POST
+        description: Provides an overview of your system's health. If additional member accounts are part of your organization,
+          you can filter those accounts using the <code>AccountIds</code> field.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: organization-insights
+      path: /organization/insights
+      operations:
+      - name: listorganizationinsights
+        method: POST
+        description: Returns a list of insights associated with the account or OU Id.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: organization-insights-search
+      path: /organization/insights/search
+      operations:
+      - name: searchorganizationinsights
+        method: POST
+        description: <p> Returns a list of insights in your organization. You can specify which insights are returned by their
+          start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more
+          severities (<code>L
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: MaxResults
+          in: query
+          type: string
+          description: Pagination limit
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: organization-overview
+      path: /organization/overview
+      operations:
+      - name: describeorganizationoverview
+        method: POST
+        description: Returns an overview of your organization's history based on the specified time range. The overview includes
+          the total reactive and proactive insights.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: recommendations
+      path: /recommendations
+      operations:
+      - name: listrecommendations
+        method: POST
+        description: Returns a list of a specified insight's recommendations. Each recommendation includes a list of related
+          metrics and a list of related events.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: NextToken
+          in: query
+          type: string
+          description: Pagination token
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: resource-collections
+      path: /resource-collections
+      operations:
+      - name: updateresourcecollection
+        method: PUT
+        description: 'Updates the collection of resources that DevOps Guru analyzes. The two types of Amazon Web Services
+          resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that
+          contain the same Amazon '
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: resource-collections-ResourceCollectionType
+      path: /resource-collections/{ResourceCollectionType}
+      operations:
+      - name: getresourcecollection
+        method: GET
+        description: Returns lists Amazon Web Services resources that are of the specified resource collection type. The two
+          types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon
+          Web Services resour
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ResourceCollectionType
+          in: path
+          type: string
+          description: The type of Amazon Web Services resource collections to return. The one valid value is <code>CLOUD_FORMATION</code>
+            for Amazon Web Services CloudFormation stack
+          required: true
+        - name: NextToken
+          in: query
+          type: string
+          description: The pagination token to use to retrieve the next page of results for this operation. If this value
+            is null, it retrieves the first page.
+    - name: service-integrations
+      path: /service-integrations
+      operations:
+      - name: describeserviceintegration
+        method: GET
+        description: Returns the integration status of services that are integrated with DevOps Guru. The one service that
+          can be integrated with DevOps Guru is Amazon Web Services Systems Manager, which can be used to create an OpsItem
+          for each generated insig
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateserviceintegration
+        method: PUT
+        description: Enables or disables integration with a service that can be integrated with DevOps Guru. The one service
+          that can be integrated with DevOps Guru is Amazon Web Services Systems Manager, which can be used to create an OpsItem
+          for each generate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.AMAZON_DEVOPS_GURU_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: amazon-devops-guru-rest
+    port: 8080
+    description: REST adapter for Amazon DevOps Guru. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/accounts/health
+      name: accounts-health
+      description: REST surface for accounts-health.
+      operations:
+      - method: GET
+        name: describeaccounthealth
+        description: Returns the number of open reactive insights, the number of open proactive insights, and the number of
+          metrics analyzed in your Amazon Web Services account. Use these numbers to gauge the health of operations in your
+          Amazon Web Services acc
+        call: amazon-devops-guru.describeaccounthealth
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/health/resource-collection/{resourcecollectiontype}
+      name: accounts-health-resource-collection-resourcecollectiontype
+      description: REST surface for accounts-health-resource-collection-ResourceCollectionType.
+      operations:
+      - method: GET
+        name: describeresourcecollectionhealth
+        description: Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR)
+          for all closed insights in resource collections in your account. You specify the type of Amazon Web Services resources
+          collection. Th
+        call: amazon-devops-guru.describeresourcecollectionhealth
+        with:
+          ResourceCollectionType: rest.ResourceCollectionType
+          NextToken: rest.NextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/overview
+      name: accounts-overview
+      description: REST surface for accounts-overview.
+      operations:
+      - method: POST
+        name: describeaccountoverview
+        description: For the time range passed in, returns the number of open reactive insight that were created, the number
+          of open proactive insights that were created, and the Mean Time to Recover (MTTR) for all closed reactive insights.
+        call: amazon-devops-guru.describeaccountoverview
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/anomalies/insight/{insightid}
+      name: anomalies-insight-insightid
+      description: REST surface for anomalies-insight-InsightId.
+      operations:
+      - method: POST
+        name: listanomaliesforinsight
+        description: Returns a list of the anomalies that belong to an insight that you specify using its ID.
+        call: amazon-devops-guru.listanomaliesforinsight
+        with:
+          InsightId: rest.InsightId
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/anomalies/{id}
+      name: anomalies-id
+      description: REST surface for anomalies-Id.
+      operations:
+      - method: GET
+        name: describeanomaly
+        description: Returns details about an anomaly that you specify using its ID.
+        call: amazon-devops-guru.describeanomaly
+        with:
+          Id: rest.Id
+          AccountId: rest.AccountId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels
+      name: channels
+      description: REST surface for channels.
+      operations:
+      - method: PUT
+        name: addnotificationchannel
+        description: <p> Adds a notification channel to DevOps Guru. A notification channel is used to notify you about important
+          DevOps Guru events, such as when an insight is generated. </p> <p>If you use an Amazon SNS topic in another account,
+          you must attac
+        call: amazon-devops-guru.addnotificationchannel
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: listnotificationchannels
+        description: Returns a list of notification channels configured for DevOps Guru. Each notification channel is used
+          to notify you when DevOps Guru generates an insight that contains information about how to improve your operations.
+          The one supported noti
+        call: amazon-devops-guru.listnotificationchannels
+        with:
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/channels/{id}
+      name: channels-id
+      description: REST surface for channels-Id.
+      operations:
+      - method: DELETE
+        name: removenotificationchannel
+        description: Removes a notification channel from DevOps Guru. A notification channel is used to notify you when DevOps
+          Guru generates an insight that contains information about how to improve your operations.
+        call: amazon-devops-guru.removenotificationchannel
+        with:
+          Id: rest.Id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cost-estimation
+      name: cost-estimation
+      description: REST surface for cost-estimation.
+      operations:
+      - method: GET
+        name: getcostestimation
+        description: Returns an estimate of the monthly cost for DevOps Guru to analyze your Amazon Web Services resources.
+          For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html">Estimate
+          your Amazon DevO
+        call: amazon-devops-guru.getcostestimation
+        with:
+          NextToken: rest.NextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: startcostestimation
+        description: Starts the creation of an estimate of the monthly cost to analyze your Amazon Web Services resources.
+        call: amazon-devops-guru.startcostestimation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/event-sources
+      name: event-sources
+      description: REST surface for event-sources.
+      operations:
+      - method: POST
+        name: describeeventsourcesconfig
+        description: Returns the integration status of services that are integrated with DevOps Guru as Consumer via EventBridge.
+          The one service that can be integrated with DevOps Guru is Amazon CodeGuru Profiler, which can produce proactive
+          recommendations wh
+        call: amazon-devops-guru.describeeventsourcesconfig
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateeventsourcesconfig
+        description: Enables or disables integration with a service that can be integrated with DevOps Guru. The one service
+          that can be integrated with DevOps Guru is Amazon CodeGuru Profiler, which can produce proactive recommendations
+          which can be stored and
+        call: amazon-devops-guru.updateeventsourcesconfig
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/events
+      name: events
+      description: REST surface for events.
+      operations:
+      - method: POST
+        name: listevents
+        description: Returns a list of the events emitted by the resources that are evaluated by DevOps Guru. You can use
+          filters to specify which events are returned.
+        call: amazon-devops-guru.listevents
+        with:
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/feedback
+      name: feedback
+      description: REST surface for feedback.
+      operations:
+      - method: POST
+        name: describefeedback
+        description: Returns the most recent feedback submitted in the current Amazon Web Services account and Region.
+        call: amazon-devops-guru.describefeedback
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putfeedback
+        description: Collects customer feedback about the specified insight.
+        call: amazon-devops-guru.putfeedback
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights
+      name: insights
+      description: REST surface for insights.
+      operations:
+      - method: POST
+        name: listinsights
+        description: Returns a list of insights in your Amazon Web Services account. You can specify which insights are returned
+          by their start time and status (<code>ONGOING</code>, <code>CLOSED</code>, or <code>ANY</code>).
+        call: amazon-devops-guru.listinsights
+        with:
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/search
+      name: insights-search
+      description: REST surface for insights-search.
+      operations:
+      - method: POST
+        name: searchinsights
+        description: <p> Returns a list of insights in your Amazon Web Services account. You can specify which insights are
+          returned by their start time, one or more statuses (<code>ONGOING</code> or <code>CLOSED</code>), one or more severities
+          (<code>LOW</code
+        call: amazon-devops-guru.searchinsights
+        with:
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/{id}
+      name: insights-id
+      description: REST surface for insights-Id.
+      operations:
+      - method: DELETE
+        name: deleteinsight
+        description: Deletes the insight along with the associated anomalies, events and recommendations.
+        call: amazon-devops-guru.deleteinsight
+        with:
+          Id: rest.Id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: describeinsight
+        description: Returns details about an insight that you specify using its ID.
+        call: amazon-devops-guru.describeinsight
+        with:
+          Id: rest.Id
+          AccountId: rest.AccountId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/list-log-anomalies
+      name: list-log-anomalies
+      description: REST surface for list-log-anomalies.
+      operations:
+      - method: POST
+        name: listanomalousloggroups
+        description: Returns the list of log groups that contain log anomalies.
+        call: amazon-devops-guru.listanomalousloggroups
+        with:
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/monitoredresources
+      name: monitoredresources
+      description: REST surface for monitoredResources.
+      operations:
+      - method: POST
+        name: listmonitoredresources
+        description: Returns the list of all log groups that are being monitored and tagged by DevOps Guru.
+        call: amazon-devops-guru.listmonitoredresources
+        with:
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organization/health
+      name: organization-health
+      description: REST surface for organization-health.
+      operations:
+      - method: POST
+        name: describeorganizationhealth
+        description: Returns active insights, predictive insights, and resource hours analyzed in last hour.
+        call: amazon-devops-guru.describeorganizationhealth
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organization/health/resource-collection
+      name: organization-health-resource-collection
+      description: REST surface for organization-health-resource-collection.
+      operations:
+      - method: POST
+        name: describeorganizationresourcecollectionhealth
+        description: Provides an overview of your system's health. If additional member accounts are part of your organization,
+          you can filter those accounts using the <code>AccountIds</code> field.
+        call: amazon-devops-guru.describeorganizationresourcecollectionhealth
+        with:
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organization/insights
+      name: organization-insights
+      description: REST surface for organization-insights.
+      operations:
+      - method: POST
+        name: listorganizationinsights
+        description: Returns a list of insights associated with the account or OU Id.
+        call: amazon-devops-guru.listorganizationinsights
+        with:
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organization/insights/search
+      name: organization-insights-search
+      description: REST surface for organization-insights-search.
+      operations:
+      - method: POST
+        name: searchorganizationinsights
+        description: <p> Returns a list of insights in your organization. You can specify which insights are returned by their
+          start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more
+          severities (<code>L
+        call: amazon-devops-guru.searchorganizationinsights
+        with:
+          MaxResults: rest.MaxResults
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/organization/overview
+      name: organization-overview
+      description: REST surface for organization-overview.
+      operations:
+      - method: POST
+        name: describeorganizationoverview
+        description: Returns an overview of your organization's history based on the specified time range. The overview includes
+          the total reactive and proactive insights.
+        call: amazon-devops-guru.describeorganizationoverview
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/recommendations
+      name: recommendations
+      description: REST surface for recommendations.
+      operations:
+      - method: POST
+        name: listrecommendations
+        description: Returns a list of a specified insight's recommendations. Each recommendation includes a list of related
+          metrics and a list of related events.
+        call: amazon-devops-guru.listrecommendations
+        with:
+          NextToken: rest.NextToken
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resource-collections
+      name: resource-collections
+      description: REST surface for resource-collections.
+      operations:
+      - method: PUT
+        name: updateresourcecollection
+        description: 'Updates the collection of resources that DevOps Guru analyzes. The two types of Amazon Web Services
+          resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that
+          contain the same Amazon '
+        call: amazon-devops-guru.updateresourcecollection
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/resource-collections/{resourcecollectiontype}
+      name: resource-collections-resourcecollectiontype
+      description: REST surface for resource-collections-ResourceCollectionType.
+      operations:
+      - method: GET
+        name: getresourcecollection
+        description: Returns lists Amazon Web Services resources that are of the specified resource collection type. The two
+          types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon
+          Web Services resour
+        call: amazon-devops-guru.getresourcecollection
+        with:
+          ResourceCollectionType: rest.ResourceCollectionType
+          NextToken: rest.NextToken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/service-integrations
+      name: service-integrations
+      description: REST surface for service-integrations.
+      operations:
+      - method: GET
+        name: describeserviceintegration
+        description: Returns the integration status of services that are integrated with DevOps Guru. The one service that
+          can be integrated with DevOps Guru is Amazon Web Services Systems Manager, which can be used to create an OpsItem
+          for each generated insig
+        call: amazon-devops-guru.describeserviceintegration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateserviceintegration
+        description: Enables or disables integration with a service that can be integrated with DevOps Guru. The one service
+          that can be integrated with DevOps Guru is Amazon Web Services Systems Manager, which can be used to create an OpsItem
+          for each generate
+        call: amazon-devops-guru.updateserviceintegration
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-devops-guru-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon DevOps Guru. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: returns-number-open-reactive-insights
+      description: Returns the number of open reactive insights, the number of open proactive insights, and the number of
+        metrics analyzed in your Amazon Web Services account. Use these numbers to gauge the health of operations in your
+        Amazon Web Services acc
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.describeaccounthealth
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-number-open-proactive-insights
+      description: Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR)
+        for all closed insights in resource collections in your account. You specify the type of Amazon Web Services resources
+        collection. Th
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.describeresourcecollectionhealth
+      with:
+        ResourceCollectionType: tools.ResourceCollectionType
+        NextToken: tools.NextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: time-range-passed-returns-number
+      description: For the time range passed in, returns the number of open reactive insight that were created, the number
+        of open proactive insights that were created, and the Mean Time to Recover (MTTR) for all closed reactive insights.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.describeaccountoverview
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-anomalies-that-belong
+      description: Returns a list of the anomalies that belong to an insight that you specify using its ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.listanomaliesforinsight
+      with:
+        InsightId: tools.InsightId
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-details-about-anomaly-that
+      description: Returns details about an anomaly that you specify using its ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.describeanomaly
+      with:
+        Id: tools.Id
+        AccountId: tools.AccountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: p-adds-notification-channel-devops
+      description: <p> Adds a notification channel to DevOps Guru. A notification channel is used to notify you about important
+        DevOps Guru events, such as when an insight is generated. </p> <p>If you use an Amazon SNS topic in another account,
+        you must attac
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.addnotificationchannel
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-notification-channels-configured
+      description: Returns a list of notification channels configured for DevOps Guru. Each notification channel is used to
+        notify you when DevOps Guru generates an insight that contains information about how to improve your operations. The
+        one supported noti
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.listnotificationchannels
+      with:
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removes-notification-channel-devops-guru
+      description: Removes a notification channel from DevOps Guru. A notification channel is used to notify you when DevOps
+        Guru generates an insight that contains information about how to improve your operations.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-devops-guru.removenotificationchannel
+      with:
+        Id: tools.Id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-estimate-monthly-cost-devops
+      description: Returns an estimate of the monthly cost for DevOps Guru to analyze your Amazon Web Services resources.
+        For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html">Estimate
+        your Amazon DevO
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.getcostestimation
+      with:
+        NextToken: tools.NextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: starts-creation-estimate-monthly-cost
+      description: Starts the creation of an estimate of the monthly cost to analyze your Amazon Web Services resources.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.startcostestimation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-integration-status-services-that
+      description: Returns the integration status of services that are integrated with DevOps Guru as Consumer via EventBridge.
+        The one service that can be integrated with DevOps Guru is Amazon CodeGuru Profiler, which can produce proactive recommendations
+        wh
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.describeeventsourcesconfig
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: enables-disables-integration-service-that
+      description: Enables or disables integration with a service that can be integrated with DevOps Guru. The one service
+        that can be integrated with DevOps Guru is Amazon CodeGuru Profiler, which can produce proactive recommendations which
+        can be stored and
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.updateeventsourcesconfig
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-events-emitted-resources
+      description: Returns a list of the events emitted by the resources that are evaluated by DevOps Guru. You can use filters
+        to specify which events are returned.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.listevents
+      with:
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-most-recent-feedback-submitted
+      description: Returns the most recent feedback submitted in the current Amazon Web Services account and Region.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.describefeedback
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: collects-customer-feedback-about-specified
+      description: Collects customer feedback about the specified insight.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.putfeedback
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-insights-your-amazon
+      description: Returns a list of insights in your Amazon Web Services account. You can specify which insights are returned
+        by their start time and status (<code>ONGOING</code>, <code>CLOSED</code>, or <code>ANY</code>).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.listinsights
+      with:
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: p-returns-list-insights-your
+      description: <p> Returns a list of insights in your Amazon Web Services account. You can specify which insights are
+        returned by their start time, one or more statuses (<code>ONGOING</code> or <code>CLOSED</code>), one or more severities
+        (<code>LOW</code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.searchinsights
+      with:
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-insight-along-associated-anomalies
+      description: Deletes the insight along with the associated anomalies, events and recommendations.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: amazon-devops-guru.deleteinsight
+      with:
+        Id: tools.Id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-details-about-insight-that
+      description: Returns details about an insight that you specify using its ID.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.describeinsight
+      with:
+        Id: tools.Id
+        AccountId: tools.AccountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-log-groups-that
+      description: Returns the list of log groups that contain log anomalies.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.listanomalousloggroups
+      with:
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-all-log-groups
+      description: Returns the list of all log groups that are being monitored and tagged by DevOps Guru.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.listmonitoredresources
+      with:
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-active-insights-predictive-insights
+      description: Returns active insights, predictive insights, and resource hours analyzed in last hour.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.describeorganizationhealth
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: provides-overview-your-system-s-health
+      description: Provides an overview of your system's health. If additional member accounts are part of your organization,
+        you can filter those accounts using the <code>AccountIds</code> field.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.describeorganizationresourcecollectionhealth
+      with:
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-insights-associated-account
+      description: Returns a list of insights associated with the account or OU Id.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.listorganizationinsights
+      with:
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: p-returns-list-insights-your-2
+      description: <p> Returns a list of insights in your organization. You can specify which insights are returned by their
+        start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more
+        severities (<code>L
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.searchorganizationinsights
+      with:
+        MaxResults: tools.MaxResults
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-overview-your-organization-s-history
+      description: Returns an overview of your organization's history based on the specified time range. The overview includes
+        the total reactive and proactive insights.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.describeorganizationoverview
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-list-specified-insight-s-recommendations
+      description: Returns a list of a specified insight's recommendations. Each recommendation includes a list of related
+        metrics and a list of related events.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: amazon-devops-guru.listrecommendations
+      with:
+        NextToken: tools.NextToken
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updates-collection-resources-that-devops
+      description: 'Updates the collection of resources that DevOps Guru analyzes. The two types of Amazon Web Services resource
+        collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain
+        the same Amazon '
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.updateresourcecollection
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-lists-amazon-web-services
+      description: Returns lists Amazon Web Services resources that are of the specified resource collection type. The two
+        types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon
+        Web Services resour
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.getresourcecollection
+      with:
+        ResourceCollectionType: tools.ResourceCollectionType
+        NextToken: tools.NextToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: returns-integration-status-services-that-2
+      description: Returns the integration status of services that are integrated with DevOps Guru. The one service that can
+        be integrated with DevOps Guru is Amazon Web Services Systems Manager, which can be used to create an OpsItem for
+        each generated insig
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.describeserviceintegration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: enables-disables-integration-service-that-2
+      description: Enables or disables integration with a service that can be integrated with DevOps Guru. The one service
+        that can be integrated with DevOps Guru is Amazon Web Services Systems Manager, which can be used to create an OpsItem
+        for each generate
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: amazon-devops-guru.updateserviceintegration
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
