@@ -57,6 +57,14 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/amazon-devops-guru.yaml
 common:
+- type: TrustCenter
+  url: security/amazon-devops-guru-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/amazon-devops-guru-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/amazon-devops-guru-domain-security.yml
+- type: Authentication
+  url: authentication/amazon-devops-guru-authentication.yml
 - type: Portal
   url: https://aws.amazon.com/devops-guru/
 - type: Website
