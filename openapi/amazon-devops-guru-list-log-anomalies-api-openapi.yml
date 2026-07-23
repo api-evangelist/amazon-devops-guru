@@ -1,0 +1,413 @@
+openapi: 3.0.0
+info:
+  version: 2020-12-01
+  x-release: v4
+  title: Amazon DevOps Guru Accounts List Log Anomalies API
+  description: <p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html">Concepts in DevOps Guru</a>. </p>
+  x-logo:
+    url: https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.png
+    backgroundColor: '#FFFFFF'
+  termsOfService: https://aws.amazon.com/service-terms/
+  contact:
+    name: Mike Ralphson
+    email: mike.ralphson@gmail.com
+    url: https://github.com/mermade/aws2openapi
+    x-twitter: PermittedSoc
+  license:
+    name: Apache 2.0 License
+    url: http://www.apache.org/licenses/
+  x-providerName: amazonaws.com
+  x-serviceName: devops-guru
+  x-aws-signingName: devops-guru
+  x-origin:
+  - contentType: application/json
+    url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/devops-guru-2020-12-01.normal.json
+    converter:
+      url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
+    x-apisguru-driver: external
+  x-apiClientRegistration:
+    url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
+  x-apisguru-categories:
+  - cloud
+  x-preferred: true
+servers:
+- url: http://devops-guru.{region}.amazonaws.com
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+      default: us-east-1
+  description: The Amazon DevOps Guru multi-region endpoint
+- url: https://devops-guru.{region}.amazonaws.com
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+      default: us-east-1
+  description: The Amazon DevOps Guru multi-region endpoint
+- url: http://devops-guru.{region}.amazonaws.com.cn
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+      default: cn-north-1
+  description: The Amazon DevOps Guru endpoint for China (Beijing) and China (Ningxia)
+- url: https://devops-guru.{region}.amazonaws.com.cn
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+      default: cn-north-1
+  description: The Amazon DevOps Guru endpoint for China (Beijing) and China (Ningxia)
+security:
+- hmac: []
+tags:
+- name: List Log Anomalies
+paths:
+  /list-log-anomalies:
+    parameters:
+    - $ref: '#/components/parameters/X-Amz-Content-Sha256'
+    - $ref: '#/components/parameters/X-Amz-Date'
+    - $ref: '#/components/parameters/X-Amz-Algorithm'
+    - $ref: '#/components/parameters/X-Amz-Credential'
+    - $ref: '#/components/parameters/X-Amz-Security-Token'
+    - $ref: '#/components/parameters/X-Amz-Signature'
+    - $ref: '#/components/parameters/X-Amz-SignedHeaders'
+    post:
+      operationId: ListAnomalousLogGroups
+      description: ' Returns the list of log groups that contain log anomalies. '
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAnomalousLogGroupsResponse'
+        '480':
+          description: AccessDeniedException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+        '481':
+          description: InternalServerException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+        '482':
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+        '483':
+          description: ThrottlingException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+        '484':
+          description: ValidationException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+      parameters:
+      - name: MaxResults
+        in: query
+        schema:
+          type: string
+        description: Pagination limit
+        required: false
+      - name: NextToken
+        in: query
+        schema:
+          type: string
+        description: Pagination token
+        required: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - InsightId
+              properties:
+                InsightId:
+                  description: ' The ID of the insight containing the log groups. '
+                  type: string
+                  pattern: ^[\w-]*$
+                  minLength: 1
+                  maxLength: 100
+                MaxResults:
+                  description: The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.
+                  type: integer
+                  minimum: 1
+                  maximum: 200
+                NextToken:
+                  description: The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.
+                  type: string
+                  pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+                  minLength: 36
+                  maxLength: 36
+      tags:
+      - List Log Anomalies
+components:
+  schemas:
+    Explanation:
+      type: string
+      minLength: 1
+      maxLength: 2048
+    LogAnomalyType:
+      type: string
+      enum:
+      - KEYWORD
+      - KEYWORD_TOKEN
+      - FORMAT
+      - HTTP_CODE
+      - BLOCK_FORMAT
+      - NUMERICAL_POINT
+      - NUMERICAL_NAN
+      - NEW_FIELD_NAME
+    InternalServerException: {}
+    LogEventId:
+      type: string
+      minLength: 1
+      maxLength: 512
+    AnomalousLogGroups:
+      type: array
+      items:
+        $ref: '#/components/schemas/AnomalousLogGroup'
+    LogGroupName:
+      type: string
+      minLength: 1
+      maxLength: 512
+    ValidationException: {}
+    LogAnomalyClass:
+      type: object
+      properties:
+        LogStreamName:
+          allOf:
+          - $ref: '#/components/schemas/LogStreamName'
+          - description: ' The name of the Amazon CloudWatch log stream that the anomalous log event belongs to. A log stream is a sequence of log events that share the same source. '
+        LogAnomalyType:
+          allOf:
+          - $ref: '#/components/schemas/LogAnomalyType'
+          - description: ' The type of log anomaly that has been detected. '
+        LogAnomalyToken:
+          allOf:
+          - $ref: '#/components/schemas/LogAnomalyToken'
+          - description: ' The token where the anomaly was detected. This may refer to an exception or another location, or it may be blank for log anomalies such as format anomalies. '
+        LogEventId:
+          allOf:
+          - $ref: '#/components/schemas/LogEventId'
+          - description: ' The ID of the log event. '
+        Explanation:
+          allOf:
+          - $ref: '#/components/schemas/Explanation'
+          - description: ' The explanation for why the log event is considered an anomaly. '
+        NumberOfLogLinesOccurrences:
+          allOf:
+          - $ref: '#/components/schemas/NumberOfLogLinesOccurrences'
+          - description: ' The number of log lines where this anomalous log event occurs. '
+        LogEventTimestamp:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time of the first occurrence of the anomalous log event. '
+      description: ' Information about an anomalous log event found within a log group. '
+    ThrottlingException: {}
+    NumberOfLogLinesScanned:
+      type: integer
+    LogAnomalyShowcase:
+      type: object
+      properties:
+        LogAnomalyClasses:
+          allOf:
+          - $ref: '#/components/schemas/LogAnomalyClasses'
+          - description: ' A list of anomalous log events that may be related. '
+      description: ' A cluster of similar anomalous log events found within a log group. '
+    ListAnomalousLogGroupsResponse:
+      type: object
+      required:
+      - InsightId
+      - AnomalousLogGroups
+      properties:
+        InsightId:
+          allOf:
+          - $ref: '#/components/schemas/InsightId'
+          - description: ' The ID of the insight containing the log groups. '
+        AnomalousLogGroups:
+          allOf:
+          - $ref: '#/components/schemas/AnomalousLogGroups'
+          - description: ' The list of Amazon CloudWatch log groups that are related to an insight. '
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/UuidNextToken'
+          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+    LogAnomalyClasses:
+      type: array
+      items:
+        $ref: '#/components/schemas/LogAnomalyClass'
+      minItems: 0
+      maxItems: 10
+    UuidNextToken:
+      type: string
+      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+      minLength: 36
+      maxLength: 36
+    InsightId:
+      type: string
+      pattern: ^[\w-]*$
+      minLength: 1
+      maxLength: 100
+    AccessDeniedException: {}
+    AnomalousLogGroup:
+      type: object
+      properties:
+        LogGroupName:
+          allOf:
+          - $ref: '#/components/schemas/LogGroupName'
+          - description: ' The name of the CloudWatch log group. '
+        ImpactStartTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time the anomalous log events began. The impact start time indicates the time of the first log anomaly event that occurs. '
+        ImpactEndTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time the anomalous log events stopped. '
+        NumberOfLogLinesScanned:
+          allOf:
+          - $ref: '#/components/schemas/NumberOfLogLinesScanned'
+          - description: ' The number of log lines that were scanned for anomalous log events. '
+        LogAnomalyShowcases:
+          allOf:
+          - $ref: '#/components/schemas/LogAnomalyShowcases'
+          - description: ' The log anomalies in the log group. Each log anomaly displayed represents a cluster of similar anomalous log events. '
+      description: ' An Amazon CloudWatch log group that contains log anomalies and is used to generate an insight. '
+    NumberOfLogLinesOccurrences:
+      type: integer
+    LogStreamName:
+      type: string
+      minLength: 1
+      maxLength: 512
+    LogAnomalyShowcases:
+      type: array
+      items:
+        $ref: '#/components/schemas/LogAnomalyShowcase'
+      minItems: 0
+      maxItems: 20
+    LogAnomalyToken:
+      type: string
+      minLength: 1
+      maxLength: 2048
+    Timestamp:
+      type: string
+      format: date-time
+    ResourceNotFoundException: {}
+  parameters:
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+  securitySchemes:
+    hmac:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Amazon Signature authorization v4
+      x-amazon-apigateway-authtype: awsSigv4
+externalDocs:
+  description: Amazon Web Services documentation
+  url: https://docs.aws.amazon.com/devops-guru/

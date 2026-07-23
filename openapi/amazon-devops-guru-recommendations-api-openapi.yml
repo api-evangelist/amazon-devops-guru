@@ -1,0 +1,456 @@
+openapi: 3.0.0
+info:
+  version: 2020-12-01
+  x-release: v4
+  title: Amazon DevOps Guru Accounts Recommendations API
+  description: <p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html">Concepts in DevOps Guru</a>. </p>
+  x-logo:
+    url: https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.png
+    backgroundColor: '#FFFFFF'
+  termsOfService: https://aws.amazon.com/service-terms/
+  contact:
+    name: Mike Ralphson
+    email: mike.ralphson@gmail.com
+    url: https://github.com/mermade/aws2openapi
+    x-twitter: PermittedSoc
+  license:
+    name: Apache 2.0 License
+    url: http://www.apache.org/licenses/
+  x-providerName: amazonaws.com
+  x-serviceName: devops-guru
+  x-aws-signingName: devops-guru
+  x-origin:
+  - contentType: application/json
+    url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/devops-guru-2020-12-01.normal.json
+    converter:
+      url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
+    x-apisguru-driver: external
+  x-apiClientRegistration:
+    url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
+  x-apisguru-categories:
+  - cloud
+  x-preferred: true
+servers:
+- url: http://devops-guru.{region}.amazonaws.com
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+      default: us-east-1
+  description: The Amazon DevOps Guru multi-region endpoint
+- url: https://devops-guru.{region}.amazonaws.com
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+      default: us-east-1
+  description: The Amazon DevOps Guru multi-region endpoint
+- url: http://devops-guru.{region}.amazonaws.com.cn
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+      default: cn-north-1
+  description: The Amazon DevOps Guru endpoint for China (Beijing) and China (Ningxia)
+- url: https://devops-guru.{region}.amazonaws.com.cn
+  variables:
+    region:
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+      default: cn-north-1
+  description: The Amazon DevOps Guru endpoint for China (Beijing) and China (Ningxia)
+security:
+- hmac: []
+tags:
+- name: Recommendations
+paths:
+  /recommendations:
+    parameters:
+    - $ref: '#/components/parameters/X-Amz-Content-Sha256'
+    - $ref: '#/components/parameters/X-Amz-Date'
+    - $ref: '#/components/parameters/X-Amz-Algorithm'
+    - $ref: '#/components/parameters/X-Amz-Credential'
+    - $ref: '#/components/parameters/X-Amz-Security-Token'
+    - $ref: '#/components/parameters/X-Amz-Signature'
+    - $ref: '#/components/parameters/X-Amz-SignedHeaders'
+    post:
+      operationId: ListRecommendations
+      description: ' Returns a list of a specified insight''s recommendations. Each recommendation includes a list of related metrics and a list of related events. '
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRecommendationsResponse'
+        '480':
+          description: AccessDeniedException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+        '481':
+          description: InternalServerException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+        '482':
+          description: ResourceNotFoundException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+        '483':
+          description: ThrottlingException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+        '484':
+          description: ValidationException
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+      parameters:
+      - name: NextToken
+        in: query
+        schema:
+          type: string
+        description: Pagination token
+        required: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - InsightId
+              properties:
+                InsightId:
+                  description: ' The ID of the requested insight. '
+                  type: string
+                  pattern: ^[\w-]*$
+                  minLength: 1
+                  maxLength: 100
+                NextToken:
+                  description: The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.
+                  type: string
+                  pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+                  minLength: 36
+                  maxLength: 36
+                Locale:
+                  description: A locale that specifies the language to use for recommendations.
+                  type: string
+                  enum:
+                  - DE_DE
+                  - EN_US
+                  - EN_GB
+                  - ES_ES
+                  - FR_FR
+                  - IT_IT
+                  - JA_JP
+                  - KO_KR
+                  - PT_BR
+                  - ZH_CN
+                  - ZH_TW
+                AccountId:
+                  description: 'The ID of the Amazon Web Services account. '
+                  type: string
+                  pattern: ^\d{12}$
+                  minLength: 12
+                  maxLength: 12
+      tags:
+      - Recommendations
+components:
+  schemas:
+    InternalServerException: {}
+    RecommendationRelatedAnomalyResource:
+      type: object
+      properties:
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedAnomalyResourceName'
+          - description: ' The name of the resource. '
+        Type:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedAnomalyResourceType'
+          - description: ' The type of the resource. Resource types take the same form that is used by Amazon Web Services CloudFormation resource type identifiers, <code>service-provider::service-name::data-type-name</code>. For example, <code>AWS::RDS::DBCluster</code>. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Amazon Web Services resource and property types reference</a> in the <i>Amazon Web Services CloudFormation User Guide</i>.'
+      description: ' Information about a resource in which DevOps Guru detected anomalous behavior. '
+    RecommendationRelatedAnomalySourceDetail:
+      type: object
+      properties:
+        CloudWatchMetrics:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceDetails'
+          - description: ' An array of <code>CloudWatchMetricsDetail</code> objects that contains information about the analyzed metrics that displayed anomalous behavior. '
+      description: ' Contains an array of <code>RecommendationRelatedCloudWatchMetricsSourceDetail</code> objects that contain the name and namespace of an Amazon CloudWatch metric. '
+    RecommendationReason:
+      type: string
+    RecommendationRelatedCloudWatchMetricsSourceDetail:
+      type: object
+      properties:
+        MetricName:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceMetricName'
+          - description: The name of the CloudWatch metric.
+        Namespace:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceNamespace'
+          - description: The namespace of the CloudWatch metric. A namespace is a container for CloudWatch metrics.
+      description: ' Information about an Amazon CloudWatch metric that is analyzed by DevOps Guru. It is one of many analyzed metrics that are used to generate insights. '
+    RecommendationLink:
+      type: string
+    AnomalyId:
+      type: string
+      pattern: ^[\w~.-]*$
+      minLength: 1
+      maxLength: 100
+    RecommendationRelatedEventResourceType:
+      type: string
+    RecommendationRelatedAnomalyResourceType:
+      type: string
+    RecommendationRelatedEventResources:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedEventResource'
+    ValidationException: {}
+    RecommendationRelatedCloudWatchMetricsSourceMetricName:
+      type: string
+    RecommendationCategory:
+      type: string
+    ThrottlingException: {}
+    RecommendationRelatedEventName:
+      type: string
+    RecommendationRelatedAnomalies:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedAnomaly'
+    RecommendationRelatedEventResourceName:
+      type: string
+    Recommendation:
+      type: object
+      properties:
+        Description:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationDescription'
+          - description: ' A description of the problem. '
+        Link:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationLink'
+          - description: ' A hyperlink to information to help you address the problem. '
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationName'
+          - description: ' The name of the recommendation. '
+        Reason:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationReason'
+          - description: ' The reason DevOps Guru flagged the anomalous behavior as a problem. '
+        RelatedEvents:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedEvents'
+          - description: ' Events that are related to the problem. Use these events to learn more about what''s happening and to help address the issue. '
+        RelatedAnomalies:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedAnomalies'
+          - description: ' Anomalies that are related to the problem. Use these Anomalies to learn more about what''s happening and to help address the issue. '
+        Category:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationCategory'
+          - description: The category type of the recommendation.
+      description: ' Recommendation information to help you remediate detected anomalous behavior that generated an insight. '
+    RecommendationRelatedAnomalyResources:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedAnomalyResource'
+    RecommendationRelatedEvent:
+      type: object
+      properties:
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedEventName'
+          - description: ' The name of the event. This corresponds to the <code>Name</code> field in an <code>Event</code> object. '
+        Resources:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedEventResources'
+          - description: ' A <code>ResourceCollection</code> object that contains arrays of the names of Amazon Web Services CloudFormation stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. '
+      description: ' Information about an event that is related to a recommendation. '
+    UuidNextToken:
+      type: string
+      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+      minLength: 36
+      maxLength: 36
+    RecommendationDescription:
+      type: string
+    RecommendationRelatedAnomaly:
+      type: object
+      properties:
+        Resources:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedAnomalyResources'
+          - description: ' An array of objects that represent resources in which DevOps Guru detected anomalous behavior. Each object contains the name and type of the resource. '
+        SourceDetails:
+          allOf:
+          - $ref: '#/components/schemas/RelatedAnomalySourceDetails'
+          - description: ' Information about where the anomalous behavior related the recommendation was found. For example, details in Amazon CloudWatch metrics. '
+        AnomalyId:
+          allOf:
+          - $ref: '#/components/schemas/AnomalyId'
+          - description: The ID of an anomaly that generated the insight with this recommendation.
+      description: ' Information about an anomaly that is related to a recommendation. '
+    RecommendationRelatedAnomalyResourceName:
+      type: string
+    AccessDeniedException: {}
+    RecommendationRelatedEventResource:
+      type: object
+      properties:
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedEventResourceName'
+          - description: ' The name of the resource that emitted the event. This corresponds to the <code>Name</code> field in an <code>EventResource</code> object. '
+        Type:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedEventResourceType'
+          - description: ' The type of the resource that emitted the event. This corresponds to the <code>Type</code> field in an <code>EventResource</code> object. '
+      description: ' Information about an Amazon Web Services resource that emitted and event that is related to a recommendation in an insight. '
+    RecommendationName:
+      type: string
+    ListRecommendationsResponse:
+      type: object
+      properties:
+        Recommendations:
+          allOf:
+          - $ref: '#/components/schemas/Recommendations'
+          - description: ' An array of the requested recommendations. '
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/UuidNextToken'
+          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+    RecommendationRelatedCloudWatchMetricsSourceNamespace:
+      type: string
+    Recommendations:
+      type: array
+      items:
+        $ref: '#/components/schemas/Recommendation'
+      minItems: 0
+      maxItems: 10
+    ResourceNotFoundException: {}
+    RecommendationRelatedEvents:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedEvent'
+    RecommendationRelatedCloudWatchMetricsSourceDetails:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceDetail'
+    RelatedAnomalySourceDetails:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedAnomalySourceDetail'
+  parameters:
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+  securitySchemes:
+    hmac:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Amazon Signature authorization v4
+      x-amazon-apigateway-authtype: awsSigv4
+externalDocs:
+  description: Amazon Web Services documentation
+  url: https://docs.aws.amazon.com/devops-guru/
