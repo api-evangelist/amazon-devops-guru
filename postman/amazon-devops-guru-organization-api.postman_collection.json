@@ -1,0 +1,2751 @@
+{
+  "info": {
+    "_postman_id": "a56bfd0a-6c2c-42f0-995c-ec07e9b5bcf3",
+    "name": "Amazon DevOps Guru Accounts Organization API",
+    "description": "<p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html\">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works\">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html\">Concepts in DevOps Guru</a>. </p>\n\nContact Support:\n Name: Mike Ralphson\n Email: mike.ralphson@gmail.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:10:59.000Z",
+    "updatedAt": "2026-07-28T10:10:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a56bfd0a-6c2c-42f0-995c-ec07e9b5bcf3"
+  },
+  "item": [
+    {
+      "name": "organization",
+      "item": [
+        {
+          "name": "health",
+          "item": [
+            {
+              "name": "resource-collection",
+              "item": [
+                {
+                  "name": "Describe Organization Resource Collection Health",
+                  "id": "051fcf8a-9132-42f4-990b-d441ac1c9ce0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"OrganizationResourceCollectionType\": \"AWS_ACCOUNT\",\n  \"AccountIds\": [\n    \"801063669931\",\n    \"450633151101\",\n    \"490490371475\",\n    \"113204546458\",\n    \"126844737632\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-jg0q7b0syn1q2d7q3aqcq15o4-5c5n3ufcsq78k1r6creft2\",\n    \"ou-qv276xwagjsjy-ume1acwzw1agr2jit16b02prt\",\n    \"ou-qyk9-zfcl6o3330nhtshqdgy8xwa\",\n    \"ou-a8sqb40qoynz15k-eonjdehdt5eg\",\n    \"ou-x3pwqzuurc-4b4xf89xcf4\"\n  ],\n  \"NextToken\": \"ecf54933-059f-fdcc-dc33-f279273cd617\",\n  \"MaxResults\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/health/resource-collection?NextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "health",
+                        "resource-collection"
+                      ],
+                      "query": [
+                        {
+                          "description": "Pagination token",
+                          "key": "NextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Provides an overview of your system's health. If additional member accounts are part of your organization, you can filter those accounts using the <code>AccountIds</code> field."
+                  },
+                  "response": [
+                    {
+                      "id": "d5cfea61-7052-49a1-a503-99ad61a3162e",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"OrganizationResourceCollectionType\": \"AWS_ACCOUNT\",\n  \"AccountIds\": [\n    \"801063669931\",\n    \"450633151101\",\n    \"490490371475\",\n    \"113204546458\",\n    \"126844737632\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-jg0q7b0syn1q2d7q3aqcq15o4-5c5n3ufcsq78k1r6creft2\",\n    \"ou-qv276xwagjsjy-ume1acwzw1agr2jit16b02prt\",\n    \"ou-qyk9-zfcl6o3330nhtshqdgy8xwa\",\n    \"ou-a8sqb40qoynz15k-eonjdehdt5eg\",\n    \"ou-x3pwqzuurc-4b4xf89xcf4\"\n  ],\n  \"NextToken\": \"ecf54933-059f-fdcc-dc33-f279273cd617\",\n  \"MaxResults\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/health/resource-collection?NextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            "health",
+                            "resource-collection"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination token",
+                              "key": "NextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"CloudFormation\": [\n    {\n      \"StackName\": \"yWY0\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\",\n        \"MeanTimeToRecoverInMilliseconds\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    },\n    {\n      \"StackName\": \"cioGIQ\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\",\n        \"MeanTimeToRecoverInMilliseconds\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    }\n  ],\n  \"Service\": [\n    {\n      \"ServiceName\": \"RDS\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    },\n    {\n      \"ServiceName\": \"EC2\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    }\n  ],\n  \"Account\": [\n    {\n      \"AccountId\": \"313680667171\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\"\n      }\n    },\n    {\n      \"AccountId\": \"969980463155\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\"\n      }\n    }\n  ],\n  \"NextToken\": \"98e3aef1-d55b-982f-4914-b199d0f5e2cc\",\n  \"Tags\": [\n    {\n      \"AppBoundaryKey\": \"LN\",\n      \"TagValue\": \"*\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\",\n        \"MeanTimeToRecoverInMilliseconds\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    },\n    {\n      \"AppBoundaryKey\": \"NZ-@::=@\",\n      \"TagValue\": \"*\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\",\n        \"MeanTimeToRecoverInMilliseconds\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T10:11:00.000Z",
+                      "updatedAt": "2026-07-28T10:11:00.000Z",
+                      "uid": "35240-d5cfea61-7052-49a1-a503-99ad61a3162e"
+                    },
+                    {
+                      "id": "f80235fc-a26f-4f8e-a8a8-86b6214064b4",
+                      "name": "AccessDeniedException",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"OrganizationResourceCollectionType\": \"AWS_ACCOUNT\",\n  \"AccountIds\": [\n    \"801063669931\",\n    \"450633151101\",\n    \"490490371475\",\n    \"113204546458\",\n    \"126844737632\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-jg0q7b0syn1q2d7q3aqcq15o4-5c5n3ufcsq78k1r6creft2\",\n    \"ou-qv276xwagjsjy-ume1acwzw1agr2jit16b02prt\",\n    \"ou-qyk9-zfcl6o3330nhtshqdgy8xwa\",\n    \"ou-a8sqb40qoynz15k-eonjdehdt5eg\",\n    \"ou-x3pwqzuurc-4b4xf89xcf4\"\n  ],\n  \"NextToken\": \"ecf54933-059f-fdcc-dc33-f279273cd617\",\n  \"MaxResults\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/health/resource-collection?NextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            "health",
+                            "resource-collection"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination token",
+                              "key": "NextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:11:00.000Z",
+                      "updatedAt": "2026-07-28T10:11:00.000Z",
+                      "uid": "35240-f80235fc-a26f-4f8e-a8a8-86b6214064b4"
+                    },
+                    {
+                      "id": "08432e46-4e77-40c2-8779-6bb35e3616bd",
+                      "name": "InternalServerException",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"OrganizationResourceCollectionType\": \"AWS_ACCOUNT\",\n  \"AccountIds\": [\n    \"801063669931\",\n    \"450633151101\",\n    \"490490371475\",\n    \"113204546458\",\n    \"126844737632\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-jg0q7b0syn1q2d7q3aqcq15o4-5c5n3ufcsq78k1r6creft2\",\n    \"ou-qv276xwagjsjy-ume1acwzw1agr2jit16b02prt\",\n    \"ou-qyk9-zfcl6o3330nhtshqdgy8xwa\",\n    \"ou-a8sqb40qoynz15k-eonjdehdt5eg\",\n    \"ou-x3pwqzuurc-4b4xf89xcf4\"\n  ],\n  \"NextToken\": \"ecf54933-059f-fdcc-dc33-f279273cd617\",\n  \"MaxResults\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/health/resource-collection?NextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            "health",
+                            "resource-collection"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination token",
+                              "key": "NextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:11:00.000Z",
+                      "updatedAt": "2026-07-28T10:11:00.000Z",
+                      "uid": "35240-08432e46-4e77-40c2-8779-6bb35e3616bd"
+                    },
+                    {
+                      "id": "e636b642-a884-465f-a595-6ba7a1b8bcd0",
+                      "name": "ThrottlingException",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"OrganizationResourceCollectionType\": \"AWS_ACCOUNT\",\n  \"AccountIds\": [\n    \"801063669931\",\n    \"450633151101\",\n    \"490490371475\",\n    \"113204546458\",\n    \"126844737632\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-jg0q7b0syn1q2d7q3aqcq15o4-5c5n3ufcsq78k1r6creft2\",\n    \"ou-qv276xwagjsjy-ume1acwzw1agr2jit16b02prt\",\n    \"ou-qyk9-zfcl6o3330nhtshqdgy8xwa\",\n    \"ou-a8sqb40qoynz15k-eonjdehdt5eg\",\n    \"ou-x3pwqzuurc-4b4xf89xcf4\"\n  ],\n  \"NextToken\": \"ecf54933-059f-fdcc-dc33-f279273cd617\",\n  \"MaxResults\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/health/resource-collection?NextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            "health",
+                            "resource-collection"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination token",
+                              "key": "NextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:11:00.000Z",
+                      "updatedAt": "2026-07-28T10:11:00.000Z",
+                      "uid": "35240-e636b642-a884-465f-a595-6ba7a1b8bcd0"
+                    },
+                    {
+                      "id": "23802e3d-1773-4a12-a2a0-0eacf7763e7d",
+                      "name": "ValidationException",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"OrganizationResourceCollectionType\": \"AWS_ACCOUNT\",\n  \"AccountIds\": [\n    \"801063669931\",\n    \"450633151101\",\n    \"490490371475\",\n    \"113204546458\",\n    \"126844737632\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-jg0q7b0syn1q2d7q3aqcq15o4-5c5n3ufcsq78k1r6creft2\",\n    \"ou-qv276xwagjsjy-ume1acwzw1agr2jit16b02prt\",\n    \"ou-qyk9-zfcl6o3330nhtshqdgy8xwa\",\n    \"ou-a8sqb40qoynz15k-eonjdehdt5eg\",\n    \"ou-x3pwqzuurc-4b4xf89xcf4\"\n  ],\n  \"NextToken\": \"ecf54933-059f-fdcc-dc33-f279273cd617\",\n  \"MaxResults\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/health/resource-collection?NextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            "health",
+                            "resource-collection"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination token",
+                              "key": "NextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:11:00.000Z",
+                      "updatedAt": "2026-07-28T10:11:00.000Z",
+                      "uid": "35240-23802e3d-1773-4a12-a2a0-0eacf7763e7d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-051fcf8a-9132-42f4-990b-d441ac1c9ce0"
+                }
+              ],
+              "id": "abe46e7d-b848-4b05-83e3-72867a994615",
+              "createdAt": "2026-07-28T10:11:00.000Z",
+              "updatedAt": "2026-07-28T10:11:00.000Z",
+              "uid": "35240-abe46e7d-b848-4b05-83e3-72867a994615"
+            },
+            {
+              "name": "Describe Organization Health",
+              "id": "c34e4651-ee04-4538-b81f-220ded659b3b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"AccountIds\": [\n    \"167115826386\",\n    \"152071542578\",\n    \"461623597517\",\n    \"176083287781\",\n    \"969954689810\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-eui8skgvzhg45ok8dplv-5fhjmxr3o\",\n    \"ou-t5238dhr-52t4pefav8j8l7xv1tv7\",\n    \"ou-u9rcl8bccij3ttwc7b6ru2pfq39-aad4lvtd19lqzjmp\",\n    \"ou-4ikbm8xswenyhsrdjrzgvx6gpubu-j0iayuohl3ued4jtsqbs9eef4n\",\n    \"ou-3yugrjauq-l6q2hqcret0lb0y81wtdtw0g\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/organization/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organization",
+                    "health"
+                  ]
+                },
+                "description": "Returns active insights, predictive insights, and resource hours analyzed in last hour."
+              },
+              "response": [
+                {
+                  "id": "6f6bd439-e553-4229-adf0-40f8116d2969",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"AccountIds\": [\n    \"167115826386\",\n    \"152071542578\",\n    \"461623597517\",\n    \"176083287781\",\n    \"969954689810\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-eui8skgvzhg45ok8dplv-5fhjmxr3o\",\n    \"ou-t5238dhr-52t4pefav8j8l7xv1tv7\",\n    \"ou-u9rcl8bccij3ttwc7b6ru2pfq39-aad4lvtd19lqzjmp\",\n    \"ou-4ikbm8xswenyhsrdjrzgvx6gpubu-j0iayuohl3ued4jtsqbs9eef4n\",\n    \"ou-3yugrjauq-l6q2hqcret0lb0y81wtdtw0g\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "health"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"OpenReactiveInsights\": \"<integer>\",\n  \"OpenProactiveInsights\": \"<integer>\",\n  \"MetricsAnalyzed\": \"<integer>\",\n  \"ResourceHours\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-6f6bd439-e553-4229-adf0-40f8116d2969"
+                },
+                {
+                  "id": "0ea96601-afcd-4a1c-85f4-11ab506bbe6d",
+                  "name": "AccessDeniedException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"AccountIds\": [\n    \"167115826386\",\n    \"152071542578\",\n    \"461623597517\",\n    \"176083287781\",\n    \"969954689810\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-eui8skgvzhg45ok8dplv-5fhjmxr3o\",\n    \"ou-t5238dhr-52t4pefav8j8l7xv1tv7\",\n    \"ou-u9rcl8bccij3ttwc7b6ru2pfq39-aad4lvtd19lqzjmp\",\n    \"ou-4ikbm8xswenyhsrdjrzgvx6gpubu-j0iayuohl3ued4jtsqbs9eef4n\",\n    \"ou-3yugrjauq-l6q2hqcret0lb0y81wtdtw0g\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "health"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-0ea96601-afcd-4a1c-85f4-11ab506bbe6d"
+                },
+                {
+                  "id": "cf7b9693-b59f-4d96-9185-24d0655a5da6",
+                  "name": "InternalServerException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"AccountIds\": [\n    \"167115826386\",\n    \"152071542578\",\n    \"461623597517\",\n    \"176083287781\",\n    \"969954689810\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-eui8skgvzhg45ok8dplv-5fhjmxr3o\",\n    \"ou-t5238dhr-52t4pefav8j8l7xv1tv7\",\n    \"ou-u9rcl8bccij3ttwc7b6ru2pfq39-aad4lvtd19lqzjmp\",\n    \"ou-4ikbm8xswenyhsrdjrzgvx6gpubu-j0iayuohl3ued4jtsqbs9eef4n\",\n    \"ou-3yugrjauq-l6q2hqcret0lb0y81wtdtw0g\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "health"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-cf7b9693-b59f-4d96-9185-24d0655a5da6"
+                },
+                {
+                  "id": "bb58221c-29ee-4c72-8b9a-3392587f1802",
+                  "name": "ThrottlingException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"AccountIds\": [\n    \"167115826386\",\n    \"152071542578\",\n    \"461623597517\",\n    \"176083287781\",\n    \"969954689810\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-eui8skgvzhg45ok8dplv-5fhjmxr3o\",\n    \"ou-t5238dhr-52t4pefav8j8l7xv1tv7\",\n    \"ou-u9rcl8bccij3ttwc7b6ru2pfq39-aad4lvtd19lqzjmp\",\n    \"ou-4ikbm8xswenyhsrdjrzgvx6gpubu-j0iayuohl3ued4jtsqbs9eef4n\",\n    \"ou-3yugrjauq-l6q2hqcret0lb0y81wtdtw0g\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "health"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-bb58221c-29ee-4c72-8b9a-3392587f1802"
+                },
+                {
+                  "id": "0981c5e5-46a0-43b0-8b71-b49c1c64fcce",
+                  "name": "ValidationException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"AccountIds\": [\n    \"167115826386\",\n    \"152071542578\",\n    \"461623597517\",\n    \"176083287781\",\n    \"969954689810\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-eui8skgvzhg45ok8dplv-5fhjmxr3o\",\n    \"ou-t5238dhr-52t4pefav8j8l7xv1tv7\",\n    \"ou-u9rcl8bccij3ttwc7b6ru2pfq39-aad4lvtd19lqzjmp\",\n    \"ou-4ikbm8xswenyhsrdjrzgvx6gpubu-j0iayuohl3ued4jtsqbs9eef4n\",\n    \"ou-3yugrjauq-l6q2hqcret0lb0y81wtdtw0g\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "health"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-0981c5e5-46a0-43b0-8b71-b49c1c64fcce"
+                }
+              ],
+              "createdAt": "2026-07-28T10:11:00.000Z",
+              "updatedAt": "2026-07-28T10:11:00.000Z",
+              "uid": "35240-c34e4651-ee04-4538-b81f-220ded659b3b"
+            }
+          ],
+          "id": "47339f80-a58f-411a-be1a-6f71a31ef30f",
+          "createdAt": "2026-07-28T10:11:00.000Z",
+          "updatedAt": "2026-07-28T10:11:00.000Z",
+          "uid": "35240-47339f80-a58f-411a-be1a-6f71a31ef30f"
+        },
+        {
+          "name": "overview",
+          "item": [
+            {
+              "name": "Describe Organization Overview",
+              "id": "7d164d35-c5e3-4560-a50b-6f6b3f8a0913",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\",\n  \"AccountIds\": [\n    \"478876490470\",\n    \"208179388801\",\n    \"329367771215\",\n    \"831189014505\",\n    \"126645577496\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-e8nx62ba5etcc62x3umcd70iv62b7i-kiqb6en77k8zmwmmvcx3qmr3ss9\",\n    \"ou-p7783286qqzpo41xk5psy-zf41vv3ff2lwz9fc5bf7jd2\",\n    \"ou-30naqjg7c49kqiiekxlt3sb3kv2-tx40uhhkim72hcq60xaxr\",\n    \"ou-jul9r4fy0t1zk1iawrwm-my9xkx7m378rc\",\n    \"ou-9vfydw1bk9asfthk0cmlk-z6hdiq1qqr\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/organization/overview",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organization",
+                    "overview"
+                  ]
+                },
+                "description": "Returns an overview of your organization's history based on the specified time range. The overview includes the total reactive and proactive insights."
+              },
+              "response": [
+                {
+                  "id": "ef0f8d66-915c-42ad-a8a6-e9e0ff60b5fd",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\",\n  \"AccountIds\": [\n    \"478876490470\",\n    \"208179388801\",\n    \"329367771215\",\n    \"831189014505\",\n    \"126645577496\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-e8nx62ba5etcc62x3umcd70iv62b7i-kiqb6en77k8zmwmmvcx3qmr3ss9\",\n    \"ou-p7783286qqzpo41xk5psy-zf41vv3ff2lwz9fc5bf7jd2\",\n    \"ou-30naqjg7c49kqiiekxlt3sb3kv2-tx40uhhkim72hcq60xaxr\",\n    \"ou-jul9r4fy0t1zk1iawrwm-my9xkx7m378rc\",\n    \"ou-9vfydw1bk9asfthk0cmlk-z6hdiq1qqr\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "overview"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ReactiveInsights\": \"<integer>\",\n  \"ProactiveInsights\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-ef0f8d66-915c-42ad-a8a6-e9e0ff60b5fd"
+                },
+                {
+                  "id": "f4fc8cfe-c87f-4246-825d-0f0728bb8b14",
+                  "name": "AccessDeniedException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\",\n  \"AccountIds\": [\n    \"478876490470\",\n    \"208179388801\",\n    \"329367771215\",\n    \"831189014505\",\n    \"126645577496\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-e8nx62ba5etcc62x3umcd70iv62b7i-kiqb6en77k8zmwmmvcx3qmr3ss9\",\n    \"ou-p7783286qqzpo41xk5psy-zf41vv3ff2lwz9fc5bf7jd2\",\n    \"ou-30naqjg7c49kqiiekxlt3sb3kv2-tx40uhhkim72hcq60xaxr\",\n    \"ou-jul9r4fy0t1zk1iawrwm-my9xkx7m378rc\",\n    \"ou-9vfydw1bk9asfthk0cmlk-z6hdiq1qqr\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "overview"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-f4fc8cfe-c87f-4246-825d-0f0728bb8b14"
+                },
+                {
+                  "id": "d065ddf5-a465-483a-973d-27d419d3dc33",
+                  "name": "InternalServerException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\",\n  \"AccountIds\": [\n    \"478876490470\",\n    \"208179388801\",\n    \"329367771215\",\n    \"831189014505\",\n    \"126645577496\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-e8nx62ba5etcc62x3umcd70iv62b7i-kiqb6en77k8zmwmmvcx3qmr3ss9\",\n    \"ou-p7783286qqzpo41xk5psy-zf41vv3ff2lwz9fc5bf7jd2\",\n    \"ou-30naqjg7c49kqiiekxlt3sb3kv2-tx40uhhkim72hcq60xaxr\",\n    \"ou-jul9r4fy0t1zk1iawrwm-my9xkx7m378rc\",\n    \"ou-9vfydw1bk9asfthk0cmlk-z6hdiq1qqr\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "overview"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-d065ddf5-a465-483a-973d-27d419d3dc33"
+                },
+                {
+                  "id": "2ca729b7-8db3-4ea0-b0f4-d189a552d19f",
+                  "name": "ThrottlingException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\",\n  \"AccountIds\": [\n    \"478876490470\",\n    \"208179388801\",\n    \"329367771215\",\n    \"831189014505\",\n    \"126645577496\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-e8nx62ba5etcc62x3umcd70iv62b7i-kiqb6en77k8zmwmmvcx3qmr3ss9\",\n    \"ou-p7783286qqzpo41xk5psy-zf41vv3ff2lwz9fc5bf7jd2\",\n    \"ou-30naqjg7c49kqiiekxlt3sb3kv2-tx40uhhkim72hcq60xaxr\",\n    \"ou-jul9r4fy0t1zk1iawrwm-my9xkx7m378rc\",\n    \"ou-9vfydw1bk9asfthk0cmlk-z6hdiq1qqr\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "overview"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-2ca729b7-8db3-4ea0-b0f4-d189a552d19f"
+                },
+                {
+                  "id": "5c2cb4c2-bfbf-4b6f-a88a-0e5a120fa3f4",
+                  "name": "ValidationException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\",\n  \"AccountIds\": [\n    \"478876490470\",\n    \"208179388801\",\n    \"329367771215\",\n    \"831189014505\",\n    \"126645577496\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-e8nx62ba5etcc62x3umcd70iv62b7i-kiqb6en77k8zmwmmvcx3qmr3ss9\",\n    \"ou-p7783286qqzpo41xk5psy-zf41vv3ff2lwz9fc5bf7jd2\",\n    \"ou-30naqjg7c49kqiiekxlt3sb3kv2-tx40uhhkim72hcq60xaxr\",\n    \"ou-jul9r4fy0t1zk1iawrwm-my9xkx7m378rc\",\n    \"ou-9vfydw1bk9asfthk0cmlk-z6hdiq1qqr\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "overview"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-5c2cb4c2-bfbf-4b6f-a88a-0e5a120fa3f4"
+                }
+              ],
+              "createdAt": "2026-07-28T10:11:00.000Z",
+              "updatedAt": "2026-07-28T10:11:00.000Z",
+              "uid": "35240-7d164d35-c5e3-4560-a50b-6f6b3f8a0913"
+            }
+          ],
+          "id": "eff13d54-7df6-46b9-8b87-9ae5bdb07419",
+          "createdAt": "2026-07-28T10:11:00.000Z",
+          "updatedAt": "2026-07-28T10:11:00.000Z",
+          "uid": "35240-eff13d54-7df6-46b9-8b87-9ae5bdb07419"
+        },
+        {
+          "name": "insights",
+          "item": [
+            {
+              "name": "search",
+              "item": [
+                {
+                  "name": "Search Organization Insights",
+                  "id": "6ae1f86b-0912-4d7a-aaec-a3bb30fdc4e0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"AccountIds\": [\n    \"314850301697\"\n  ],\n  \"StartTimeRange\": {\n    \"FromTime\": \"<dateTime>\",\n    \"ToTime\": \"<dateTime>\"\n  },\n  \"Type\": \"PROACTIVE\",\n  \"Filters\": {\n    \"Severities\": [\n      \"LOW\",\n      \"LOW\",\n      \"LOW\"\n    ],\n    \"Statuses\": [\n      \"ONGOING\",\n      \"ONGOING\"\n    ],\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"DmJ0-3\",\n          \"Rotwc\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"}@:ZL+:\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"}=_.L=__@{\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    },\n    \"ServiceCollection\": {\n      \"ServiceNames\": [\n        \"AUTO_SCALING_GROUP\",\n        \"APPLICATION_ELB\"\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"8148d26b-b475-9fdf-575e-df6720d1f8f3\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/insights/search?MaxResults=<string>&NextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "insights",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "Pagination limit",
+                          "key": "MaxResults",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination token",
+                          "key": "NextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "<p> Returns a list of insights in your organization. You can specify which insights are returned by their start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p> <p> Use the <code>Filters</code> parameter to specify status and severity search parameters. Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code> in your search. </p>"
+                  },
+                  "response": [
+                    {
+                      "id": "44d8a274-ae66-4617-9430-e65079ed7b6e",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"AccountIds\": [\n    \"314850301697\"\n  ],\n  \"StartTimeRange\": {\n    \"FromTime\": \"<dateTime>\",\n    \"ToTime\": \"<dateTime>\"\n  },\n  \"Type\": \"PROACTIVE\",\n  \"Filters\": {\n    \"Severities\": [\n      \"LOW\",\n      \"LOW\",\n      \"LOW\"\n    ],\n    \"Statuses\": [\n      \"ONGOING\",\n      \"ONGOING\"\n    ],\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"DmJ0-3\",\n          \"Rotwc\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"}@:ZL+:\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"}=_.L=__@{\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    },\n    \"ServiceCollection\": {\n      \"ServiceNames\": [\n        \"AUTO_SCALING_GROUP\",\n        \"APPLICATION_ELB\"\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"8148d26b-b475-9fdf-575e-df6720d1f8f3\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/insights/search?MaxResults=<string>&NextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            "insights",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination limit",
+                              "key": "MaxResults",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Pagination token",
+                              "key": "NextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ProactiveInsights\": [\n    {\n      \"Id\": \"H\",\n      \"Name\": \"\u180e\u200a\\n\",\n      \"Severity\": \"HIGH\",\n      \"Status\": \"ONGOING\",\n      \"InsightTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"PredictionTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"ResourceCollection\": {\n        \"CloudFormation\": {\n          \"StackNames\": [\n            \"VYZAH\",\n            \"OwLTQxqmL\"\n          ]\n        },\n        \"Tags\": [\n          {\n            \"AppBoundaryKey\": \" \",\n            \"TagValues\": [\n              \"_p/N\",\n              \"*\"\n            ]\n          },\n          {\n            \"AppBoundaryKey\": \":=}NL:_\",\n            \"TagValues\": [\n              \"*\",\n              \"*\"\n            ]\n          }\n        ]\n      },\n      \"ServiceCollection\": {\n        \"ServiceNames\": [\n          \"ROUTE_53\",\n          \"NAT_GATEWAY\"\n        ]\n      },\n      \"AssociatedResourceArns\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"Id\": \"r5sGPrN56\",\n      \"Name\": \"!>2\",\n      \"Severity\": \"HIGH\",\n      \"Status\": \"ONGOING\",\n      \"InsightTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"PredictionTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"ResourceCollection\": {\n        \"CloudFormation\": {\n          \"StackNames\": [\n            \"*ZBQVeNiCTjnh\",\n            \"AVbrFhggBGf\"\n          ]\n        },\n        \"Tags\": [\n          {\n            \"AppBoundaryKey\": \"_.:+\",\n            \"TagValues\": [\n              \"*\",\n              \"\"\n            ]\n          },\n          {\n            \"AppBoundaryKey\": \" \",\n            \"TagValues\": [\n              \"-L-=+-Z@.-\",\n              \"p/N{N..-{\"\n            ]\n          }\n        ]\n      },\n      \"ServiceCollection\": {\n        \"ServiceNames\": [\n          \"SNS\",\n          \"SAGE_MAKER\"\n        ]\n      },\n      \"AssociatedResourceArns\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"ReactiveInsights\": [\n    {\n      \"Id\": \"qMfaOxLItW\",\n      \"Name\": \"MZ(WZ_/tR\",\n      \"Severity\": \"HIGH\",\n      \"Status\": \"CLOSED\",\n      \"InsightTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"ResourceCollection\": {\n        \"CloudFormation\": {\n          \"StackNames\": [\n            \"WXUZYKtfxyxqoRNeC\",\n            \"*xwmNZFzWxyqEKNv\"\n          ]\n        },\n        \"Tags\": [\n          {\n            \"AppBoundaryKey\": \"=L@-{\",\n            \"TagValues\": [\n              \"*\",\n              \"*\"\n            ]\n          },\n          {\n            \"AppBoundaryKey\": \"Z/+\",\n            \"TagValues\": [\n              \"Z+-/._@/Z/\",\n              \"=Z@/.=_Z\"\n            ]\n          }\n        ]\n      },\n      \"ServiceCollection\": {\n        \"ServiceNames\": [\n          \"ELASTI_CACHE\",\n          \"ELASTI_CACHE\"\n        ]\n      },\n      \"AssociatedResourceArns\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"Id\": \"V673W78O\",\n      \"Name\": \"\u20090NA:\",\n      \"Severity\": \"MEDIUM\",\n      \"Status\": \"CLOSED\",\n      \"InsightTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"ResourceCollection\": {\n        \"CloudFormation\": {\n          \"StackNames\": [\n            \"kZ0NDL16\",\n            \"BdxNru4T\"\n          ]\n        },\n        \"Tags\": [\n          {\n            \"AppBoundaryKey\": \"=Z@/}{.@+Z\",\n            \"TagValues\": [\n              \"_NZ//:}@p.\",\n              \"{L@-}p=L@=\"\n            ]\n          },\n          {\n            \"AppBoundaryKey\": \" \",\n            \"TagValues\": [\n              \"{-_Z:{..\",\n              \"Z-}\"\n            ]\n          }\n        ]\n      },\n      \"ServiceCollection\": {\n        \"ServiceNames\": [\n          \"STEP_FUNCTIONS\",\n          \"EKS\"\n        ]\n      },\n      \"AssociatedResourceArns\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"NextToken\": \"bbdec503-f699-570d-6e8e-759a2f71db18\"\n}",
+                      "createdAt": "2026-07-28T10:11:00.000Z",
+                      "updatedAt": "2026-07-28T10:11:00.000Z",
+                      "uid": "35240-44d8a274-ae66-4617-9430-e65079ed7b6e"
+                    },
+                    {
+                      "id": "99875766-5b68-4c8f-813b-115a74828c44",
+                      "name": "AccessDeniedException",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"AccountIds\": [\n    \"314850301697\"\n  ],\n  \"StartTimeRange\": {\n    \"FromTime\": \"<dateTime>\",\n    \"ToTime\": \"<dateTime>\"\n  },\n  \"Type\": \"PROACTIVE\",\n  \"Filters\": {\n    \"Severities\": [\n      \"LOW\",\n      \"LOW\",\n      \"LOW\"\n    ],\n    \"Statuses\": [\n      \"ONGOING\",\n      \"ONGOING\"\n    ],\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"DmJ0-3\",\n          \"Rotwc\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"}@:ZL+:\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"}=_.L=__@{\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    },\n    \"ServiceCollection\": {\n      \"ServiceNames\": [\n        \"AUTO_SCALING_GROUP\",\n        \"APPLICATION_ELB\"\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"8148d26b-b475-9fdf-575e-df6720d1f8f3\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/insights/search?MaxResults=<string>&NextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            "insights",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination limit",
+                              "key": "MaxResults",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Pagination token",
+                              "key": "NextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:11:00.000Z",
+                      "updatedAt": "2026-07-28T10:11:00.000Z",
+                      "uid": "35240-99875766-5b68-4c8f-813b-115a74828c44"
+                    },
+                    {
+                      "id": "4f3e8c42-5bac-4f55-b9b4-5cffbe1d9d5d",
+                      "name": "InternalServerException",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"AccountIds\": [\n    \"314850301697\"\n  ],\n  \"StartTimeRange\": {\n    \"FromTime\": \"<dateTime>\",\n    \"ToTime\": \"<dateTime>\"\n  },\n  \"Type\": \"PROACTIVE\",\n  \"Filters\": {\n    \"Severities\": [\n      \"LOW\",\n      \"LOW\",\n      \"LOW\"\n    ],\n    \"Statuses\": [\n      \"ONGOING\",\n      \"ONGOING\"\n    ],\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"DmJ0-3\",\n          \"Rotwc\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"}@:ZL+:\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"}=_.L=__@{\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    },\n    \"ServiceCollection\": {\n      \"ServiceNames\": [\n        \"AUTO_SCALING_GROUP\",\n        \"APPLICATION_ELB\"\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"8148d26b-b475-9fdf-575e-df6720d1f8f3\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/insights/search?MaxResults=<string>&NextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            "insights",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination limit",
+                              "key": "MaxResults",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Pagination token",
+                              "key": "NextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:11:00.000Z",
+                      "updatedAt": "2026-07-28T10:11:00.000Z",
+                      "uid": "35240-4f3e8c42-5bac-4f55-b9b4-5cffbe1d9d5d"
+                    },
+                    {
+                      "id": "eb6c75df-ccc4-480d-ab56-b0aa36432429",
+                      "name": "ThrottlingException",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"AccountIds\": [\n    \"314850301697\"\n  ],\n  \"StartTimeRange\": {\n    \"FromTime\": \"<dateTime>\",\n    \"ToTime\": \"<dateTime>\"\n  },\n  \"Type\": \"PROACTIVE\",\n  \"Filters\": {\n    \"Severities\": [\n      \"LOW\",\n      \"LOW\",\n      \"LOW\"\n    ],\n    \"Statuses\": [\n      \"ONGOING\",\n      \"ONGOING\"\n    ],\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"DmJ0-3\",\n          \"Rotwc\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"}@:ZL+:\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"}=_.L=__@{\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    },\n    \"ServiceCollection\": {\n      \"ServiceNames\": [\n        \"AUTO_SCALING_GROUP\",\n        \"APPLICATION_ELB\"\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"8148d26b-b475-9fdf-575e-df6720d1f8f3\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/insights/search?MaxResults=<string>&NextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            "insights",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination limit",
+                              "key": "MaxResults",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Pagination token",
+                              "key": "NextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:11:00.000Z",
+                      "updatedAt": "2026-07-28T10:11:00.000Z",
+                      "uid": "35240-eb6c75df-ccc4-480d-ab56-b0aa36432429"
+                    },
+                    {
+                      "id": "15ab3828-e7de-4a54-b49b-3a6030a6b53a",
+                      "name": "ValidationException",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"AccountIds\": [\n    \"314850301697\"\n  ],\n  \"StartTimeRange\": {\n    \"FromTime\": \"<dateTime>\",\n    \"ToTime\": \"<dateTime>\"\n  },\n  \"Type\": \"PROACTIVE\",\n  \"Filters\": {\n    \"Severities\": [\n      \"LOW\",\n      \"LOW\",\n      \"LOW\"\n    ],\n    \"Statuses\": [\n      \"ONGOING\",\n      \"ONGOING\"\n    ],\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"DmJ0-3\",\n          \"Rotwc\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"}@:ZL+:\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"}=_.L=__@{\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    },\n    \"ServiceCollection\": {\n      \"ServiceNames\": [\n        \"AUTO_SCALING_GROUP\",\n        \"APPLICATION_ELB\"\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"8148d26b-b475-9fdf-575e-df6720d1f8f3\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organization/insights/search?MaxResults=<string>&NextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organization",
+                            "insights",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Pagination limit",
+                              "key": "MaxResults",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Pagination token",
+                              "key": "NextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T10:11:00.000Z",
+                      "updatedAt": "2026-07-28T10:11:00.000Z",
+                      "uid": "35240-15ab3828-e7de-4a54-b49b-3a6030a6b53a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-6ae1f86b-0912-4d7a-aaec-a3bb30fdc4e0"
+                }
+              ],
+              "id": "77b05caa-5157-423b-b563-c44502c4a3c0",
+              "createdAt": "2026-07-28T10:11:00.000Z",
+              "updatedAt": "2026-07-28T10:11:00.000Z",
+              "uid": "35240-77b05caa-5157-423b-b563-c44502c4a3c0"
+            },
+            {
+              "name": "List Organization Insights",
+              "id": "60bfa14b-8c73-40c7-9938-c5c1e3a15b3c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"StatusFilter\": {\n    \"Ongoing\": {\n      \"Type\": \"REACTIVE\"\n    },\n    \"Closed\": {\n      \"Type\": \"PROACTIVE\",\n      \"EndTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    },\n    \"Any\": {\n      \"Type\": \"PROACTIVE\",\n      \"StartTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"AccountIds\": [\n    \"132326426962\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-wuth6jf-p60dc80ef7b2p19ywxz\"\n  ],\n  \"NextToken\": \"66ac866c-c428-eed6-ae67-5bb55c1e4a3c\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/organization/insights?MaxResults=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organization",
+                    "insights"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination limit",
+                      "key": "MaxResults",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of insights associated with the account or OU Id."
+              },
+              "response": [
+                {
+                  "id": "5ad90a63-867d-478a-ac25-642e342df286",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"StatusFilter\": {\n    \"Ongoing\": {\n      \"Type\": \"REACTIVE\"\n    },\n    \"Closed\": {\n      \"Type\": \"PROACTIVE\",\n      \"EndTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    },\n    \"Any\": {\n      \"Type\": \"PROACTIVE\",\n      \"StartTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"AccountIds\": [\n    \"132326426962\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-wuth6jf-p60dc80ef7b2p19ywxz\"\n  ],\n  \"NextToken\": \"66ac866c-c428-eed6-ae67-5bb55c1e4a3c\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/insights?MaxResults=<string>&NextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Pagination limit",
+                          "key": "MaxResults",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination token",
+                          "key": "NextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ProactiveInsights\": [\n    {\n      \"Id\": \" \",\n      \"AccountId\": \"560551349199\",\n      \"OrganizationalUnitId\": \"ou-1nd145a2xn7n3g2bu1osp4-gij13qutfzdgzf8z2ydwjoqszq5fvl\",\n      \"Name\": \"\u2007p\\u000b!\u200a\",\n      \"Severity\": \"MEDIUM\",\n      \"Status\": \"ONGOING\",\n      \"InsightTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"PredictionTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"ResourceCollection\": {\n        \"CloudFormation\": {\n          \"StackNames\": [\n            \"qWbFCGLq\",\n            \"dVOzhhFb42PIs\"\n          ]\n        },\n        \"Tags\": [\n          {\n            \"AppBoundaryKey\": \"p\",\n            \"TagValues\": [\n              \"ZZN\",\n              \"*\"\n            ]\n          },\n          {\n            \"AppBoundaryKey\": \"}\",\n            \"TagValues\": [\n              \"+=}.+-{N-Z\",\n              \"*\"\n            ]\n          }\n        ]\n      },\n      \"ServiceCollection\": {\n        \"ServiceNames\": [\n          \"ELASTIC_BEANSTALK\",\n          \"SAGE_MAKER\"\n        ]\n      }\n    },\n    {\n      \"Id\": \"RMtdy\",\n      \"AccountId\": \"620488258709\",\n      \"OrganizationalUnitId\": \"ou-k1tmsbxjv1jp98uwmq869dxyo-b3v7w2m40\",\n      \"Name\": \"E\u2002\u202f@\u180et{+\",\n      \"Severity\": \"MEDIUM\",\n      \"Status\": \"ONGOING\",\n      \"InsightTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"PredictionTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"ResourceCollection\": {\n        \"CloudFormation\": {\n          \"StackNames\": [\n            \"tmVI\",\n            \"Euo*ujqxATXk\"\n          ]\n        },\n        \"Tags\": [\n          {\n            \"AppBoundaryKey\": \"{\",\n            \"TagValues\": [\n              \"N_pN@_\",\n              \"-.@+LL{}-}\"\n            ]\n          },\n          {\n            \"AppBoundaryKey\": \"{_++\",\n            \"TagValues\": [\n              \"*\",\n              \"*\"\n            ]\n          }\n        ]\n      },\n      \"ServiceCollection\": {\n        \"ServiceNames\": [\n          \"KINESIS\",\n          \"SWF\"\n        ]\n      }\n    }\n  ],\n  \"ReactiveInsights\": [\n    {\n      \"Id\": \"_t\",\n      \"AccountId\": \"993259521288\",\n      \"OrganizationalUnitId\": \"ou-updvt3tc57zclhyw8gk3ndha-jz8sngslvs12mnytrdgspg2jdzy5mh1\",\n      \"Name\": \"sMl\u2028:BB{u\",\n      \"Severity\": \"HIGH\",\n      \"Status\": \"ONGOING\",\n      \"InsightTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"ResourceCollection\": {\n        \"CloudFormation\": {\n          \"StackNames\": [\n            \"cTvEzqA*SP9DeBWT3L\",\n            \"Jp*rVTdRYA-\"\n          ]\n        },\n        \"Tags\": [\n          {\n            \"AppBoundaryKey\": \"-+.+=/.Z\",\n            \"TagValues\": [\n              \"/pp@N-_:Z\",\n              \"_:N=N}+\"\n            ]\n          },\n          {\n            \"AppBoundaryKey\": \".}\",\n            \"TagValues\": [\n              \"*\",\n              \"+L+Z+/\"\n            ]\n          }\n        ]\n      },\n      \"ServiceCollection\": {\n        \"ServiceNames\": [\n          \"RDS\",\n          \"LAMBDA\"\n        ]\n      }\n    },\n    {\n      \"Id\": \"w0ITdm271v\",\n      \"AccountId\": \"598614287727\",\n      \"OrganizationalUnitId\": \"ou-5355lf8xwh56xsw-32j7yqwt3u200mi5zgc7ybom4p8b75\",\n      \"Name\": \" \",\n      \"Severity\": \"LOW\",\n      \"Status\": \"ONGOING\",\n      \"InsightTimeRange\": {\n        \"StartTime\": \"<dateTime>\",\n        \"EndTime\": \"<dateTime>\"\n      },\n      \"ResourceCollection\": {\n        \"CloudFormation\": {\n          \"StackNames\": [\n            \"HKyOCJ\",\n            \"CiTuNcUOC9sIyfhsZB8\"\n          ]\n        },\n        \"Tags\": [\n          {\n            \"AppBoundaryKey\": \"=}\",\n            \"TagValues\": [\n              \"*\",\n              \"::--:++}{-\"\n            ]\n          },\n          {\n            \"AppBoundaryKey\": \" \",\n            \"TagValues\": [\n              \"}Z/\",\n              \"*\"\n            ]\n          }\n        ]\n      },\n      \"ServiceCollection\": {\n        \"ServiceNames\": [\n          \"SAGE_MAKER\",\n          \"ELASTIC_BEANSTALK\"\n        ]\n      }\n    }\n  ],\n  \"NextToken\": \"abf4d1ab-6785-7034-0c9f-fa0e081a99d2\"\n}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-5ad90a63-867d-478a-ac25-642e342df286"
+                },
+                {
+                  "id": "2f4b72aa-85de-4bac-899d-6236a0df03c6",
+                  "name": "AccessDeniedException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"StatusFilter\": {\n    \"Ongoing\": {\n      \"Type\": \"REACTIVE\"\n    },\n    \"Closed\": {\n      \"Type\": \"PROACTIVE\",\n      \"EndTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    },\n    \"Any\": {\n      \"Type\": \"PROACTIVE\",\n      \"StartTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"AccountIds\": [\n    \"132326426962\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-wuth6jf-p60dc80ef7b2p19ywxz\"\n  ],\n  \"NextToken\": \"66ac866c-c428-eed6-ae67-5bb55c1e4a3c\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/insights?MaxResults=<string>&NextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Pagination limit",
+                          "key": "MaxResults",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination token",
+                          "key": "NextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-2f4b72aa-85de-4bac-899d-6236a0df03c6"
+                },
+                {
+                  "id": "5fcfea5e-8c72-4d95-84bd-684c31ad091a",
+                  "name": "InternalServerException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"StatusFilter\": {\n    \"Ongoing\": {\n      \"Type\": \"REACTIVE\"\n    },\n    \"Closed\": {\n      \"Type\": \"PROACTIVE\",\n      \"EndTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    },\n    \"Any\": {\n      \"Type\": \"PROACTIVE\",\n      \"StartTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"AccountIds\": [\n    \"132326426962\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-wuth6jf-p60dc80ef7b2p19ywxz\"\n  ],\n  \"NextToken\": \"66ac866c-c428-eed6-ae67-5bb55c1e4a3c\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/insights?MaxResults=<string>&NextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Pagination limit",
+                          "key": "MaxResults",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination token",
+                          "key": "NextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-5fcfea5e-8c72-4d95-84bd-684c31ad091a"
+                },
+                {
+                  "id": "8924488e-bf74-4e75-a618-b28bd5fc29e5",
+                  "name": "ThrottlingException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"StatusFilter\": {\n    \"Ongoing\": {\n      \"Type\": \"REACTIVE\"\n    },\n    \"Closed\": {\n      \"Type\": \"PROACTIVE\",\n      \"EndTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    },\n    \"Any\": {\n      \"Type\": \"PROACTIVE\",\n      \"StartTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"AccountIds\": [\n    \"132326426962\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-wuth6jf-p60dc80ef7b2p19ywxz\"\n  ],\n  \"NextToken\": \"66ac866c-c428-eed6-ae67-5bb55c1e4a3c\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/insights?MaxResults=<string>&NextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Pagination limit",
+                          "key": "MaxResults",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination token",
+                          "key": "NextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-8924488e-bf74-4e75-a618-b28bd5fc29e5"
+                },
+                {
+                  "id": "05e199db-901f-403f-8280-0f26b1698c89",
+                  "name": "ValidationException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"StatusFilter\": {\n    \"Ongoing\": {\n      \"Type\": \"REACTIVE\"\n    },\n    \"Closed\": {\n      \"Type\": \"PROACTIVE\",\n      \"EndTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    },\n    \"Any\": {\n      \"Type\": \"PROACTIVE\",\n      \"StartTimeRange\": {\n        \"FromTime\": \"<dateTime>\",\n        \"ToTime\": \"<dateTime>\"\n      }\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"AccountIds\": [\n    \"132326426962\"\n  ],\n  \"OrganizationalUnitIds\": [\n    \"ou-wuth6jf-p60dc80ef7b2p19ywxz\"\n  ],\n  \"NextToken\": \"66ac866c-c428-eed6-ae67-5bb55c1e4a3c\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organization/insights?MaxResults=<string>&NextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organization",
+                        "insights"
+                      ],
+                      "query": [
+                        {
+                          "description": "Pagination limit",
+                          "key": "MaxResults",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pagination token",
+                          "key": "NextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:11:00.000Z",
+                  "updatedAt": "2026-07-28T10:11:00.000Z",
+                  "uid": "35240-05e199db-901f-403f-8280-0f26b1698c89"
+                }
+              ],
+              "createdAt": "2026-07-28T10:11:00.000Z",
+              "updatedAt": "2026-07-28T10:11:00.000Z",
+              "uid": "35240-60bfa14b-8c73-40c7-9938-c5c1e3a15b3c"
+            }
+          ],
+          "id": "dcf23392-555f-431d-99cd-8230cd54da49",
+          "createdAt": "2026-07-28T10:11:00.000Z",
+          "updatedAt": "2026-07-28T10:11:00.000Z",
+          "uid": "35240-dcf23392-555f-431d-99cd-8230cd54da49"
+        }
+      ],
+      "id": "4ddce2ee-68b3-4103-9173-7c0c5a417d25",
+      "createdAt": "2026-07-28T10:11:00.000Z",
+      "updatedAt": "2026-07-28T10:11:00.000Z",
+      "uid": "35240-4ddce2ee-68b3-4103-9173-7c0c5a417d25"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://devops-guru.{{region}}.amazonaws.com"
+    }
+  ]
+}

@@ -1,0 +1,669 @@
+{
+  "info": {
+    "_postman_id": "8ac0b047-f236-4c94-b882-a5aa1315a6c7",
+    "name": "Amazon DevOps Guru Accounts Recommendations API",
+    "description": "<p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html\">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works\">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html\">Concepts in DevOps Guru</a>. </p>\n\nContact Support:\n Name: Mike Ralphson\n Email: mike.ralphson@gmail.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:11:00.000Z",
+    "updatedAt": "2026-07-28T10:11:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8ac0b047-f236-4c94-b882-a5aa1315a6c7"
+  },
+  "item": [
+    {
+      "name": "recommendations",
+      "item": [
+        {
+          "name": "List Recommendations",
+          "id": "6175402b-2123-4133-be5a-6ed5630c7bb8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Amz-Content-Sha256",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-Date",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-Algorithm",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-Credential",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-Security-Token",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-Signature",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-SignedHeaders",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"InsightId\": \"r2h2\",\n  \"NextToken\": \"0e767ff2-b64e-8775-2256-ae17555dfeaa\",\n  \"Locale\": \"DE_DE\",\n  \"AccountId\": \"987894043078\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/recommendations?NextToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "recommendations"
+              ],
+              "query": [
+                {
+                  "description": "Pagination token",
+                  "key": "NextToken",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": " Returns a list of a specified insight's recommendations. Each recommendation includes a list of related metrics and a list of related events. "
+          },
+          "response": [
+            {
+              "id": "5d3ac3f0-3474-45b4-bbaf-0a6e007bd528",
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"InsightId\": \"r2h2\",\n  \"NextToken\": \"0e767ff2-b64e-8775-2256-ae17555dfeaa\",\n  \"Locale\": \"DE_DE\",\n  \"AccountId\": \"987894043078\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recommendations?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recommendations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"Recommendations\": [\n    {\n      \"Description\": \"<string>\",\n      \"Link\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Reason\": \"<string>\",\n      \"RelatedEvents\": [\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"RelatedAnomalies\": [\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"jB\"\n        },\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"fLP_m.vf45\"\n        }\n      ],\n      \"Category\": \"<string>\"\n    },\n    {\n      \"Description\": \"<string>\",\n      \"Link\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Reason\": \"<string>\",\n      \"RelatedEvents\": [\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"RelatedAnomalies\": [\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"u\"\n        },\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"Zf60kAp6\"\n        }\n      ],\n      \"Category\": \"<string>\"\n    },\n    {\n      \"Description\": \"<string>\",\n      \"Link\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Reason\": \"<string>\",\n      \"RelatedEvents\": [\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"RelatedAnomalies\": [\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"Yzy8cUnM29\"\n        },\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"uguRAZ\"\n        }\n      ],\n      \"Category\": \"<string>\"\n    },\n    {\n      \"Description\": \"<string>\",\n      \"Link\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Reason\": \"<string>\",\n      \"RelatedEvents\": [\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"RelatedAnomalies\": [\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"sqE\"\n        },\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"181f\"\n        }\n      ],\n      \"Category\": \"<string>\"\n    },\n    {\n      \"Description\": \"<string>\",\n      \"Link\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Reason\": \"<string>\",\n      \"RelatedEvents\": [\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"RelatedAnomalies\": [\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"M\"\n        },\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"kf3Bg\"\n        }\n      ],\n      \"Category\": \"<string>\"\n    },\n    {\n      \"Description\": \"<string>\",\n      \"Link\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Reason\": \"<string>\",\n      \"RelatedEvents\": [\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"RelatedAnomalies\": [\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"Vl\"\n        },\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"Giay\"\n        }\n      ],\n      \"Category\": \"<string>\"\n    },\n    {\n      \"Description\": \"<string>\",\n      \"Link\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Reason\": \"<string>\",\n      \"RelatedEvents\": [\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"RelatedAnomalies\": [\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"csrcHeSO\"\n        },\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"f-Hdn\"\n        }\n      ],\n      \"Category\": \"<string>\"\n    },\n    {\n      \"Description\": \"<string>\",\n      \"Link\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Reason\": \"<string>\",\n      \"RelatedEvents\": [\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"RelatedAnomalies\": [\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"M6kocL9\"\n        },\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"i8L.FthoW\"\n        }\n      ],\n      \"Category\": \"<string>\"\n    },\n    {\n      \"Description\": \"<string>\",\n      \"Link\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Reason\": \"<string>\",\n      \"RelatedEvents\": [\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"RelatedAnomalies\": [\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"P0Y_3\"\n        },\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"e1M8P9b~\"\n        }\n      ],\n      \"Category\": \"<string>\"\n    },\n    {\n      \"Description\": \"<string>\",\n      \"Link\": \"<string>\",\n      \"Name\": \"<string>\",\n      \"Reason\": \"<string>\",\n      \"RelatedEvents\": [\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"Name\": \"<string>\",\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"RelatedAnomalies\": [\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"wm\"\n        },\n        {\n          \"Resources\": [\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            },\n            {\n              \"Name\": \"<string>\",\n              \"Type\": \"<string>\"\n            }\n          ],\n          \"SourceDetails\": [\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            },\n            {\n              \"CloudWatchMetrics\": [\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                },\n                {\n                  \"MetricName\": \"<string>\",\n                  \"Namespace\": \"<string>\"\n                }\n              ]\n            }\n          ],\n          \"AnomalyId\": \"4cpYr\"\n        }\n      ],\n      \"Category\": \"<string>\"\n    }\n  ],\n  \"NextToken\": \"a0f637d1-0f86-9de8-2160-1fd3e143db4c\"\n}",
+              "createdAt": "2026-07-28T10:11:01.000Z",
+              "updatedAt": "2026-07-28T10:11:01.000Z",
+              "uid": "35240-5d3ac3f0-3474-45b4-bbaf-0a6e007bd528"
+            },
+            {
+              "id": "10900695-e581-479d-8e22-2d0846c3a935",
+              "name": "AccessDeniedException",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"InsightId\": \"r2h2\",\n  \"NextToken\": \"0e767ff2-b64e-8775-2256-ae17555dfeaa\",\n  \"Locale\": \"DE_DE\",\n  \"AccountId\": \"987894043078\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recommendations?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recommendations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T10:11:01.000Z",
+              "updatedAt": "2026-07-28T10:11:01.000Z",
+              "uid": "35240-10900695-e581-479d-8e22-2d0846c3a935"
+            },
+            {
+              "id": "a1bd49fe-eac2-4be0-8fbc-7961f488f056",
+              "name": "InternalServerException",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"InsightId\": \"r2h2\",\n  \"NextToken\": \"0e767ff2-b64e-8775-2256-ae17555dfeaa\",\n  \"Locale\": \"DE_DE\",\n  \"AccountId\": \"987894043078\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recommendations?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recommendations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T10:11:01.000Z",
+              "updatedAt": "2026-07-28T10:11:01.000Z",
+              "uid": "35240-a1bd49fe-eac2-4be0-8fbc-7961f488f056"
+            },
+            {
+              "id": "5ec1f100-33b4-49b4-9897-2f2183eccc99",
+              "name": "ResourceNotFoundException",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"InsightId\": \"r2h2\",\n  \"NextToken\": \"0e767ff2-b64e-8775-2256-ae17555dfeaa\",\n  \"Locale\": \"DE_DE\",\n  \"AccountId\": \"987894043078\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recommendations?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recommendations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T10:11:01.000Z",
+              "updatedAt": "2026-07-28T10:11:01.000Z",
+              "uid": "35240-5ec1f100-33b4-49b4-9897-2f2183eccc99"
+            },
+            {
+              "id": "aa8e1639-9b3d-40a0-a5ba-a8cc900e33d9",
+              "name": "ThrottlingException",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"InsightId\": \"r2h2\",\n  \"NextToken\": \"0e767ff2-b64e-8775-2256-ae17555dfeaa\",\n  \"Locale\": \"DE_DE\",\n  \"AccountId\": \"987894043078\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recommendations?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recommendations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T10:11:01.000Z",
+              "updatedAt": "2026-07-28T10:11:01.000Z",
+              "uid": "35240-aa8e1639-9b3d-40a0-a5ba-a8cc900e33d9"
+            },
+            {
+              "id": "8656e482-96ee-4ac8-b3bb-95b6ce44be49",
+              "name": "ValidationException",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"InsightId\": \"r2h2\",\n  \"NextToken\": \"0e767ff2-b64e-8775-2256-ae17555dfeaa\",\n  \"Locale\": \"DE_DE\",\n  \"AccountId\": \"987894043078\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/recommendations?NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recommendations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T10:11:01.000Z",
+              "updatedAt": "2026-07-28T10:11:01.000Z",
+              "uid": "35240-8656e482-96ee-4ac8-b3bb-95b6ce44be49"
+            }
+          ],
+          "createdAt": "2026-07-28T10:11:01.000Z",
+          "updatedAt": "2026-07-28T10:11:01.000Z",
+          "uid": "35240-6175402b-2123-4133-be5a-6ed5630c7bb8"
+        }
+      ],
+      "id": "753a8580-7e11-42b2-be89-23bbe1e1e562",
+      "createdAt": "2026-07-28T10:11:01.000Z",
+      "updatedAt": "2026-07-28T10:11:01.000Z",
+      "uid": "35240-753a8580-7e11-42b2-be89-23bbe1e1e562"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://devops-guru.{{region}}.amazonaws.com"
+    }
+  ]
+}

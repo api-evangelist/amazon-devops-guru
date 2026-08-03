@@ -1,0 +1,704 @@
+{
+  "info": {
+    "_postman_id": "89027dc4-e3de-483d-9ae8-acf5309dd470",
+    "name": "Amazon DevOps Guru Accounts Events API",
+    "description": "<p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html\">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works\">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html\">Concepts in DevOps Guru</a>. </p>\n\nContact Support:\n Name: Mike Ralphson\n Email: mike.ralphson@gmail.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:10:50.000Z",
+    "updatedAt": "2026-07-28T10:10:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-89027dc4-e3de-483d-9ae8-acf5309dd470"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "List Events",
+          "id": "a884abe9-ed4a-4cd8-a5bc-76b672aa2ab0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-Amz-Content-Sha256",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-Date",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-Algorithm",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-Credential",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-Security-Token",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-Signature",
+                "value": "<string>"
+              },
+              {
+                "key": "X-Amz-SignedHeaders",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"Filters\": {\n    \"InsightId\": \"7ROn2sWv\",\n    \"EventTimeRange\": {\n      \"FromTime\": \"<dateTime>\",\n      \"ToTime\": \"<dateTime>\"\n    },\n    \"EventClass\": \"SCHEMA_CHANGE\",\n    \"EventSource\": \"aws.events\",\n    \"DataSource\": \"AWS_CLOUD_TRAIL\",\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"QmtAD*vQBqGVF\",\n          \"HYtLpSe4JQPi\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"Z-}_.L\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"@p.=/:.{N\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"6f16ec68-40a4-1014-0662-a76a3d7d176d\",\n  \"AccountId\": \"392096828206\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/events?MaxResults=<string>&NextToken=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [
+                {
+                  "description": "Pagination limit",
+                  "key": "MaxResults",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pagination token",
+                  "key": "NextToken",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": " Returns a list of the events emitted by the resources that are evaluated by DevOps Guru. You can use filters to specify which events are returned. "
+          },
+          "response": [
+            {
+              "id": "43318b58-e44d-493a-b5f6-e911e224818a",
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Filters\": {\n    \"InsightId\": \"7ROn2sWv\",\n    \"EventTimeRange\": {\n      \"FromTime\": \"<dateTime>\",\n      \"ToTime\": \"<dateTime>\"\n    },\n    \"EventClass\": \"SCHEMA_CHANGE\",\n    \"EventSource\": \"aws.events\",\n    \"DataSource\": \"AWS_CLOUD_TRAIL\",\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"QmtAD*vQBqGVF\",\n          \"HYtLpSe4JQPi\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"Z-}_.L\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"@p.=/:.{N\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"6f16ec68-40a4-1014-0662-a76a3d7d176d\",\n  \"AccountId\": \"392096828206\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events?MaxResults=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination limit",
+                      "key": "MaxResults",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"Events\": [\n    {\n      \"ResourceCollection\": {\n        \"CloudFormation\": {\n          \"StackNames\": [\n            \"wXCvWTcmOzvpQsGyPXmq\",\n            \"JrE\"\n          ]\n        },\n        \"Tags\": [\n          {\n            \"AppBoundaryKey\": \"-.L/@{-\",\n            \"TagValues\": [\n              \"*\",\n              \"Z@_@_@/-\"\n            ]\n          },\n          {\n            \"AppBoundaryKey\": \"NL{:L\",\n            \"TagValues\": [\n              \"{-/{/N_\",\n              \"*\"\n            ]\n          }\n        ]\n      },\n      \"Id\": \"<string>\",\n      \"Time\": \"<dateTime>\",\n      \"EventSource\": \"teztwswlugb6j5oup45.amazonaws.com\",\n      \"Name\": \"<string>\",\n      \"DataSource\": \"AWS_CODE_DEPLOY\",\n      \"EventClass\": \"DEPLOYMENT\",\n      \"Resources\": [\n        {\n          \"Type\": \"l*^[\",\n          \"Name\": \"a(9\",\n          \"Arn\": \"arn:awsr:ld9-:c4:047692007063:^5arn:awsr:ld9-:c4:047692007063:^5\"\n        },\n        {\n          \"Type\": \"x{\",\n          \"Name\": \"_fR #3WIc}\",\n          \"Arn\": \"arn:awsu:i7xhrg:tvod76:613642279264:ElGID!O<@~\"\n        }\n      ]\n    },\n    {\n      \"ResourceCollection\": {\n        \"CloudFormation\": {\n          \"StackNames\": [\n            \"RAFJYVtrgE\",\n            \"DnLYtxOqj\"\n          ]\n        },\n        \"Tags\": [\n          {\n            \"AppBoundaryKey\": \"{NLN}}Z//}\",\n            \"TagValues\": [\n              \"*\",\n              \"Z/_\"\n            ]\n          },\n          {\n            \"AppBoundaryKey\": \" \",\n            \"TagValues\": [\n              \"Z=@/-L+.Z\",\n              \"*\"\n            ]\n          }\n        ]\n      },\n      \"Id\": \"<string>\",\n      \"Time\": \"<dateTime>\",\n      \"EventSource\": \"syylni.amazonaws.com\",\n      \"Name\": \"<string>\",\n      \"DataSource\": \"AWS_CODE_DEPLOY\",\n      \"EventClass\": \"DEPLOYMENT\",\n      \"Resources\": [\n        {\n          \"Type\": \"[JOl'*lJ\",\n          \"Name\": \"By_)')K 5\",\n          \"Arn\": \"arn:awsjgff:icvtz9bpa:oloqm:659583875511:n\"\n        },\n        {\n          \"Type\": \"vEv-kb_\",\n          \"Name\": \"n+Lhu\",\n          \"Arn\": \"arn:awsforbth:j3bpo:pt-1:634069420044:HJ}\"\n        }\n      ]\n    }\n  ],\n  \"NextToken\": \"9f61763d-422e-fcfc-ac77-041c1661df8b\"\n}",
+              "createdAt": "2026-07-28T10:10:51.000Z",
+              "updatedAt": "2026-07-28T10:10:51.000Z",
+              "uid": "35240-43318b58-e44d-493a-b5f6-e911e224818a"
+            },
+            {
+              "id": "730662ba-ca36-45c6-9c51-010d705d2623",
+              "name": "AccessDeniedException",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Filters\": {\n    \"InsightId\": \"7ROn2sWv\",\n    \"EventTimeRange\": {\n      \"FromTime\": \"<dateTime>\",\n      \"ToTime\": \"<dateTime>\"\n    },\n    \"EventClass\": \"SCHEMA_CHANGE\",\n    \"EventSource\": \"aws.events\",\n    \"DataSource\": \"AWS_CLOUD_TRAIL\",\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"QmtAD*vQBqGVF\",\n          \"HYtLpSe4JQPi\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"Z-}_.L\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"@p.=/:.{N\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"6f16ec68-40a4-1014-0662-a76a3d7d176d\",\n  \"AccountId\": \"392096828206\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events?MaxResults=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination limit",
+                      "key": "MaxResults",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T10:10:51.000Z",
+              "updatedAt": "2026-07-28T10:10:51.000Z",
+              "uid": "35240-730662ba-ca36-45c6-9c51-010d705d2623"
+            },
+            {
+              "id": "7f44670b-b379-4b5d-8eac-912984e67c72",
+              "name": "InternalServerException",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Filters\": {\n    \"InsightId\": \"7ROn2sWv\",\n    \"EventTimeRange\": {\n      \"FromTime\": \"<dateTime>\",\n      \"ToTime\": \"<dateTime>\"\n    },\n    \"EventClass\": \"SCHEMA_CHANGE\",\n    \"EventSource\": \"aws.events\",\n    \"DataSource\": \"AWS_CLOUD_TRAIL\",\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"QmtAD*vQBqGVF\",\n          \"HYtLpSe4JQPi\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"Z-}_.L\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"@p.=/:.{N\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"6f16ec68-40a4-1014-0662-a76a3d7d176d\",\n  \"AccountId\": \"392096828206\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events?MaxResults=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination limit",
+                      "key": "MaxResults",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T10:10:51.000Z",
+              "updatedAt": "2026-07-28T10:10:51.000Z",
+              "uid": "35240-7f44670b-b379-4b5d-8eac-912984e67c72"
+            },
+            {
+              "id": "fb23c2db-feeb-4d4e-a306-0bf2c07eb253",
+              "name": "ResourceNotFoundException",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Filters\": {\n    \"InsightId\": \"7ROn2sWv\",\n    \"EventTimeRange\": {\n      \"FromTime\": \"<dateTime>\",\n      \"ToTime\": \"<dateTime>\"\n    },\n    \"EventClass\": \"SCHEMA_CHANGE\",\n    \"EventSource\": \"aws.events\",\n    \"DataSource\": \"AWS_CLOUD_TRAIL\",\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"QmtAD*vQBqGVF\",\n          \"HYtLpSe4JQPi\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"Z-}_.L\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"@p.=/:.{N\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"6f16ec68-40a4-1014-0662-a76a3d7d176d\",\n  \"AccountId\": \"392096828206\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events?MaxResults=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination limit",
+                      "key": "MaxResults",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T10:10:51.000Z",
+              "updatedAt": "2026-07-28T10:10:51.000Z",
+              "uid": "35240-fb23c2db-feeb-4d4e-a306-0bf2c07eb253"
+            },
+            {
+              "id": "a9f5bd78-6cd4-46c8-ac59-fde653c794f6",
+              "name": "ThrottlingException",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Filters\": {\n    \"InsightId\": \"7ROn2sWv\",\n    \"EventTimeRange\": {\n      \"FromTime\": \"<dateTime>\",\n      \"ToTime\": \"<dateTime>\"\n    },\n    \"EventClass\": \"SCHEMA_CHANGE\",\n    \"EventSource\": \"aws.events\",\n    \"DataSource\": \"AWS_CLOUD_TRAIL\",\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"QmtAD*vQBqGVF\",\n          \"HYtLpSe4JQPi\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"Z-}_.L\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"@p.=/:.{N\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"6f16ec68-40a4-1014-0662-a76a3d7d176d\",\n  \"AccountId\": \"392096828206\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events?MaxResults=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination limit",
+                      "key": "MaxResults",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T10:10:51.000Z",
+              "updatedAt": "2026-07-28T10:10:51.000Z",
+              "uid": "35240-a9f5bd78-6cd4-46c8-ac59-fde653c794f6"
+            },
+            {
+              "id": "8551fa1f-cd45-461e-be97-b8593bf7036c",
+              "name": "ValidationException",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Filters\": {\n    \"InsightId\": \"7ROn2sWv\",\n    \"EventTimeRange\": {\n      \"FromTime\": \"<dateTime>\",\n      \"ToTime\": \"<dateTime>\"\n    },\n    \"EventClass\": \"SCHEMA_CHANGE\",\n    \"EventSource\": \"aws.events\",\n    \"DataSource\": \"AWS_CLOUD_TRAIL\",\n    \"ResourceCollection\": {\n      \"CloudFormation\": {\n        \"StackNames\": [\n          \"QmtAD*vQBqGVF\",\n          \"HYtLpSe4JQPi\"\n        ]\n      },\n      \"Tags\": [\n        {\n          \"AppBoundaryKey\": \"Z-}_.L\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        },\n        {\n          \"AppBoundaryKey\": \"@p.=/:.{N\",\n          \"TagValues\": [\n            \"*\",\n            \"*\"\n          ]\n        }\n      ]\n    }\n  },\n  \"MaxResults\": \"<integer>\",\n  \"NextToken\": \"6f16ec68-40a4-1014-0662-a76a3d7d176d\",\n  \"AccountId\": \"392096828206\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events?MaxResults=<string>&NextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pagination limit",
+                      "key": "MaxResults",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pagination token",
+                      "key": "NextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-07-28T10:10:51.000Z",
+              "updatedAt": "2026-07-28T10:10:51.000Z",
+              "uid": "35240-8551fa1f-cd45-461e-be97-b8593bf7036c"
+            }
+          ],
+          "createdAt": "2026-07-28T10:10:51.000Z",
+          "updatedAt": "2026-07-28T10:10:51.000Z",
+          "uid": "35240-a884abe9-ed4a-4cd8-a5bc-76b672aa2ab0"
+        }
+      ],
+      "id": "437c7b12-d5d9-41f9-b256-b53353e91266",
+      "createdAt": "2026-07-28T10:10:51.000Z",
+      "updatedAt": "2026-07-28T10:10:51.000Z",
+      "uid": "35240-437c7b12-d5d9-41f9-b256-b53353e91266"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://devops-guru.{{region}}.amazonaws.com"
+    }
+  ]
+}

@@ -1,0 +1,1481 @@
+{
+  "info": {
+    "_postman_id": "a3a68d96-ad7e-4f8a-a5cf-4a5f4439cbfe",
+    "name": "Amazon DevOps Guru Accounts API",
+    "description": "<p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html\">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works\">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html\">Concepts in DevOps Guru</a>. </p>\n\nContact Support:\n Name: Mike Ralphson\n Email: mike.ralphson@gmail.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T10:10:35.000Z",
+    "updatedAt": "2026-07-28T10:10:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a3a68d96-ad7e-4f8a-a5cf-4a5f4439cbfe"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "health",
+          "item": [
+            {
+              "name": "resource-collection",
+              "item": [
+                {
+                  "name": "{ResourceCollectionType}",
+                  "item": [
+                    {
+                      "name": "Describe Resource Collection Health",
+                      "id": "de72524f-d3fd-4336-bed2-1a678ac42910",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "X-Amz-Content-Sha256",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Date",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Algorithm",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Credential",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Security-Token",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-Signature",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "X-Amz-SignedHeaders",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/health/resource-collection/:ResourceCollectionType?NextToken=6a2235dd-782b-832c-e0ab-b64f5390df1a",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            "health",
+                            "resource-collection",
+                            ":ResourceCollectionType"
+                          ],
+                          "query": [
+                            {
+                              "description": "The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+                              "key": "NextToken",
+                              "value": "6a2235dd-782b-832c-e0ab-b64f5390df1a"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "4054ce70-73bc-418b-9683-dc0f652e146a",
+                              "key": "ResourceCollectionType",
+                              "value": "AWS_CLOUD_FORMATION",
+                              "description": "(Required)  An Amazon Web Services resource collection type. This type specifies how analyzed Amazon Web Services resources are defined. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. "
+                            }
+                          ]
+                        },
+                        "description": " Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR) for all closed insights in resource collections in your account. You specify the type of Amazon Web Services resources collection. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. "
+                      },
+                      "response": [
+                        {
+                          "id": "d6b6b374-70b6-4abe-a52b-e4be71ac859e",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "X-Amz-Content-Sha256",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Date",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Algorithm",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Credential",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Security-Token",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Signature",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-SignedHeaders",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/health/resource-collection/:ResourceCollectionType?NextToken=6a2235dd-782b-832c-e0ab-b64f5390df1a",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                "health",
+                                "resource-collection",
+                                ":ResourceCollectionType"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+                                  "key": "NextToken",
+                                  "value": "6a2235dd-782b-832c-e0ab-b64f5390df1a"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "ResourceCollectionType"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"CloudFormation\": [\n    {\n      \"StackName\": \"asaHUklTGxpjnXi\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\",\n        \"MeanTimeToRecoverInMilliseconds\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    },\n    {\n      \"StackName\": \"DxYvINW0ZDvrvB\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\",\n        \"MeanTimeToRecoverInMilliseconds\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    }\n  ],\n  \"Service\": [\n    {\n      \"ServiceName\": \"EC2\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    },\n    {\n      \"ServiceName\": \"ELB\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    }\n  ],\n  \"NextToken\": \"0b63cb26-48ff-fbde-4c41-9641afe2ef58\",\n  \"Tags\": [\n    {\n      \"AppBoundaryKey\": \".@{/L-\",\n      \"TagValue\": \"*\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\",\n        \"MeanTimeToRecoverInMilliseconds\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    },\n    {\n      \"AppBoundaryKey\": \".+_p{\",\n      \"TagValue\": \"*\",\n      \"Insight\": {\n        \"OpenProactiveInsights\": \"<integer>\",\n        \"OpenReactiveInsights\": \"<integer>\",\n        \"MeanTimeToRecoverInMilliseconds\": \"<integer>\"\n      },\n      \"AnalyzedResourceCount\": \"<integer>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T10:10:36.000Z",
+                          "updatedAt": "2026-07-28T10:10:36.000Z",
+                          "uid": "35240-d6b6b374-70b6-4abe-a52b-e4be71ac859e"
+                        },
+                        {
+                          "id": "1addd29d-eb90-4d22-974f-c264cdd85af0",
+                          "name": "AccessDeniedException",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "X-Amz-Content-Sha256",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Date",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Algorithm",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Credential",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Security-Token",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Signature",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-SignedHeaders",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/health/resource-collection/:ResourceCollectionType?NextToken=6a2235dd-782b-832c-e0ab-b64f5390df1a",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                "health",
+                                "resource-collection",
+                                ":ResourceCollectionType"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+                                  "key": "NextToken",
+                                  "value": "6a2235dd-782b-832c-e0ab-b64f5390df1a"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "ResourceCollectionType"
+                                }
+                              ]
+                            }
+                          },
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T10:10:36.000Z",
+                          "updatedAt": "2026-07-28T10:10:36.000Z",
+                          "uid": "35240-1addd29d-eb90-4d22-974f-c264cdd85af0"
+                        },
+                        {
+                          "id": "436b9144-2480-4c2e-b49c-901690e60c83",
+                          "name": "InternalServerException",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "X-Amz-Content-Sha256",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Date",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Algorithm",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Credential",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Security-Token",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Signature",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-SignedHeaders",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/health/resource-collection/:ResourceCollectionType?NextToken=6a2235dd-782b-832c-e0ab-b64f5390df1a",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                "health",
+                                "resource-collection",
+                                ":ResourceCollectionType"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+                                  "key": "NextToken",
+                                  "value": "6a2235dd-782b-832c-e0ab-b64f5390df1a"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "ResourceCollectionType"
+                                }
+                              ]
+                            }
+                          },
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T10:10:36.000Z",
+                          "updatedAt": "2026-07-28T10:10:36.000Z",
+                          "uid": "35240-436b9144-2480-4c2e-b49c-901690e60c83"
+                        },
+                        {
+                          "id": "474f535d-aac6-4b25-a3df-0883c9c04241",
+                          "name": "ThrottlingException",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "X-Amz-Content-Sha256",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Date",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Algorithm",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Credential",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Security-Token",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Signature",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-SignedHeaders",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/health/resource-collection/:ResourceCollectionType?NextToken=6a2235dd-782b-832c-e0ab-b64f5390df1a",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                "health",
+                                "resource-collection",
+                                ":ResourceCollectionType"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+                                  "key": "NextToken",
+                                  "value": "6a2235dd-782b-832c-e0ab-b64f5390df1a"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "ResourceCollectionType"
+                                }
+                              ]
+                            }
+                          },
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T10:10:36.000Z",
+                          "updatedAt": "2026-07-28T10:10:36.000Z",
+                          "uid": "35240-474f535d-aac6-4b25-a3df-0883c9c04241"
+                        },
+                        {
+                          "id": "37f77207-8b79-44d7-a9c5-2571c0581b91",
+                          "name": "ValidationException",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "X-Amz-Content-Sha256",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Date",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Algorithm",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Credential",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Security-Token",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-Signature",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "X-Amz-SignedHeaders",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/accounts/health/resource-collection/:ResourceCollectionType?NextToken=6a2235dd-782b-832c-e0ab-b64f5390df1a",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "accounts",
+                                "health",
+                                "resource-collection",
+                                ":ResourceCollectionType"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+                                  "key": "NextToken",
+                                  "value": "6a2235dd-782b-832c-e0ab-b64f5390df1a"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "ResourceCollectionType"
+                                }
+                              ]
+                            }
+                          },
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T10:10:36.000Z",
+                          "updatedAt": "2026-07-28T10:10:36.000Z",
+                          "uid": "35240-37f77207-8b79-44d7-a9c5-2571c0581b91"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T10:10:36.000Z",
+                      "updatedAt": "2026-07-28T10:10:36.000Z",
+                      "uid": "35240-de72524f-d3fd-4336-bed2-1a678ac42910"
+                    }
+                  ],
+                  "id": "516c24df-2466-4be4-ab4a-bb7ab79bc045",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-516c24df-2466-4be4-ab4a-bb7ab79bc045"
+                }
+              ],
+              "id": "01620337-1fdf-4254-a58f-d8be826a79a8",
+              "createdAt": "2026-07-28T10:10:36.000Z",
+              "updatedAt": "2026-07-28T10:10:36.000Z",
+              "uid": "35240-01620337-1fdf-4254-a58f-d8be826a79a8"
+            },
+            {
+              "name": "Describe Account Health",
+              "id": "12973ca5-c5ae-401f-b946-b94ff5797514",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    "health"
+                  ]
+                },
+                "description": " Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your Amazon Web Services account. Use these numbers to gauge the health of operations in your Amazon Web Services account. "
+              },
+              "response": [
+                {
+                  "id": "e2a18e7e-14c0-4a12-a374-127927cca606",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "health"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"OpenReactiveInsights\": \"<integer>\",\n  \"OpenProactiveInsights\": \"<integer>\",\n  \"MetricsAnalyzed\": \"<integer>\",\n  \"ResourceHours\": \"<integer>\",\n  \"AnalyzedResourceCount\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-e2a18e7e-14c0-4a12-a374-127927cca606"
+                },
+                {
+                  "id": "ca1feb86-bb5a-430b-88fe-67f65bda7c4a",
+                  "name": "AccessDeniedException",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "health"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-ca1feb86-bb5a-430b-88fe-67f65bda7c4a"
+                },
+                {
+                  "id": "954cecbc-e01c-417a-8955-87b574ba15c7",
+                  "name": "InternalServerException",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "health"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-954cecbc-e01c-417a-8955-87b574ba15c7"
+                },
+                {
+                  "id": "30e8d78b-02a1-4f60-bb20-61e1b837cb6c",
+                  "name": "ThrottlingException",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "health"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-30e8d78b-02a1-4f60-bb20-61e1b837cb6c"
+                },
+                {
+                  "id": "f96120df-e3fb-42c3-b928-16016b2e7d59",
+                  "name": "ValidationException",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "health"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-f96120df-e3fb-42c3-b928-16016b2e7d59"
+                }
+              ],
+              "createdAt": "2026-07-28T10:10:36.000Z",
+              "updatedAt": "2026-07-28T10:10:36.000Z",
+              "uid": "35240-12973ca5-c5ae-401f-b946-b94ff5797514"
+            }
+          ],
+          "id": "644d4a74-6759-45bc-94d3-0ca7c241d4c9",
+          "createdAt": "2026-07-28T10:10:36.000Z",
+          "updatedAt": "2026-07-28T10:10:36.000Z",
+          "uid": "35240-644d4a74-6759-45bc-94d3-0ca7c241d4c9"
+        },
+        {
+          "name": "overview",
+          "item": [
+            {
+              "name": "Describe Account Overview",
+              "id": "7b84190c-b59e-475f-9b37-5890cf311318",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-Amz-Content-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Date",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Algorithm",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Credential",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Security-Token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-Signature",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "X-Amz-SignedHeaders",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/overview",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    "overview"
+                  ]
+                },
+                "description": " For the time range passed in, returns the number of open reactive insight that were created, the number of open proactive insights that were created, and the Mean Time to Recover (MTTR) for all closed reactive insights. "
+              },
+              "response": [
+                {
+                  "id": "f91a847d-8b11-4983-8947-07b7c0570182",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "overview"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ReactiveInsights\": \"<integer>\",\n  \"ProactiveInsights\": \"<integer>\",\n  \"MeanTimeToRecoverInMilliseconds\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-f91a847d-8b11-4983-8947-07b7c0570182"
+                },
+                {
+                  "id": "4de308d2-660e-40ce-8a97-80c3c62521f0",
+                  "name": "AccessDeniedException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "overview"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-4de308d2-660e-40ce-8a97-80c3c62521f0"
+                },
+                {
+                  "id": "f07e06d6-e1bd-46a2-b264-a732549517f0",
+                  "name": "InternalServerException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "overview"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-f07e06d6-e1bd-46a2-b264-a732549517f0"
+                },
+                {
+                  "id": "cc4b380e-998d-4e8d-a6ad-40a295459f8e",
+                  "name": "ThrottlingException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "overview"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-cc4b380e-998d-4e8d-a6ad-40a295459f8e"
+                },
+                {
+                  "id": "65d3a573-c460-48d4-9de5-1033360e1371",
+                  "name": "ValidationException",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "X-Amz-Content-Sha256",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Date",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Algorithm",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Credential",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Security-Token",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-Signature",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "X-Amz-SignedHeaders",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"FromTime\": \"<dateTime>\",\n  \"ToTime\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "overview"
+                      ]
+                    }
+                  },
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T10:10:36.000Z",
+                  "updatedAt": "2026-07-28T10:10:36.000Z",
+                  "uid": "35240-65d3a573-c460-48d4-9de5-1033360e1371"
+                }
+              ],
+              "createdAt": "2026-07-28T10:10:36.000Z",
+              "updatedAt": "2026-07-28T10:10:36.000Z",
+              "uid": "35240-7b84190c-b59e-475f-9b37-5890cf311318"
+            }
+          ],
+          "id": "a3db5536-8d9e-4ca0-a4af-af706f4580ac",
+          "createdAt": "2026-07-28T10:10:36.000Z",
+          "updatedAt": "2026-07-28T10:10:36.000Z",
+          "uid": "35240-a3db5536-8d9e-4ca0-a4af-af706f4580ac"
+        }
+      ],
+      "id": "0bde9522-d11f-45b8-a84e-3a05423006c1",
+      "createdAt": "2026-07-28T10:10:36.000Z",
+      "updatedAt": "2026-07-28T10:10:36.000Z",
+      "uid": "35240-0bde9522-d11f-45b8-a84e-3a05423006c1"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "http://devops-guru.{{region}}.amazonaws.com"
+    }
+  ]
+}
