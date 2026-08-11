@@ -62,8 +62,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-anomalies-api
   name: Amazon DevOps Guru Anomalies API
   description: The Anomalies API from Amazon DevOps Guru — 2 operation(s) for anomalies.
@@ -106,8 +104,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-channels-api
   name: Amazon DevOps Guru Channels API
   description: The Channels API from Amazon DevOps Guru — 2 operation(s) for channels.
@@ -150,8 +146,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-cost-estimation-api
   name: Amazon DevOps Guru Cost Estimation API
   description: The Cost Estimation API from Amazon DevOps Guru — 1 operation(s) for cost estimation.
@@ -194,8 +188,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-event-sources-api
   name: Amazon DevOps Guru Event Sources API
   description: The Event Sources API from Amazon DevOps Guru — 1 operation(s) for event sources.
@@ -238,8 +230,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-events-api
   name: Amazon DevOps Guru Events API
   description: The Events API from Amazon DevOps Guru — 1 operation(s) for events.
@@ -282,8 +272,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-feedback-api
   name: Amazon DevOps Guru Feedback API
   description: The Feedback API from Amazon DevOps Guru — 1 operation(s) for feedback.
@@ -326,8 +314,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-insights-api
   name: Amazon DevOps Guru Insights API
   description: The Insights API from Amazon DevOps Guru — 3 operation(s) for insights.
@@ -370,8 +356,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-list-log-anomalies-api
   name: Amazon DevOps Guru List Log Anomalies API
   description: >-
@@ -415,8 +399,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-monitoredresources-api
   name: Amazon DevOps Guru MonitoredResources API
   description: >-
@@ -460,8 +442,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-organization-api
   name: Amazon DevOps Guru Organization API
   description: The Organization API from Amazon DevOps Guru — 5 operation(s) for organization.
@@ -504,8 +484,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-recommendations-api
   name: Amazon DevOps Guru Recommendations API
   description: The Recommendations API from Amazon DevOps Guru — 1 operation(s) for recommendations.
@@ -548,8 +526,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-resource-collections-api
   name: Amazon DevOps Guru Resource Collections API
   description: >-
@@ -593,8 +569,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 - aid: amazon-devops-guru:amazon-devops-guru-service-integrations-api
   name: Amazon DevOps Guru Service Integrations API
   description: >-
@@ -638,8 +612,6 @@ apis:
     url: examples/amazon-devops-guru-reactive-insight-example.json
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/amazon-devops-guru.yaml
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/amazon-devops-guru/overview
