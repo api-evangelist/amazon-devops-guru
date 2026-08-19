@@ -2,6 +2,7 @@ name: Amazon DevOps Guru
 description: Amazon DevOps Guru is a machine learning-powered service that makes it easy to improve an application's operational
   performance and availability. It detects behaviors that deviate from normal operating patterns so you can identify operational
   issues long before they impact your customers.
+specificationVersion: '0.23'
 accessModel:
   pricing: freemium
   onboarding: self-serve
