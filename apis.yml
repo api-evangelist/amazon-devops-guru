@@ -27,6 +27,8 @@ apis:
   humanURL: https://aws.amazon.com/devops-guru/
   baseURL: https://devops-guru.amazonaws.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -237,6 +239,8 @@ apis:
   humanURL: https://aws.amazon.com/devops-guru/
   baseURL: https://devops-guru.amazonaws.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -719,6 +723,12 @@ maintainers:
   email: kin@apievangelist.com
   url: https://apievangelist.com
 tags:
+- Anomaly Detection
+- AWS
+- DevOps
+- Machine-Learning
+- Operational Intelligence
+tags_raw:
 - Anomaly Detection
 - AWS
 - DevOps
