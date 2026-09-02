@@ -746,3 +746,5 @@ tags_raw:
 - DevOps
 - Machine Learning
 - Operational Intelligence
+x-parent: aws
+x-relationship: product

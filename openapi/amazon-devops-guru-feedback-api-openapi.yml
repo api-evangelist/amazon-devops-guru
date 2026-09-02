@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: "1.0.0"
+  version: 1.0.0
   x-release: v4
   title: Amazon DevOps Guru Accounts Feedback API
   description: <p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html">Concepts in DevOps Guru</a>. </p>
@@ -249,27 +249,12 @@ paths:
       - Feedback
 components:
   schemas:
-    PutFeedbackResponse:
+    DescribeFeedbackResponse:
       type: object
-      properties: {}
-    InternalServerException: {}
-    ValidationException: {}
-    InsightId:
-      type: string
-      pattern: ^[\w-]*$
-      minLength: 1
-      maxLength: 100
-    ThrottlingException: {}
-    ResourceNotFoundException: {}
-    AccessDeniedException: {}
-    InsightFeedbackOption:
-      type: string
-      enum:
-      - VALID_COLLECTION
-      - RECOMMENDATION_USEFUL
-      - ALERT_TOO_SENSITIVE
-      - DATA_NOISY_ANOMALY
-      - DATA_INCORRECT
+      properties:
+        InsightFeedback:
+          $ref: '#/components/schemas/InsightFeedback'
+    ConflictException: {}
     InsightFeedback:
       type: object
       properties:
@@ -282,27 +267,30 @@ components:
           - $ref: '#/components/schemas/InsightFeedbackOption'
           - description: ' The feedback provided by the customer. '
       description: ' Information about insight feedback received from a customer. '
-    DescribeFeedbackResponse:
+    ThrottlingException: {}
+    InternalServerException: {}
+    AccessDeniedException: {}
+    ValidationException: {}
+    InsightId:
+      type: string
+      pattern: ^[\w-]*$
+      minLength: 1
+      maxLength: 100
+    PutFeedbackResponse:
       type: object
-      properties:
-        InsightFeedback:
-          $ref: '#/components/schemas/InsightFeedback'
-    ConflictException: {}
+      properties: {}
+    ResourceNotFoundException: {}
+    InsightFeedbackOption:
+      type: string
+      enum:
+      - VALID_COLLECTION
+      - RECOMMENDATION_USEFUL
+      - ALERT_TOO_SENSITIVE
+      - DATA_NOISY_ANOMALY
+      - DATA_INCORRECT
   parameters:
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
@@ -313,8 +301,20 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
       in: header
       schema:
         type: string

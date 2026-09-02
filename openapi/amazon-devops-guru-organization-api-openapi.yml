@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: "1.0.0"
+  version: 1.0.0
   x-release: v4
   title: Amazon DevOps Guru Accounts Organization API
   description: <p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html">Concepts in DevOps Guru</a>. </p>
@@ -583,7 +583,305 @@ paths:
       - Organization
 components:
   schemas:
-    InternalServerException: {}
+    EndTimeRange:
+      type: object
+      properties:
+        FromTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The earliest end time in the time range. '
+        ToTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The latest end time in the time range. '
+      description: ' A range of time that specifies when anomalous behavior in an anomaly or insight ended. '
+    ReactiveOrganizationInsightSummary:
+      type: object
+      properties:
+        Id:
+          allOf:
+          - $ref: '#/components/schemas/InsightId'
+          - description: The ID of the insight summary.
+        AccountId:
+          allOf:
+          - $ref: '#/components/schemas/AwsAccountId'
+          - description: 'The ID of the Amazon Web Services account. '
+        OrganizationalUnitId:
+          allOf:
+          - $ref: '#/components/schemas/OrganizationalUnitId'
+          - description: The ID of the organizational unit.
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/InsightName'
+          - description: The name of the insight summary.
+        Severity:
+          allOf:
+          - $ref: '#/components/schemas/InsightSeverity'
+          - description: ' An array of severity values used to search for insights. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.'
+        Status:
+          allOf:
+          - $ref: '#/components/schemas/InsightStatus'
+          - description: ' An array of status values used to search for insights. '
+        InsightTimeRange:
+          $ref: '#/components/schemas/InsightTimeRange'
+        ResourceCollection:
+          $ref: '#/components/schemas/ResourceCollection'
+        ServiceCollection:
+          $ref: '#/components/schemas/ServiceCollection'
+      description: Information about a reactive insight. This object is returned by <code>DescribeInsight</code>.
+    AppBoundaryKey:
+      type: string
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+      minLength: 1
+      maxLength: 128
+    ProactiveInsights:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProactiveInsightSummary'
+    ProactiveOrganizationInsights:
+      type: array
+      items:
+        $ref: '#/components/schemas/ProactiveOrganizationInsightSummary'
+    ListOrganizationInsightsResponse:
+      type: object
+      properties:
+        ProactiveInsights:
+          allOf:
+          - $ref: '#/components/schemas/ProactiveOrganizationInsights'
+          - description: An integer that specifies the number of open proactive insights in your Amazon Web Services account.
+        ReactiveInsights:
+          allOf:
+          - $ref: '#/components/schemas/ReactiveOrganizationInsights'
+          - description: An integer that specifies the number of open reactive insights in your Amazon Web Services account.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/UuidNextToken'
+          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+    OrganizationalUnitId:
+      type: string
+      pattern: ^ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$
+      maxLength: 68
+    ThrottlingException: {}
+    Timestamp:
+      type: string
+      format: date-time
+    MeanTimeToRecoverInMilliseconds:
+      type: integer
+    ServiceHealths:
+      type: array
+      items:
+        $ref: '#/components/schemas/ServiceHealth'
+    ProactiveInsightSummary:
+      type: object
+      properties:
+        Id:
+          allOf:
+          - $ref: '#/components/schemas/InsightId'
+          - description: 'The ID of the proactive insight. '
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/InsightName'
+          - description: 'The name of the proactive insight. '
+        Severity:
+          allOf:
+          - $ref: '#/components/schemas/InsightSeverity'
+          - description: The severity of the insight. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.
+        Status:
+          allOf:
+          - $ref: '#/components/schemas/InsightStatus'
+          - description: 'The status of the proactive insight. '
+        InsightTimeRange:
+          $ref: '#/components/schemas/InsightTimeRange'
+        PredictionTimeRange:
+          $ref: '#/components/schemas/PredictionTimeRange'
+        ResourceCollection:
+          $ref: '#/components/schemas/ResourceCollection'
+        ServiceCollection:
+          allOf:
+          - $ref: '#/components/schemas/ServiceCollection'
+          - description: A collection of the names of Amazon Web Services services.
+        AssociatedResourceArns:
+          allOf:
+          - $ref: '#/components/schemas/AssociatedResourceArns'
+          - description: The Amazon Resource Names (ARNs) of the Amazon Web Services resources that generated this insight.
+      description: 'Details about a proactive insight. This object is returned by <code>DescribeInsight.</code> '
+    InsightId:
+      type: string
+      pattern: ^[\w-]*$
+      minLength: 1
+      maxLength: 100
+    TagValue:
+      type: string
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*|\*)$
+      minLength: 0
+      maxLength: 256
+    ResourceCollection:
+      type: object
+      properties:
+        CloudFormation:
+          allOf:
+          - $ref: '#/components/schemas/CloudFormationCollection'
+          - description: ' An array of the names of Amazon Web Services CloudFormation stacks. The stacks define Amazon Web Services resources that DevOps Guru analyzes. You can specify up to 500 Amazon Web Services CloudFormation stacks. '
+        Tags:
+          allOf:
+          - $ref: '#/components/schemas/TagCollections'
+          - description: <p>The Amazon Web Services tags that are used by resources in the resource collection.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
+      description: ' A collection of Amazon Web Services resources supported by DevOps Guru. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. '
+    NumProactiveInsights:
+      type: integer
+    TagValues:
+      type: array
+      items:
+        $ref: '#/components/schemas/TagValue'
+    InsightSeverity:
+      type: string
+      enum:
+      - LOW
+      - MEDIUM
+      - HIGH
+    InsightStatuses:
+      type: array
+      items:
+        $ref: '#/components/schemas/InsightStatus'
+      minItems: 0
+      maxItems: 2
+    NumOpenProactiveInsights:
+      type: integer
+    CloudFormationHealths:
+      type: array
+      items:
+        $ref: '#/components/schemas/CloudFormationHealth'
+    InsightName:
+      type: string
+      pattern: ^[\s\S]*$
+      minLength: 1
+      maxLength: 530
+    AccountHealth:
+      type: object
+      properties:
+        AccountId:
+          allOf:
+          - $ref: '#/components/schemas/AwsAccountId'
+          - description: 'The ID of the Amazon Web Services account. '
+        Insight:
+          allOf:
+          - $ref: '#/components/schemas/AccountInsightHealth'
+          - description: ' Information about the health of the Amazon Web Services resources in your account, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. '
+      description: ' Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your Amazon Web Services account. Use these numbers to gauge the health of operations in your Amazon Web Services account. '
+    CloudFormationHealth:
+      type: object
+      properties:
+        StackName:
+          allOf:
+          - $ref: '#/components/schemas/StackName'
+          - description: ' The name of the CloudFormation stack. '
+        Insight:
+          allOf:
+          - $ref: '#/components/schemas/InsightHealth'
+          - description: ' Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. '
+        AnalyzedResourceCount:
+          allOf:
+          - $ref: '#/components/schemas/AnalyzedResourceCount'
+          - description: ' Number of resources that DevOps Guru is monitoring in your account that are specified by an Amazon Web Services CloudFormation stack. '
+      description: ' Information about the health of Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack. '
+    AnalyzedResourceCount:
+      type: integer
+    DescribeOrganizationHealthResponse:
+      type: object
+      required:
+      - OpenReactiveInsights
+      - OpenProactiveInsights
+      - MetricsAnalyzed
+      - ResourceHours
+      properties:
+        OpenReactiveInsights:
+          allOf:
+          - $ref: '#/components/schemas/NumOpenReactiveInsights'
+          - description: An integer that specifies the number of open reactive insights in your Amazon Web Services account.
+        OpenProactiveInsights:
+          allOf:
+          - $ref: '#/components/schemas/NumOpenProactiveInsights'
+          - description: An integer that specifies the number of open proactive insights in your Amazon Web Services account.
+        MetricsAnalyzed:
+          allOf:
+          - $ref: '#/components/schemas/NumMetricsAnalyzed'
+          - description: An integer that specifies the number of metrics that have been analyzed in your organization.
+        ResourceHours:
+          allOf:
+          - $ref: '#/components/schemas/ResourceHours'
+          - description: 'The number of Amazon DevOps Guru resource analysis hours billed to the current Amazon Web Services account in the last hour. '
+    ListInsightsClosedStatusFilter:
+      type: object
+      required:
+      - Type
+      - EndTimeRange
+      properties:
+        Type:
+          allOf:
+          - $ref: '#/components/schemas/InsightType'
+          - description: ' Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. '
+        EndTimeRange:
+          allOf:
+          - $ref: '#/components/schemas/EndTimeRange'
+          - description: ' A time range used to specify when the behavior of the filtered insights ended. '
+      description: ' Used to filter for insights that have the status <code>CLOSED</code>. '
+    ServiceNames:
+      type: array
+      items:
+        $ref: '#/components/schemas/ServiceName'
+    CloudFormationCollection:
+      type: object
+      properties:
+        StackNames:
+          allOf:
+          - $ref: '#/components/schemas/StackNames'
+          - description: ' An array of CloudFormation stack names. '
+      description: ' Information about Amazon Web Services CloudFormation stacks. You can use up to 500 stacks to specify which Amazon Web Services resources in your account to analyze. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>. '
+    DescribeOrganizationResourceCollectionHealthResponse:
+      type: object
+      properties:
+        CloudFormation:
+          allOf:
+          - $ref: '#/components/schemas/CloudFormationHealths'
+          - description: The returned <code>CloudFormationHealthOverview</code> object that contains an <code>InsightHealthOverview</code> object with the requested system health information.
+        Service:
+          allOf:
+          - $ref: '#/components/schemas/ServiceHealths'
+          - description: An array of <code>ServiceHealth</code> objects that describes the health of the Amazon Web Services services associated with the resources in the collection.
+        Account:
+          allOf:
+          - $ref: '#/components/schemas/AccountHealths'
+          - description: The name of the organization's account.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/UuidNextToken'
+          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+        Tags:
+          allOf:
+          - $ref: '#/components/schemas/TagHealths'
+          - description: <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
+    NumOpenReactiveInsights:
+      type: integer
+    InsightStatus:
+      type: string
+      enum:
+      - ONGOING
+      - CLOSED
+    ListInsightsAnyStatusFilter:
+      type: object
+      required:
+      - Type
+      - StartTimeRange
+      properties:
+        Type:
+          allOf:
+          - $ref: '#/components/schemas/InsightType'
+          - description: ' Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. '
+        StartTimeRange:
+          allOf:
+          - $ref: '#/components/schemas/StartTimeRange'
+          - description: ' A time range used to specify when the behavior of the filtered insights started. '
+      description: ' Used to filter for insights that have any status. '
     DescribeOrganizationOverviewResponse:
       type: object
       required:
@@ -598,6 +896,204 @@ components:
           allOf:
           - $ref: '#/components/schemas/NumProactiveInsights'
           - description: An integer that specifies the number of open proactive insights in your Amazon Web Services account.
+    ReactiveInsightSummary:
+      type: object
+      properties:
+        Id:
+          allOf:
+          - $ref: '#/components/schemas/InsightId'
+          - description: ' The ID of a reactive summary. '
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/InsightName'
+          - description: ' The name of a reactive insight. '
+        Severity:
+          allOf:
+          - $ref: '#/components/schemas/InsightSeverity'
+          - description: The severity of the insight. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.
+        Status:
+          allOf:
+          - $ref: '#/components/schemas/InsightStatus'
+          - description: ' The status of a reactive insight. '
+        InsightTimeRange:
+          $ref: '#/components/schemas/InsightTimeRange'
+        ResourceCollection:
+          $ref: '#/components/schemas/ResourceCollection'
+        ServiceCollection:
+          allOf:
+          - $ref: '#/components/schemas/ServiceCollection'
+          - description: A collection of the names of Amazon Web Services services.
+        AssociatedResourceArns:
+          allOf:
+          - $ref: '#/components/schemas/AssociatedResourceArns'
+          - description: The Amazon Resource Names (ARNs) of the Amazon Web Services resources that generated this insight.
+      description: ' Information about a reactive insight. This object is returned by <code>DescribeInsight.</code> '
+    InternalServerException: {}
+    ServiceName:
+      type: string
+      enum:
+      - API_GATEWAY
+      - APPLICATION_ELB
+      - AUTO_SCALING_GROUP
+      - CLOUD_FRONT
+      - DYNAMO_DB
+      - EC2
+      - ECS
+      - EKS
+      - ELASTIC_BEANSTALK
+      - ELASTI_CACHE
+      - ELB
+      - ES
+      - KINESIS
+      - LAMBDA
+      - NAT_GATEWAY
+      - NETWORK_ELB
+      - RDS
+      - REDSHIFT
+      - ROUTE_53
+      - S3
+      - SAGE_MAKER
+      - SNS
+      - SQS
+      - STEP_FUNCTIONS
+      - SWF
+    NumReactiveInsights:
+      type: integer
+    ServiceHealth:
+      type: object
+      properties:
+        ServiceName:
+          allOf:
+          - $ref: '#/components/schemas/ServiceName'
+          - description: The name of the Amazon Web Services service.
+        Insight:
+          allOf:
+          - $ref: '#/components/schemas/ServiceInsightHealth'
+          - description: Represents the health of an Amazon Web Services service. This is a <code>ServiceInsightHealth</code> that contains the number of open proactive and reactive insights for this service.
+        AnalyzedResourceCount:
+          allOf:
+          - $ref: '#/components/schemas/AnalyzedResourceCount'
+          - description: ' Number of resources that DevOps Guru is monitoring in an analyzed Amazon Web Services service. '
+      description: Represents the health of an Amazon Web Services service.
+    InsightType:
+      type: string
+      enum:
+      - REACTIVE
+      - PROACTIVE
+    PredictionTimeRange:
+      type: object
+      required:
+      - StartTime
+      properties:
+        StartTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time range during which a metric limit is expected to be exceeded. This applies to proactive insights only. '
+        EndTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time when the behavior in a proactive insight is expected to end. '
+      description: ' The time range during which anomalous behavior in a proactive anomaly or an insight is expected to occur. '
+    TagCollections:
+      type: array
+      items:
+        $ref: '#/components/schemas/TagCollection'
+    ServiceCollection:
+      type: object
+      properties:
+        ServiceNames:
+          allOf:
+          - $ref: '#/components/schemas/ServiceNames'
+          - description: An array of strings that each specifies the name of an Amazon Web Services service.
+      description: A collection of the names of Amazon Web Services services.
+    StackNames:
+      type: array
+      items:
+        $ref: '#/components/schemas/StackName'
+    StartTimeRange:
+      type: object
+      properties:
+        FromTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The start time of the time range. '
+        ToTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The end time of the time range. '
+      description: ' A time range used to specify when the behavior of an insight or anomaly started. '
+    SearchOrganizationInsightsResponse:
+      type: object
+      properties:
+        ProactiveInsights:
+          allOf:
+          - $ref: '#/components/schemas/ProactiveInsights'
+          - description: An integer that specifies the number of open proactive insights in your Amazon Web Services account.
+        ReactiveInsights:
+          allOf:
+          - $ref: '#/components/schemas/ReactiveInsights'
+          - description: An integer that specifies the number of open reactive insights in your Amazon Web Services account.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/UuidNextToken'
+          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+    TagCollection:
+      type: object
+      required:
+      - AppBoundaryKey
+      - TagValues
+      properties:
+        AppBoundaryKey:
+          allOf:
+          - $ref: '#/components/schemas/AppBoundaryKey'
+          - description: <p>An Amazon Web Services tag <i>key</i> that is used to identify the Amazon Web Services resources that DevOps Guru analyzes. All Amazon Web Services resources in your account and Region tagged with this <i>key</i> make up your DevOps Guru application and analysis boundary.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
+        TagValues:
+          allOf:
+          - $ref: '#/components/schemas/TagValues'
+          - description: <p>The values in an Amazon Web Services tag collection.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>
+      description: <p>A collection of Amazon Web Services tags.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
+    InsightTimeRange:
+      type: object
+      required:
+      - StartTime
+      properties:
+        StartTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time when the behavior described in an insight started. '
+        EndTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time when the behavior described in an insight ended. '
+      description: ' A time ranged that specifies when the observed behavior in an insight started and ended. '
+    TagHealth:
+      type: object
+      properties:
+        AppBoundaryKey:
+          allOf:
+          - $ref: '#/components/schemas/AppBoundaryKey'
+          - description: <p>An Amazon Web Services tag <i>key</i> that is used to identify the Amazon Web Services resources that DevOps Guru analyzes. All Amazon Web Services resources in your account and Region tagged with this <i>key</i> make up your DevOps Guru application and analysis boundary.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
+        TagValue:
+          allOf:
+          - $ref: '#/components/schemas/TagValue'
+          - description: <p>The value in an Amazon Web Services tag.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>
+        Insight:
+          allOf:
+          - $ref: '#/components/schemas/InsightHealth'
+          - description: 'Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services tag, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. '
+        AnalyzedResourceCount:
+          allOf:
+          - $ref: '#/components/schemas/AnalyzedResourceCount'
+          - description: ' Number of resources that DevOps Guru is monitoring in your account that are specified by an Amazon Web Services tag. '
+      description: ' Information about the health of Amazon Web Services resources in your account that are specified by an Amazon Web Services tag <i>key</i>. '
+    ReactiveOrganizationInsights:
+      type: array
+      items:
+        $ref: '#/components/schemas/ReactiveOrganizationInsightSummary'
+    ResourceHours:
+      type: integer
+    NumMetricsAnalyzed:
+      type: integer
     ProactiveOrganizationInsightSummary:
       type: object
       properties:
@@ -634,275 +1130,17 @@ components:
         ServiceCollection:
           $ref: '#/components/schemas/ServiceCollection'
       description: Details about a proactive insight. This object is returned by <code>DescribeInsight</code>.
-    ResourceHours:
-      type: integer
-    TagHealths:
-      type: array
-      items:
-        $ref: '#/components/schemas/TagHealth'
-    PredictionTimeRange:
-      type: object
-      required:
-      - StartTime
-      properties:
-        StartTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The time range during which a metric limit is expected to be exceeded. This applies to proactive insights only. '
-        EndTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The time when the behavior in a proactive insight is expected to end. '
-      description: ' The time range during which anomalous behavior in a proactive anomaly or an insight is expected to occur. '
-    NumReactiveInsights:
-      type: integer
-    StartTimeRange:
-      type: object
-      properties:
-        FromTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The start time of the time range. '
-        ToTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The end time of the time range. '
-      description: ' A time range used to specify when the behavior of an insight or anomaly started. '
-    ServiceHealths:
-      type: array
-      items:
-        $ref: '#/components/schemas/ServiceHealth'
-    TagHealth:
-      type: object
-      properties:
-        AppBoundaryKey:
-          allOf:
-          - $ref: '#/components/schemas/AppBoundaryKey'
-          - description: <p>An Amazon Web Services tag <i>key</i> that is used to identify the Amazon Web Services resources that DevOps Guru analyzes. All Amazon Web Services resources in your account and Region tagged with this <i>key</i> make up your DevOps Guru application and analysis boundary.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
-        TagValue:
-          allOf:
-          - $ref: '#/components/schemas/TagValue'
-          - description: <p>The value in an Amazon Web Services tag.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>
-        Insight:
-          allOf:
-          - $ref: '#/components/schemas/InsightHealth'
-          - description: 'Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services tag, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. '
-        AnalyzedResourceCount:
-          allOf:
-          - $ref: '#/components/schemas/AnalyzedResourceCount'
-          - description: ' Number of resources that DevOps Guru is monitoring in your account that are specified by an Amazon Web Services tag. '
-      description: ' Information about the health of Amazon Web Services resources in your account that are specified by an Amazon Web Services tag <i>key</i>. '
-    DescribeOrganizationHealthResponse:
-      type: object
-      required:
-      - OpenReactiveInsights
-      - OpenProactiveInsights
-      - MetricsAnalyzed
-      - ResourceHours
-      properties:
-        OpenReactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/NumOpenReactiveInsights'
-          - description: An integer that specifies the number of open reactive insights in your Amazon Web Services account.
-        OpenProactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/NumOpenProactiveInsights'
-          - description: An integer that specifies the number of open proactive insights in your Amazon Web Services account.
-        MetricsAnalyzed:
-          allOf:
-          - $ref: '#/components/schemas/NumMetricsAnalyzed'
-          - description: An integer that specifies the number of metrics that have been analyzed in your organization.
-        ResourceHours:
-          allOf:
-          - $ref: '#/components/schemas/ResourceHours'
-          - description: 'The number of Amazon DevOps Guru resource analysis hours billed to the current Amazon Web Services account in the last hour. '
-    SearchOrganizationInsightsResponse:
-      type: object
-      properties:
-        ProactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/ProactiveInsights'
-          - description: An integer that specifies the number of open proactive insights in your Amazon Web Services account.
-        ReactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/ReactiveInsights'
-          - description: An integer that specifies the number of open reactive insights in your Amazon Web Services account.
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/UuidNextToken'
-          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
-    InsightName:
-      type: string
-      pattern: ^[\s\S]*$
-      minLength: 1
-      maxLength: 530
-    InsightStatus:
-      type: string
-      enum:
-      - ONGOING
-      - CLOSED
-    ListInsightsClosedStatusFilter:
-      type: object
-      required:
-      - Type
-      - EndTimeRange
-      properties:
-        Type:
-          allOf:
-          - $ref: '#/components/schemas/InsightType'
-          - description: ' Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. '
-        EndTimeRange:
-          allOf:
-          - $ref: '#/components/schemas/EndTimeRange'
-          - description: ' A time range used to specify when the behavior of the filtered insights ended. '
-      description: ' Used to filter for insights that have the status <code>CLOSED</code>. '
-    ProactiveInsightSummary:
-      type: object
-      properties:
-        Id:
-          allOf:
-          - $ref: '#/components/schemas/InsightId'
-          - description: 'The ID of the proactive insight. '
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/InsightName'
-          - description: 'The name of the proactive insight. '
-        Severity:
-          allOf:
-          - $ref: '#/components/schemas/InsightSeverity'
-          - description: The severity of the insight. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.
-        Status:
-          allOf:
-          - $ref: '#/components/schemas/InsightStatus'
-          - description: 'The status of the proactive insight. '
-        InsightTimeRange:
-          $ref: '#/components/schemas/InsightTimeRange'
-        PredictionTimeRange:
-          $ref: '#/components/schemas/PredictionTimeRange'
-        ResourceCollection:
-          $ref: '#/components/schemas/ResourceCollection'
-        ServiceCollection:
-          allOf:
-          - $ref: '#/components/schemas/ServiceCollection'
-          - description: A collection of the names of Amazon Web Services services.
-        AssociatedResourceArns:
-          allOf:
-          - $ref: '#/components/schemas/AssociatedResourceArns'
-          - description: The Amazon Resource Names (ARNs) of the Amazon Web Services resources that generated this insight.
-      description: 'Details about a proactive insight. This object is returned by <code>DescribeInsight.</code> '
-    InsightTimeRange:
-      type: object
-      required:
-      - StartTime
-      properties:
-        StartTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The time when the behavior described in an insight started. '
-        EndTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The time when the behavior described in an insight ended. '
-      description: ' A time ranged that specifies when the observed behavior in an insight started and ended. '
-    ListInsightsOngoingStatusFilter:
-      type: object
-      required:
-      - Type
-      properties:
-        Type:
-          allOf:
-          - $ref: '#/components/schemas/InsightType'
-          - description: ' Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. '
-      description: ' Used to filter for insights that have the status <code>ONGOING</code>. '
-    ServiceNames:
-      type: array
-      items:
-        $ref: '#/components/schemas/ServiceName'
-    StackNames:
-      type: array
-      items:
-        $ref: '#/components/schemas/StackName'
-    ValidationException: {}
-    AwsAccountId:
-      type: string
-      pattern: ^\d{12}$
-      minLength: 12
-      maxLength: 12
-    CloudFormationHealths:
-      type: array
-      items:
-        $ref: '#/components/schemas/CloudFormationHealth'
-    AccountInsightHealth:
-      type: object
-      properties:
-        OpenProactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/NumOpenProactiveInsights'
-          - description: An integer that specifies the number of open proactive insights in your Amazon Web Services account.
-        OpenReactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/NumOpenReactiveInsights'
-          - description: An integer that specifies the number of open reactive insights in your Amazon Web Services account.
-      description: ' Information about the number of open reactive and proactive insights that can be used to gauge the health of your system. '
-    InsightStatuses:
-      type: array
-      items:
-        $ref: '#/components/schemas/InsightStatus'
-      minItems: 0
-      maxItems: 2
-    ReactiveInsightSummary:
-      type: object
-      properties:
-        Id:
-          allOf:
-          - $ref: '#/components/schemas/InsightId'
-          - description: ' The ID of a reactive summary. '
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/InsightName'
-          - description: ' The name of a reactive insight. '
-        Severity:
-          allOf:
-          - $ref: '#/components/schemas/InsightSeverity'
-          - description: The severity of the insight. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.
-        Status:
-          allOf:
-          - $ref: '#/components/schemas/InsightStatus'
-          - description: ' The status of a reactive insight. '
-        InsightTimeRange:
-          $ref: '#/components/schemas/InsightTimeRange'
-        ResourceCollection:
-          $ref: '#/components/schemas/ResourceCollection'
-        ServiceCollection:
-          allOf:
-          - $ref: '#/components/schemas/ServiceCollection'
-          - description: A collection of the names of Amazon Web Services services.
-        AssociatedResourceArns:
-          allOf:
-          - $ref: '#/components/schemas/AssociatedResourceArns'
-          - description: The Amazon Resource Names (ARNs) of the Amazon Web Services resources that generated this insight.
-      description: ' Information about a reactive insight. This object is returned by <code>DescribeInsight.</code> '
     InsightSeverities:
       type: array
       items:
         $ref: '#/components/schemas/InsightSeverity'
       minItems: 0
       maxItems: 3
-    ServiceInsightHealth:
-      type: object
-      properties:
-        OpenProactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/NumOpenProactiveInsights'
-          - description: The number of open proactive insights in the Amazon Web Services service
-        OpenReactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/NumOpenReactiveInsights'
-          - description: The number of open reactive insights in the Amazon Web Services service
-      description: Contains the number of open proactive and reactive insights in an analyzed Amazon Web Services service.
-    ThrottlingException: {}
-    NumMetricsAnalyzed:
-      type: integer
+    StackName:
+      type: string
+      pattern: ^[a-zA-Z*]+[a-zA-Z0-9-]*$
+      minLength: 1
+      maxLength: 128
     InsightHealth:
       type: object
       properties:
@@ -919,319 +1157,87 @@ components:
           - $ref: '#/components/schemas/MeanTimeToRecoverInMilliseconds'
           - description: ' The Meant Time to Recover (MTTR) for the insight. '
       description: ' Information about the number of open reactive and proactive insights that can be used to gauge the health of your system. '
-    ListInsightsAnyStatusFilter:
+    ListInsightsOngoingStatusFilter:
       type: object
       required:
       - Type
-      - StartTimeRange
       properties:
         Type:
           allOf:
           - $ref: '#/components/schemas/InsightType'
           - description: ' Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. '
-        StartTimeRange:
-          allOf:
-          - $ref: '#/components/schemas/StartTimeRange'
-          - description: ' A time range used to specify when the behavior of the filtered insights started. '
-      description: ' Used to filter for insights that have any status. '
-    ServiceCollection:
+      description: ' Used to filter for insights that have the status <code>ONGOING</code>. '
+    AccountHealths:
+      type: array
+      items:
+        $ref: '#/components/schemas/AccountHealth'
+    AccountInsightHealth:
       type: object
       properties:
-        ServiceNames:
+        OpenProactiveInsights:
           allOf:
-          - $ref: '#/components/schemas/ServiceNames'
-          - description: An array of strings that each specifies the name of an Amazon Web Services service.
-      description: A collection of the names of Amazon Web Services services.
-    ServiceName:
+          - $ref: '#/components/schemas/NumOpenProactiveInsights'
+          - description: An integer that specifies the number of open proactive insights in your Amazon Web Services account.
+        OpenReactiveInsights:
+          allOf:
+          - $ref: '#/components/schemas/NumOpenReactiveInsights'
+          - description: An integer that specifies the number of open reactive insights in your Amazon Web Services account.
+      description: ' Information about the number of open reactive and proactive insights that can be used to gauge the health of your system. '
+    AccessDeniedException: {}
+    ResourceArn:
       type: string
-      enum:
-      - API_GATEWAY
-      - APPLICATION_ELB
-      - AUTO_SCALING_GROUP
-      - CLOUD_FRONT
-      - DYNAMO_DB
-      - EC2
-      - ECS
-      - EKS
-      - ELASTIC_BEANSTALK
-      - ELASTI_CACHE
-      - ELB
-      - ES
-      - KINESIS
-      - LAMBDA
-      - NAT_GATEWAY
-      - NETWORK_ELB
-      - RDS
-      - REDSHIFT
-      - ROUTE_53
-      - S3
-      - SAGE_MAKER
-      - SNS
-      - SQS
-      - STEP_FUNCTIONS
-      - SWF
-    MeanTimeToRecoverInMilliseconds:
-      type: integer
-    CloudFormationHealth:
-      type: object
-      properties:
-        StackName:
-          allOf:
-          - $ref: '#/components/schemas/StackName'
-          - description: ' The name of the CloudFormation stack. '
-        Insight:
-          allOf:
-          - $ref: '#/components/schemas/InsightHealth'
-          - description: ' Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. '
-        AnalyzedResourceCount:
-          allOf:
-          - $ref: '#/components/schemas/AnalyzedResourceCount'
-          - description: ' Number of resources that DevOps Guru is monitoring in your account that are specified by an Amazon Web Services CloudFormation stack. '
-      description: ' Information about the health of Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack. '
+      minLength: 20
+      maxLength: 2048
     UuidNextToken:
       type: string
       pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
       minLength: 36
       maxLength: 36
-    ResourceArn:
-      type: string
-      minLength: 20
-      maxLength: 2048
-    InsightId:
-      type: string
-      pattern: ^[\w-]*$
-      minLength: 1
-      maxLength: 100
-    AccountHealth:
+    ServiceInsightHealth:
       type: object
       properties:
-        AccountId:
+        OpenProactiveInsights:
           allOf:
-          - $ref: '#/components/schemas/AwsAccountId'
-          - description: 'The ID of the Amazon Web Services account. '
-        Insight:
+          - $ref: '#/components/schemas/NumOpenProactiveInsights'
+          - description: The number of open proactive insights in the Amazon Web Services service
+        OpenReactiveInsights:
           allOf:
-          - $ref: '#/components/schemas/AccountInsightHealth'
-          - description: ' Information about the health of the Amazon Web Services resources in your account, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. '
-      description: ' Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your Amazon Web Services account. Use these numbers to gauge the health of operations in your Amazon Web Services account. '
-    InsightSeverity:
-      type: string
-      enum:
-      - LOW
-      - MEDIUM
-      - HIGH
-    ProactiveOrganizationInsights:
-      type: array
-      items:
-        $ref: '#/components/schemas/ProactiveOrganizationInsightSummary'
-    ReactiveOrganizationInsights:
-      type: array
-      items:
-        $ref: '#/components/schemas/ReactiveOrganizationInsightSummary'
-    InsightType:
-      type: string
-      enum:
-      - REACTIVE
-      - PROACTIVE
+          - $ref: '#/components/schemas/NumOpenReactiveInsights'
+          - description: The number of open reactive insights in the Amazon Web Services service
+      description: Contains the number of open proactive and reactive insights in an analyzed Amazon Web Services service.
+    ValidationException: {}
     AssociatedResourceArns:
       type: array
       items:
         $ref: '#/components/schemas/ResourceArn'
-    AccessDeniedException: {}
-    AppBoundaryKey:
-      type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
-      minLength: 1
-      maxLength: 128
-    NumOpenReactiveInsights:
-      type: integer
-    CloudFormationCollection:
-      type: object
-      properties:
-        StackNames:
-          allOf:
-          - $ref: '#/components/schemas/StackNames'
-          - description: ' An array of CloudFormation stack names. '
-      description: ' Information about Amazon Web Services CloudFormation stacks. You can use up to 500 stacks to specify which Amazon Web Services resources in your account to analyze. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>. '
-    AnalyzedResourceCount:
-      type: integer
-    NumOpenProactiveInsights:
-      type: integer
-    TagCollection:
-      type: object
-      required:
-      - AppBoundaryKey
-      - TagValues
-      properties:
-        AppBoundaryKey:
-          allOf:
-          - $ref: '#/components/schemas/AppBoundaryKey'
-          - description: <p>An Amazon Web Services tag <i>key</i> that is used to identify the Amazon Web Services resources that DevOps Guru analyzes. All Amazon Web Services resources in your account and Region tagged with this <i>key</i> make up your DevOps Guru application and analysis boundary.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
-        TagValues:
-          allOf:
-          - $ref: '#/components/schemas/TagValues'
-          - description: <p>The values in an Amazon Web Services tag collection.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>
-      description: <p>A collection of Amazon Web Services tags.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
-    ServiceHealth:
-      type: object
-      properties:
-        ServiceName:
-          allOf:
-          - $ref: '#/components/schemas/ServiceName'
-          - description: The name of the Amazon Web Services service.
-        Insight:
-          allOf:
-          - $ref: '#/components/schemas/ServiceInsightHealth'
-          - description: Represents the health of an Amazon Web Services service. This is a <code>ServiceInsightHealth</code> that contains the number of open proactive and reactive insights for this service.
-        AnalyzedResourceCount:
-          allOf:
-          - $ref: '#/components/schemas/AnalyzedResourceCount'
-          - description: ' Number of resources that DevOps Guru is monitoring in an analyzed Amazon Web Services service. '
-      description: Represents the health of an Amazon Web Services service.
-    AccountHealths:
-      type: array
-      items:
-        $ref: '#/components/schemas/AccountHealth'
-    NumProactiveInsights:
-      type: integer
-    TagValue:
-      type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*|\*)$
-      minLength: 0
-      maxLength: 256
-    ProactiveInsights:
-      type: array
-      items:
-        $ref: '#/components/schemas/ProactiveInsightSummary'
-    Timestamp:
-      type: string
-      format: date-time
-    ResourceCollection:
-      type: object
-      properties:
-        CloudFormation:
-          allOf:
-          - $ref: '#/components/schemas/CloudFormationCollection'
-          - description: ' An array of the names of Amazon Web Services CloudFormation stacks. The stacks define Amazon Web Services resources that DevOps Guru analyzes. You can specify up to 500 Amazon Web Services CloudFormation stacks. '
-        Tags:
-          allOf:
-          - $ref: '#/components/schemas/TagCollections'
-          - description: <p>The Amazon Web Services tags that are used by resources in the resource collection.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
-      description: ' A collection of Amazon Web Services resources supported by DevOps Guru. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. '
-    DescribeOrganizationResourceCollectionHealthResponse:
-      type: object
-      properties:
-        CloudFormation:
-          allOf:
-          - $ref: '#/components/schemas/CloudFormationHealths'
-          - description: The returned <code>CloudFormationHealthOverview</code> object that contains an <code>InsightHealthOverview</code> object with the requested system health information.
-        Service:
-          allOf:
-          - $ref: '#/components/schemas/ServiceHealths'
-          - description: An array of <code>ServiceHealth</code> objects that describes the health of the Amazon Web Services services associated with the resources in the collection.
-        Account:
-          allOf:
-          - $ref: '#/components/schemas/AccountHealths'
-          - description: The name of the organization's account.
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/UuidNextToken'
-          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
-        Tags:
-          allOf:
-          - $ref: '#/components/schemas/TagHealths'
-          - description: <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
-    StackName:
-      type: string
-      pattern: ^[a-zA-Z*]+[a-zA-Z0-9-]*$
-      minLength: 1
-      maxLength: 128
-    ReactiveOrganizationInsightSummary:
-      type: object
-      properties:
-        Id:
-          allOf:
-          - $ref: '#/components/schemas/InsightId'
-          - description: The ID of the insight summary.
-        AccountId:
-          allOf:
-          - $ref: '#/components/schemas/AwsAccountId'
-          - description: 'The ID of the Amazon Web Services account. '
-        OrganizationalUnitId:
-          allOf:
-          - $ref: '#/components/schemas/OrganizationalUnitId'
-          - description: The ID of the organizational unit.
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/InsightName'
-          - description: The name of the insight summary.
-        Severity:
-          allOf:
-          - $ref: '#/components/schemas/InsightSeverity'
-          - description: ' An array of severity values used to search for insights. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.'
-        Status:
-          allOf:
-          - $ref: '#/components/schemas/InsightStatus'
-          - description: ' An array of status values used to search for insights. '
-        InsightTimeRange:
-          $ref: '#/components/schemas/InsightTimeRange'
-        ResourceCollection:
-          $ref: '#/components/schemas/ResourceCollection'
-        ServiceCollection:
-          $ref: '#/components/schemas/ServiceCollection'
-      description: Information about a reactive insight. This object is returned by <code>DescribeInsight</code>.
-    EndTimeRange:
-      type: object
-      properties:
-        FromTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The earliest end time in the time range. '
-        ToTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The latest end time in the time range. '
-      description: ' A range of time that specifies when anomalous behavior in an anomaly or insight ended. '
-    TagValues:
-      type: array
-      items:
-        $ref: '#/components/schemas/TagValue'
     ReactiveInsights:
       type: array
       items:
         $ref: '#/components/schemas/ReactiveInsightSummary'
-    TagCollections:
+    TagHealths:
       type: array
       items:
-        $ref: '#/components/schemas/TagCollection'
-    ListOrganizationInsightsResponse:
-      type: object
-      properties:
-        ProactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/ProactiveOrganizationInsights'
-          - description: An integer that specifies the number of open proactive insights in your Amazon Web Services account.
-        ReactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/ReactiveOrganizationInsights'
-          - description: An integer that specifies the number of open reactive insights in your Amazon Web Services account.
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/UuidNextToken'
-          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
-    OrganizationalUnitId:
+        $ref: '#/components/schemas/TagHealth'
+    AwsAccountId:
       type: string
-      pattern: ^ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$
-      maxLength: 68
+      pattern: ^\d{12}$
+      minLength: 12
+      maxLength: 12
   parameters:
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
     X-Amz-SignedHeaders:
       name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
       required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
+    X-Amz-Credential:
+      name: X-Amz-Credential
       in: header
       schema:
         type: string
@@ -1242,20 +1248,14 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-Signature:
+      name: X-Amz-Signature
       in: header
       schema:
         type: string
       required: false
     X-Amz-Date:
       name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
       in: header
       schema:
         type: string

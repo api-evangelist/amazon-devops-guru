@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: "1.0.0"
+  version: 1.0.0
   x-release: v4
   title: Amazon DevOps Guru Accounts Event Sources API
   description: <p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html">Concepts in DevOps Guru</a>. </p>
@@ -214,18 +214,6 @@ paths:
       - Event Sources
 components:
   schemas:
-    InternalServerException: {}
-    DescribeEventSourcesConfigResponse:
-      type: object
-      properties:
-        EventSources:
-          allOf:
-          - $ref: '#/components/schemas/EventSourcesConfig'
-          - description: Lists the event sources in the configuration.
-    ValidationException: {}
-    UpdateEventSourcesConfigResponse:
-      type: object
-      properties: {}
     EventSourcesConfig:
       type: object
       properties:
@@ -234,7 +222,13 @@ components:
           - $ref: '#/components/schemas/AmazonCodeGuruProfilerIntegration'
           - description: Information about whether DevOps Guru is configured to consume recommendations which are generated from AWS CodeGuru Profiler.
       description: Information about the integration of DevOps Guru as consumer with another AWS service, such as AWS CodeGuru Profiler via EventBridge.
-    ThrottlingException: {}
+    DescribeEventSourcesConfigResponse:
+      type: object
+      properties:
+        EventSources:
+          allOf:
+          - $ref: '#/components/schemas/EventSourcesConfig'
+          - description: Lists the event sources in the configuration.
     AmazonCodeGuruProfilerIntegration:
       type: object
       properties:
@@ -243,13 +237,37 @@ components:
           - $ref: '#/components/schemas/EventSourceOptInStatus'
           - description: The status of the CodeGuru Profiler integration. Specifies if DevOps Guru is enabled to consume recommendations that are generated from Amazon CodeGuru Profiler.
       description: Information about your account's integration with Amazon CodeGuru Profiler. This returns whether DevOps Guru is configured to consume recommendations generated from Amazon CodeGuru Profiler.
+    InternalServerException: {}
+    ThrottlingException: {}
     AccessDeniedException: {}
+    ValidationException: {}
     EventSourceOptInStatus:
       type: string
       enum:
       - ENABLED
       - DISABLED
+    UpdateEventSourcesConfigResponse:
+      type: object
+      properties: {}
   parameters:
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
     X-Amz-Signature:
       name: X-Amz-Signature
       in: header
@@ -262,26 +280,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
     X-Amz-Date:
       name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string

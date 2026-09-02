@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  version: "1.0.0"
+  version: 1.0.0
   x-release: v4
   title: Amazon DevOps Guru Accounts Channels API
   description: <p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html">Concepts in DevOps Guru</a>. </p>
@@ -323,66 +323,71 @@ paths:
       tags:
       - Channels
 components:
+  parameters:
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
   schemas:
-    InternalServerException: {}
-    SnsChannelConfig:
-      type: object
-      properties:
-        TopicArn:
-          allOf:
-          - $ref: '#/components/schemas/TopicArn'
-          - description: ' The Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic. '
-      description: <p> Contains the Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. DevOps Guru only supports standard SNS topics. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see Permissions for cross account Amazon SNS topics.</p> <p>If you use an Amazon SNS topic that is encrypted by an Amazon Web Services Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html">Permissions for Amazon Web Services KMS–encrypted Amazon SNS topics</a>.</p>
-    TopicArn:
-      type: string
-      pattern: ^arn:aws[a-z0-9-]*:sns:[a-z0-9-]+:\d{12}:[^:]+$
-      minLength: 36
-      maxLength: 1024
     Channels:
       type: array
       items:
         $ref: '#/components/schemas/NotificationChannel'
-    ValidationException: {}
-    InsightSeverities:
-      type: array
-      items:
-        $ref: '#/components/schemas/InsightSeverity'
-      minItems: 0
-      maxItems: 3
-    NotificationMessageType:
+    ThrottlingException: {}
+    InsightSeverity:
       type: string
       enum:
-      - NEW_INSIGHT
-      - CLOSED_INSIGHT
-      - NEW_ASSOCIATION
-      - SEVERITY_UPGRADED
-      - NEW_RECOMMENDATION
-    ThrottlingException: {}
-    ServiceQuotaExceededException: {}
-    NotificationFilterConfig:
+      - LOW
+      - MEDIUM
+      - HIGH
+    ConflictException: {}
+    AddNotificationChannelResponse:
       type: object
-      properties:
-        Severities:
-          allOf:
-          - $ref: '#/components/schemas/InsightSeverities'
-          - description: ' The severity levels that you want to receive notifications for. For example, you can choose to receive notifications only for insights with <code>HIGH</code> and <code>MEDIUM</code> severity levels. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding insight severities</a>. '
-        MessageTypes:
-          allOf:
-          - $ref: '#/components/schemas/NotificationMessageTypes'
-          - description: ' The events that you want to receive notifications for. For example, you can choose to receive notifications only when the severity level is upgraded or a new insight is created. '
-      description: ' The filter configurations for the Amazon SNS notification topic you use with DevOps Guru. You can choose to specify which events or message types to receive notifications for. You can also choose to specify which severity levels to receive notifications for. '
-    NotificationChannel:
-      type: object
+      required:
+      - Id
       properties:
         Id:
           allOf:
           - $ref: '#/components/schemas/NotificationChannelId'
-          - description: ' The ID of a notification channel. '
-        Config:
-          allOf:
-          - $ref: '#/components/schemas/NotificationChannelConfig'
-          - description: ' A <code>NotificationChannelConfig</code> object that contains information about configured notification channels. '
-      description: <p> Information about a notification channel. A notification channel is used to notify you when DevOps Guru creates an insight. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS). </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. DevOps Guru only supports standard SNS topics. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see Permissions for cross account Amazon SNS topics.</p> <p>If you use an Amazon SNS topic that is encrypted by an Amazon Web Services Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html">Permissions for Amazon Web Services KMS–encrypted Amazon SNS topics</a>.</p>
+          - description: ' The ID of the added notification channel. '
     NotificationChannelConfig:
       type: object
       required:
@@ -397,17 +402,66 @@ components:
           - $ref: '#/components/schemas/NotificationFilterConfig'
           - description: ' The filter configurations for the Amazon SNS notification topic you use with DevOps Guru. If you do not provide filter configurations, the default configurations are to receive notifications for all message types of <code>High</code> or <code>Medium</code> severity. '
       description: ' Information about notification channels you have configured with DevOps Guru. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS).'
-    UuidNextToken:
-      type: string
-      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
-      minLength: 36
-      maxLength: 36
-    InsightSeverity:
+    NotificationMessageTypes:
+      type: array
+      items:
+        $ref: '#/components/schemas/NotificationMessageType'
+      minItems: 0
+      maxItems: 5
+    NotificationMessageType:
       type: string
       enum:
-      - LOW
-      - MEDIUM
-      - HIGH
+      - NEW_INSIGHT
+      - CLOSED_INSIGHT
+      - NEW_ASSOCIATION
+      - SEVERITY_UPGRADED
+      - NEW_RECOMMENDATION
+    NotificationFilterConfig:
+      type: object
+      properties:
+        Severities:
+          allOf:
+          - $ref: '#/components/schemas/InsightSeverities'
+          - description: ' The severity levels that you want to receive notifications for. For example, you can choose to receive notifications only for insights with <code>HIGH</code> and <code>MEDIUM</code> severity levels. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding insight severities</a>. '
+        MessageTypes:
+          allOf:
+          - $ref: '#/components/schemas/NotificationMessageTypes'
+          - description: ' The events that you want to receive notifications for. For example, you can choose to receive notifications only when the severity level is upgraded or a new insight is created. '
+      description: ' The filter configurations for the Amazon SNS notification topic you use with DevOps Guru. You can choose to specify which events or message types to receive notifications for. You can also choose to specify which severity levels to receive notifications for. '
+    InternalServerException: {}
+    TopicArn:
+      type: string
+      pattern: ^arn:aws[a-z0-9-]*:sns:[a-z0-9-]+:\d{12}:[^:]+$
+      minLength: 36
+      maxLength: 1024
+    ResourceNotFoundException: {}
+    ServiceQuotaExceededException: {}
+    NotificationChannel:
+      type: object
+      properties:
+        Id:
+          allOf:
+          - $ref: '#/components/schemas/NotificationChannelId'
+          - description: ' The ID of a notification channel. '
+        Config:
+          allOf:
+          - $ref: '#/components/schemas/NotificationChannelConfig'
+          - description: ' A <code>NotificationChannelConfig</code> object that contains information about configured notification channels. '
+      description: <p> Information about a notification channel. A notification channel is used to notify you when DevOps Guru creates an insight. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS). </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. DevOps Guru only supports standard SNS topics. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see Permissions for cross account Amazon SNS topics.</p> <p>If you use an Amazon SNS topic that is encrypted by an Amazon Web Services Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html">Permissions for Amazon Web Services KMS–encrypted Amazon SNS topics</a>.</p>
+    InsightSeverities:
+      type: array
+      items:
+        $ref: '#/components/schemas/InsightSeverity'
+      minItems: 0
+      maxItems: 3
+    SnsChannelConfig:
+      type: object
+      properties:
+        TopicArn:
+          allOf:
+          - $ref: '#/components/schemas/TopicArn'
+          - description: ' The Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic. '
+      description: <p> Contains the Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. DevOps Guru only supports standard SNS topics. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see Permissions for cross account Amazon SNS topics.</p> <p>If you use an Amazon SNS topic that is encrypted by an Amazon Web Services Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html">Permissions for Amazon Web Services KMS–encrypted Amazon SNS topics</a>.</p>
     ListNotificationChannelsResponse:
       type: object
       properties:
@@ -419,75 +473,21 @@ components:
           allOf:
           - $ref: '#/components/schemas/UuidNextToken'
           - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
-    AddNotificationChannelResponse:
-      type: object
-      required:
-      - Id
-      properties:
-        Id:
-          allOf:
-          - $ref: '#/components/schemas/NotificationChannelId'
-          - description: ' The ID of the added notification channel. '
-    AccessDeniedException: {}
     RemoveNotificationChannelResponse:
       type: object
       properties: {}
-    ConflictException: {}
-    NotificationMessageTypes:
-      type: array
-      items:
-        $ref: '#/components/schemas/NotificationMessageType'
-      minItems: 0
-      maxItems: 5
-    ResourceNotFoundException: {}
+    AccessDeniedException: {}
+    UuidNextToken:
+      type: string
+      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+      minLength: 36
+      maxLength: 36
+    ValidationException: {}
     NotificationChannelId:
       type: string
       pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
       minLength: 36
       maxLength: 36
-  parameters:
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
   securitySchemes:
     hmac:
       type: apiKey
