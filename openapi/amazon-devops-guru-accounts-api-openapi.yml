@@ -1,9 +1,9 @@
 openapi: 3.2.0
 info:
-  version: 1.0.0
+  version: 2020-12-01
   x-release: v4
   title: Amazon DevOps Guru Accounts API
-  description: <p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html">Concepts in DevOps Guru</a>. </p>
+  description: Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications.
   x-logo:
     url: https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.png
     backgroundColor: '#FFFFFF'
@@ -24,6 +24,7 @@ info:
     url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/devops-guru-2020-12-01.normal.json
     converter:
       url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
     x-apisguru-driver: external
   x-apiClientRegistration:
     url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
@@ -125,7 +126,7 @@ paths:
     - $ref: '#/components/parameters/X-Amz-SignedHeaders'
     get:
       operationId: DescribeAccountHealth
-      description: ' Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your Amazon Web Services account. Use these numbers to gauge the health of operations in your Amazon Web Services account. '
+      description: Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your Amazon Web Services account. Use these numbers to gauge the health of operations in your Amazon Web Services account.
       responses:
         '200':
           description: Success
@@ -160,6 +161,8 @@ paths:
       parameters: []
       tags:
       - Accounts
+      summary: Describe account health
+      x-summary-source: derived
   /accounts/overview:
     parameters:
     - $ref: '#/components/parameters/X-Amz-Content-Sha256'
@@ -171,7 +174,7 @@ paths:
     - $ref: '#/components/parameters/X-Amz-SignedHeaders'
     post:
       operationId: DescribeAccountOverview
-      description: ' For the time range passed in, returns the number of open reactive insight that were created, the number of open proactive insights that were created, and the Mean Time to Recover (MTTR) for all closed reactive insights. '
+      description: For the time range passed in, returns the number of open reactive insight that were created, the number of open proactive insights that were created, and the Mean Time to Recover (MTTR) for all closed reactive insights.
       responses:
         '200':
           description: Success
@@ -223,6 +226,8 @@ paths:
                   format: date-time
       tags:
       - Accounts
+      summary: Describe account overview
+      x-summary-source: derived
   /accounts/health/resource-collection/{ResourceCollectionType}:
     parameters:
     - $ref: '#/components/parameters/X-Amz-Content-Sha256'
@@ -234,7 +239,7 @@ paths:
     - $ref: '#/components/parameters/X-Amz-SignedHeaders'
     get:
       operationId: DescribeResourceCollectionHealth
-      description: ' Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR) for all closed insights in resource collections in your account. You specify the type of Amazon Web Services resources collection. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. '
+      description: Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR) for all closed insights in resource collections in your account. You specify the type of Amazon Web Services resources collection. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag key. You can specify up to 500 Amazon Web Services CloudFormation stacks.
       responses:
         '200':
           description: Success
@@ -288,6 +293,8 @@ paths:
           maxLength: 36
       tags:
       - Accounts
+      summary: Describe resource collection health
+      x-summary-source: derived
 components:
   parameters:
     X-Amz-Content-Sha256:
@@ -296,8 +303,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
       in: header
       schema:
         type: string
@@ -308,8 +315,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
@@ -326,18 +333,14 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
       in: header
       schema:
         type: string
       required: false
   schemas:
-    AppBoundaryKey:
-      type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
-      minLength: 1
-      maxLength: 128
+    ValidationException: {}
     DescribeAccountOverviewResponse:
       type: object
       required:
@@ -357,75 +360,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/MeanTimeToRecoverInMilliseconds'
           - description: ' The Mean Time to Recover (MTTR) for all closed insights that were created during the time range passed in. '
-    ThrottlingException: {}
-    MeanTimeToRecoverInMilliseconds:
-      type: integer
-    ServiceHealths:
-      type: array
-      items:
-        $ref: '#/components/schemas/ServiceHealth'
-    TagValue:
-      type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*|\*)$
-      minLength: 0
-      maxLength: 256
-    NumProactiveInsights:
-      type: integer
-    NumOpenProactiveInsights:
-      type: integer
-    CloudFormationHealths:
-      type: array
-      items:
-        $ref: '#/components/schemas/CloudFormationHealth'
-    CloudFormationHealth:
-      type: object
-      properties:
-        StackName:
-          allOf:
-          - $ref: '#/components/schemas/StackName'
-          - description: ' The name of the CloudFormation stack. '
-        Insight:
-          allOf:
-          - $ref: '#/components/schemas/InsightHealth'
-          - description: ' Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. '
-        AnalyzedResourceCount:
-          allOf:
-          - $ref: '#/components/schemas/AnalyzedResourceCount'
-          - description: ' Number of resources that DevOps Guru is monitoring in your account that are specified by an Amazon Web Services CloudFormation stack. '
-      description: ' Information about the health of Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack. '
-    AnalyzedResourceCount:
-      type: integer
-    NumOpenReactiveInsights:
-      type: integer
-    InternalServerException: {}
-    ServiceName:
-      type: string
-      enum:
-      - API_GATEWAY
-      - APPLICATION_ELB
-      - AUTO_SCALING_GROUP
-      - CLOUD_FRONT
-      - DYNAMO_DB
-      - EC2
-      - ECS
-      - EKS
-      - ELASTIC_BEANSTALK
-      - ELASTI_CACHE
-      - ELB
-      - ES
-      - KINESIS
-      - LAMBDA
-      - NAT_GATEWAY
-      - NETWORK_ELB
-      - RDS
-      - REDSHIFT
-      - ROUTE_53
-      - S3
-      - SAGE_MAKER
-      - SNS
-      - SQS
-      - STEP_FUNCTIONS
-      - SWF
     DescribeAccountHealthResponse:
       type: object
       required:
@@ -454,8 +388,107 @@ components:
           allOf:
           - $ref: '#/components/schemas/AnalyzedResourceCount'
           - description: ' Number of resources that DevOps Guru is monitoring in your Amazon Web Services account. '
+    NumMetricsAnalyzed:
+      type: integer
+    NumProactiveInsights:
+      type: integer
+    NumOpenReactiveInsights:
+      type: integer
+    ThrottlingException: {}
+    TagHealths:
+      type: array
+      items:
+        $ref: '#/components/schemas/TagHealth'
+    StackName:
+      type: string
+      pattern: ^[a-zA-Z*]+[a-zA-Z0-9-]*$
+      minLength: 1
+      maxLength: 128
+    ServiceHealth:
+      type: object
+      properties:
+        ServiceName:
+          allOf:
+          - $ref: '#/components/schemas/ServiceName'
+          - description: The name of the Amazon Web Services service.
+        Insight:
+          allOf:
+          - $ref: '#/components/schemas/ServiceInsightHealth'
+          - description: Represents the health of an Amazon Web Services service. This is a <code>ServiceInsightHealth</code> that contains the number of open proactive and reactive insights for this service.
+        AnalyzedResourceCount:
+          allOf:
+          - $ref: '#/components/schemas/AnalyzedResourceCount'
+          - description: ' Number of resources that DevOps Guru is monitoring in an analyzed Amazon Web Services service. '
+      description: Represents the health of an Amazon Web Services service.
+    CloudFormationHealths:
+      type: array
+      items:
+        $ref: '#/components/schemas/CloudFormationHealth'
+    UuidNextToken:
+      type: string
+      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+      minLength: 36
+      maxLength: 36
     NumReactiveInsights:
       type: integer
+    DescribeResourceCollectionHealthResponse:
+      type: object
+      properties:
+        CloudFormation:
+          allOf:
+          - $ref: '#/components/schemas/CloudFormationHealths'
+          - description: ' The returned <code>CloudFormationHealthOverview</code> object that contains an <code>InsightHealthOverview</code> object with the requested system health information. '
+        Service:
+          allOf:
+          - $ref: '#/components/schemas/ServiceHealths'
+          - description: An array of <code>ServiceHealth</code> objects that describes the health of the Amazon Web Services services associated with the resources in the collection.
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/UuidNextToken'
+          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+        Tags:
+          allOf:
+          - $ref: '#/components/schemas/TagHealths'
+          - description: <p>The Amazon Web Services tags that are used by resources in the resource collection.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
+    CloudFormationHealth:
+      type: object
+      properties:
+        StackName:
+          allOf:
+          - $ref: '#/components/schemas/StackName'
+          - description: ' The name of the CloudFormation stack. '
+        Insight:
+          allOf:
+          - $ref: '#/components/schemas/InsightHealth'
+          - description: ' Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. '
+        AnalyzedResourceCount:
+          allOf:
+          - $ref: '#/components/schemas/AnalyzedResourceCount'
+          - description: ' Number of resources that DevOps Guru is monitoring in your account that are specified by an Amazon Web Services CloudFormation stack. '
+      description: ' Information about the health of Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack. '
+    AppBoundaryKey:
+      type: string
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+      minLength: 1
+      maxLength: 128
+    ServiceInsightHealth:
+      type: object
+      properties:
+        OpenProactiveInsights:
+          allOf:
+          - $ref: '#/components/schemas/NumOpenProactiveInsights'
+          - description: The number of open proactive insights in the Amazon Web Services service
+        OpenReactiveInsights:
+          allOf:
+          - $ref: '#/components/schemas/NumOpenReactiveInsights'
+          - description: The number of open reactive insights in the Amazon Web Services service
+      description: Contains the number of open proactive and reactive insights in an analyzed Amazon Web Services service.
+    MeanTimeToRecoverInMilliseconds:
+      type: integer
+    ServiceHealths:
+      type: array
+      items:
+        $ref: '#/components/schemas/ServiceHealth'
     TagHealth:
       type: object
       properties:
@@ -478,8 +511,9 @@ components:
       description: ' Information about the health of Amazon Web Services resources in your account that are specified by an Amazon Web Services tag <i>key</i>. '
     ResourceHours:
       type: integer
-    NumMetricsAnalyzed:
+    NumOpenProactiveInsights:
       type: integer
+    InternalServerException: {}
     InsightHealth:
       type: object
       properties:
@@ -496,69 +530,42 @@ components:
           - $ref: '#/components/schemas/MeanTimeToRecoverInMilliseconds'
           - description: ' The Meant Time to Recover (MTTR) for the insight. '
       description: ' Information about the number of open reactive and proactive insights that can be used to gauge the health of your system. '
-    StackName:
+    TagValue:
       type: string
-      pattern: ^[a-zA-Z*]+[a-zA-Z0-9-]*$
-      minLength: 1
-      maxLength: 128
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*|\*)$
+      minLength: 0
+      maxLength: 256
+    AnalyzedResourceCount:
+      type: integer
     AccessDeniedException: {}
-    DescribeResourceCollectionHealthResponse:
-      type: object
-      properties:
-        CloudFormation:
-          allOf:
-          - $ref: '#/components/schemas/CloudFormationHealths'
-          - description: ' The returned <code>CloudFormationHealthOverview</code> object that contains an <code>InsightHealthOverview</code> object with the requested system health information. '
-        Service:
-          allOf:
-          - $ref: '#/components/schemas/ServiceHealths'
-          - description: An array of <code>ServiceHealth</code> objects that describes the health of the Amazon Web Services services associated with the resources in the collection.
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/UuidNextToken'
-          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
-        Tags:
-          allOf:
-          - $ref: '#/components/schemas/TagHealths'
-          - description: <p>The Amazon Web Services tags that are used by resources in the resource collection.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
-    UuidNextToken:
+    ServiceName:
       type: string
-      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
-      minLength: 36
-      maxLength: 36
-    ServiceInsightHealth:
-      type: object
-      properties:
-        OpenProactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/NumOpenProactiveInsights'
-          - description: The number of open proactive insights in the Amazon Web Services service
-        OpenReactiveInsights:
-          allOf:
-          - $ref: '#/components/schemas/NumOpenReactiveInsights'
-          - description: The number of open reactive insights in the Amazon Web Services service
-      description: Contains the number of open proactive and reactive insights in an analyzed Amazon Web Services service.
-    ValidationException: {}
-    TagHealths:
-      type: array
-      items:
-        $ref: '#/components/schemas/TagHealth'
-    ServiceHealth:
-      type: object
-      properties:
-        ServiceName:
-          allOf:
-          - $ref: '#/components/schemas/ServiceName'
-          - description: The name of the Amazon Web Services service.
-        Insight:
-          allOf:
-          - $ref: '#/components/schemas/ServiceInsightHealth'
-          - description: Represents the health of an Amazon Web Services service. This is a <code>ServiceInsightHealth</code> that contains the number of open proactive and reactive insights for this service.
-        AnalyzedResourceCount:
-          allOf:
-          - $ref: '#/components/schemas/AnalyzedResourceCount'
-          - description: ' Number of resources that DevOps Guru is monitoring in an analyzed Amazon Web Services service. '
-      description: Represents the health of an Amazon Web Services service.
+      enum:
+      - API_GATEWAY
+      - APPLICATION_ELB
+      - AUTO_SCALING_GROUP
+      - CLOUD_FRONT
+      - DYNAMO_DB
+      - EC2
+      - ECS
+      - EKS
+      - ELASTIC_BEANSTALK
+      - ELASTI_CACHE
+      - ELB
+      - ES
+      - KINESIS
+      - LAMBDA
+      - NAT_GATEWAY
+      - NETWORK_ELB
+      - RDS
+      - REDSHIFT
+      - ROUTE_53
+      - S3
+      - SAGE_MAKER
+      - SNS
+      - SQS
+      - STEP_FUNCTIONS
+      - SWF
   securitySchemes:
     hmac:
       type: apiKey

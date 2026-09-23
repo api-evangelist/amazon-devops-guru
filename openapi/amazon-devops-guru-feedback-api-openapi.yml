@@ -1,9 +1,9 @@
 openapi: 3.2.0
 info:
-  version: 1.0.0
+  version: 2020-12-01
   x-release: v4
-  title: Amazon DevOps Guru Accounts Feedback API
-  description: <p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html">Concepts in DevOps Guru</a>. </p>
+  title: Amazon DevOps Guru Feedback API
+  description: Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications.
   x-logo:
     url: https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.png
     backgroundColor: '#FFFFFF'
@@ -24,6 +24,7 @@ info:
     url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/devops-guru-2020-12-01.normal.json
     converter:
       url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
     x-apisguru-driver: external
   x-apiClientRegistration:
     url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
@@ -125,7 +126,7 @@ paths:
     - $ref: '#/components/parameters/X-Amz-SignedHeaders'
     post:
       operationId: DescribeFeedback
-      description: ' Returns the most recent feedback submitted in the current Amazon Web Services account and Region. '
+      description: Returns the most recent feedback submitted in the current Amazon Web Services account and Region.
       responses:
         '200':
           description: Success
@@ -179,9 +180,11 @@ paths:
                   maxLength: 100
       tags:
       - Feedback
+      summary: Describe feedback
+      x-summary-source: derived
     put:
       operationId: PutFeedback
-      description: ' Collects customer feedback about the specified insight. '
+      description: Collects customer feedback about the specified insight.
       responses:
         '200':
           description: Success
@@ -247,68 +250,12 @@ paths:
                       - description: ' The feedback provided by the customer. '
       tags:
       - Feedback
+      summary: Put feedback
+      x-summary-source: derived
 components:
-  schemas:
-    DescribeFeedbackResponse:
-      type: object
-      properties:
-        InsightFeedback:
-          $ref: '#/components/schemas/InsightFeedback'
-    ConflictException: {}
-    InsightFeedback:
-      type: object
-      properties:
-        Id:
-          allOf:
-          - $ref: '#/components/schemas/InsightId'
-          - description: ' The insight feedback ID. '
-        Feedback:
-          allOf:
-          - $ref: '#/components/schemas/InsightFeedbackOption'
-          - description: ' The feedback provided by the customer. '
-      description: ' Information about insight feedback received from a customer. '
-    ThrottlingException: {}
-    InternalServerException: {}
-    AccessDeniedException: {}
-    ValidationException: {}
-    InsightId:
-      type: string
-      pattern: ^[\w-]*$
-      minLength: 1
-      maxLength: 100
-    PutFeedbackResponse:
-      type: object
-      properties: {}
-    ResourceNotFoundException: {}
-    InsightFeedbackOption:
-      type: string
-      enum:
-      - VALID_COLLECTION
-      - RECOMMENDATION_USEFUL
-      - ALERT_TOO_SENSITIVE
-      - DATA_NOISY_ANOMALY
-      - DATA_INCORRECT
   parameters:
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
     X-Amz-Content-Sha256:
       name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
       in: header
       schema:
         type: string
@@ -325,12 +272,70 @@ components:
       schema:
         type: string
       required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
     X-Amz-Credential:
       name: X-Amz-Credential
       in: header
       schema:
         type: string
       required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+  schemas:
+    InsightFeedbackOption:
+      type: string
+      enum:
+      - VALID_COLLECTION
+      - RECOMMENDATION_USEFUL
+      - ALERT_TOO_SENSITIVE
+      - DATA_NOISY_ANOMALY
+      - DATA_INCORRECT
+    ValidationException: {}
+    InsightId:
+      type: string
+      pattern: ^[\w-]*$
+      minLength: 1
+      maxLength: 100
+    InsightFeedback:
+      type: object
+      properties:
+        Id:
+          allOf:
+          - $ref: '#/components/schemas/InsightId'
+          - description: ' The insight feedback ID. '
+        Feedback:
+          allOf:
+          - $ref: '#/components/schemas/InsightFeedbackOption'
+          - description: ' The feedback provided by the customer. '
+      description: ' Information about insight feedback received from a customer. '
+    PutFeedbackResponse:
+      type: object
+      properties: {}
+    InternalServerException: {}
+    ResourceNotFoundException: {}
+    ConflictException: {}
+    DescribeFeedbackResponse:
+      type: object
+      properties:
+        InsightFeedback:
+          $ref: '#/components/schemas/InsightFeedback'
+    AccessDeniedException: {}
+    ThrottlingException: {}
   securitySchemes:
     hmac:
       type: apiKey

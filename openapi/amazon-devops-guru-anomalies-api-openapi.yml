@@ -1,9 +1,9 @@
 openapi: 3.2.0
 info:
-  version: 1.0.0
+  version: 2020-12-01
   x-release: v4
-  title: Amazon DevOps Guru Accounts Anomalies API
-  description: <p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html">Concepts in DevOps Guru</a>. </p>
+  title: Amazon DevOps Guru Anomalies API
+  description: Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications.
   x-logo:
     url: https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.png
     backgroundColor: '#FFFFFF'
@@ -24,6 +24,7 @@ info:
     url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/devops-guru-2020-12-01.normal.json
     converter:
       url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
     x-apisguru-driver: external
   x-apiClientRegistration:
     url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
@@ -125,7 +126,7 @@ paths:
     - $ref: '#/components/parameters/X-Amz-SignedHeaders'
     get:
       operationId: DescribeAnomaly
-      description: ' Returns details about an anomaly that you specify using its ID. '
+      description: Returns details about an anomaly that you specify using its ID.
       responses:
         '200':
           description: Success
@@ -184,6 +185,8 @@ paths:
           maxLength: 12
       tags:
       - Anomalies
+      summary: Describe anomaly
+      x-summary-source: derived
   /anomalies/insight/{InsightId}:
     parameters:
     - $ref: '#/components/parameters/X-Amz-Content-Sha256'
@@ -195,7 +198,7 @@ paths:
     - $ref: '#/components/parameters/X-Amz-SignedHeaders'
     post:
       operationId: ListAnomaliesForInsight
-      description: ' Returns a list of the anomalies that belong to an insight that you specify using its ID. '
+      description: Returns a list of the anomalies that belong to an insight that you specify using its ID.
       responses:
         '200':
           description: Success
@@ -299,27 +302,96 @@ paths:
                       $ref: '#/components/schemas/ServiceCollection'
       tags:
       - Anomalies
+      summary: List anomalies for insight
+      x-summary-source: derived
 components:
+  parameters:
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
   schemas:
-    AppBoundaryKey:
+    ResourceName:
       type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
-      minLength: 1
-      maxLength: 128
-    ThrottlingException: {}
-    PerformanceInsightsReferenceMetric:
+    TagValues:
+      type: array
+      items:
+        $ref: '#/components/schemas/TagValue'
+    PerformanceInsightsValueDouble:
+      type: number
+      format: double
+    ResourceNotFoundException: {}
+    PerformanceInsightsMetricDisplayName:
+      type: string
+    TimestampMetricValuePairList:
+      type: array
+      items:
+        $ref: '#/components/schemas/TimestampMetricValuePair'
+    AnomalyName:
+      type: string
+    AnomalyLimit:
+      type: number
+      format: double
+    PerformanceInsightsStat:
       type: object
       properties:
-        MetricQuery:
+        Type:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsMetricQuery'
-          - description: A query to be processed on the metric.
-      description: Information about a reference metric used to evaluate Performance Insights.
-    AnomalyId:
+          - $ref: '#/components/schemas/PerformanceInsightsStatType'
+          - description: The statistic type.
+        Value:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsValueDouble'
+          - description: The value of the statistic.
+      description: A statistic in a Performance Insights collection.
+    AnomalySeverity:
       type: string
-      pattern: ^[\w~.-]*$
-      minLength: 1
-      maxLength: 100
+      enum:
+      - LOW
+      - MEDIUM
+      - HIGH
+    CloudWatchMetricsDimensions:
+      type: array
+      items:
+        $ref: '#/components/schemas/CloudWatchMetricsDimension'
     InsightId:
       type: string
       pattern: ^[\w-]*$
@@ -337,70 +409,188 @@ components:
           - $ref: '#/components/schemas/TagCollections'
           - description: <p>The Amazon Web Services tags that are used by resources in the resource collection.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
       description: ' A collection of Amazon Web Services resources supported by DevOps Guru. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. '
-    TagValues:
+    PerformanceInsightsMetricGroup:
+      type: string
+    CloudWatchMetricsMetricName:
+      type: string
+    ThrottlingException: {}
+    AnomalySource:
+      type: string
+    PerformanceInsightsMetricFilterMap:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/PerformanceInsightsMetricFilterValue'
+    PerformanceInsightsMetricDimensionGroup:
+      type: object
+      properties:
+        Group:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsMetricGroup'
+          - description: <p>The name of the dimension group. Its valid values are:</p> <ul> <li> <p> <code>db</code> - The name of the database to which the client is connected (only Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS MySQL, and MariaDB)</p> </li> <li> <p> <code>db.application</code> - The name of the application that is connected to the database (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.host</code> - The host name of the connected client (all engines)</p> </li> <li> <p> <code>db.session_type</code> - The type of the current session (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.sql</code> - The SQL that is currently executing (all engines)</p> </li> <li> <p> <code>db.sql_tokenized</code> - The SQL digest (all engines)</p> </li> <li> <p> <code>db.wait_event</code> - The event for which the database backend is waiting (all engines)</p> </li> <li> <p> <code>db.wait_event_type</code> - The type of event for which the database backend is waiting (all engines)</p> </li> <li> <p> <code>db.user</code> - The user logged in to the database (all engines)</p> </li> </ul>
+        Dimensions:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsMetricDimensions'
+          - description: <p>A list of specific dimensions from a dimension group. If this parameter is not present, then it signifies that all of the dimensions in the group were requested or are present in the response.</p> <p>Valid values for elements in the <code>Dimensions</code> array are:</p> <ul> <li> <p> <code>db.application.name</code> - The name of the application that is connected to the database (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.host.id</code> - The host ID of the connected client (all engines)</p> </li> <li> <p> <code>db.host.name</code> - The host name of the connected client (all engines)</p> </li> <li> <p> <code>db.name</code> - The name of the database to which the client is connected (only Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS MySQL, and MariaDB)</p> </li> <li> <p> <code>db.session_type.name</code> - The type of the current session (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.sql.id</code> - The SQL ID generated by Performance Insights (all engines)</p> </li> <li> <p> <code>db.sql.db_id</code> - The SQL ID generated by the database (all engines)</p> </li> <li> <p> <code>db.sql.statement</code> - The SQL text that is being executed (all engines)</p> </li> <li> <p> <code>db.sql.tokenized_id</code> </p> </li> <li> <p> <code>db.sql_tokenized.id</code> - The SQL digest ID generated by Performance Insights (all engines)</p> </li> <li> <p> <code>db.sql_tokenized.db_id</code> - SQL digest ID generated by the database (all engines)</p> </li> <li> <p> <code>db.sql_tokenized.statement</code> - The SQL digest text (all engines)</p> </li> <li> <p> <code>db.user.id</code> - The ID of the user logged in to the database (all engines)</p> </li> <li> <p> <code>db.user.name</code> - The name of the user logged in to the database (all engines)</p> </li> <li> <p> <code>db.wait_event.name</code> - The event for which the backend is waiting (all engines)</p> </li> <li> <p> <code>db.wait_event.type</code> - The type of event for which the backend is waiting (all engines)</p> </li> <li> <p> <code>db.wait_event_type.name</code> - The name of the event type for which the backend is waiting (all engines)</p> </li> </ul>
+        Limit:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsMetricLimitInteger'
+          - description: The maximum number of items to fetch for this dimension group.
+      description: '<p>A logical grouping of Performance Insights metrics for a related subject area. For example, the <code>db.sql</code> dimension group consists of the following dimensions: <code>db.sql.id</code>, <code>db.sql.db_id</code>, <code>db.sql.statement</code>, and <code>db.sql.tokenized_id</code>.</p> <note> <p>Each response element returns a maximum of 500 bytes. For larger elements, such as SQL statements, only the first 500 bytes are returned.</p> </note> <p>Amazon RDS Performance Insights enables you to monitor and explore different dimensions of database load based on data captured from a running DB instance. DB load is measured as average active sessions. Performance Insights provides the data to API consumers as a two-dimensional time-series dataset. The time dimension provides DB load data for each time point in the queried time range. Each time point decomposes overall load in relation to the requested dimensions, measured at that time point. Examples include SQL, Wait event, User, and Host. </p> <ul> <li> <p>To learn more about Performance Insights and Amazon Aurora DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html"> Amazon Aurora User Guide</a>. </p> </li> <li> <p>To learn more about Performance Insights and Amazon RDS DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html"> Amazon RDS User Guide</a>. </p> </li> </ul>'
+    AppBoundaryKey:
+      type: string
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+      minLength: 1
+      maxLength: 128
+    AnomalyDescription:
+      type: string
+    TagValue:
+      type: string
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*|\*)$
+      minLength: 0
+      maxLength: 256
+    PerformanceInsightsMetricLimitInteger:
+      type: integer
+      minimum: 1
+      maximum: 10
+    ProactiveAnomalies:
       type: array
       items:
-        $ref: '#/components/schemas/TagValue'
-    PerformanceInsightsMetricDisplayName:
+        $ref: '#/components/schemas/ProactiveAnomalySummary'
+    ListAnomaliesForInsightResponse:
+      type: object
+      properties:
+        ProactiveAnomalies:
+          allOf:
+          - $ref: '#/components/schemas/ProactiveAnomalies'
+          - description: ' An array of <code>ProactiveAnomalySummary</code> objects that represent the requested anomalies '
+        ReactiveAnomalies:
+          allOf:
+          - $ref: '#/components/schemas/ReactiveAnomalies'
+          - description: ' An array of <code>ReactiveAnomalySummary</code> objects that represent the requested anomalies '
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/UuidNextToken'
+          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+    InternalServerException: {}
+    CloudWatchMetricsNamespace:
       type: string
-    TimestampMetricValuePairList:
-      type: array
-      items:
-        $ref: '#/components/schemas/TimestampMetricValuePair'
-    PerformanceInsightsReferenceName:
+    PerformanceInsightsMetricFilterValue:
       type: string
-    PerformanceInsightsReferenceData:
+    CloudWatchMetricsDimension:
       type: object
       properties:
         Name:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsReferenceName'
-          - description: The name of the reference data.
-        ComparisonValues:
+          - $ref: '#/components/schemas/CloudWatchMetricsDimensionName'
+          - description: ' The name of the CloudWatch dimension. '
+        Value:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsReferenceComparisonValues'
-          - description: 'The specific reference values used to evaluate the Performance Insights. For more information, see <code> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceComparisonValues.html">PerformanceInsightsReferenceComparisonValues</a> </code>. '
-      description: Reference data used to evaluate Performance Insights to determine if its performance is anomalous or not.
-    AnomalyType:
-      type: string
-      enum:
-      - CAUSAL
-      - CONTEXTUAL
-    InternalServerException: {}
-    ServiceName:
-      type: string
-      enum:
-      - API_GATEWAY
-      - APPLICATION_ELB
-      - AUTO_SCALING_GROUP
-      - CLOUD_FRONT
-      - DYNAMO_DB
-      - EC2
-      - ECS
-      - EKS
-      - ELASTIC_BEANSTALK
-      - ELASTI_CACHE
-      - ELB
-      - ES
-      - KINESIS
-      - LAMBDA
-      - NAT_GATEWAY
-      - NETWORK_ELB
-      - RDS
-      - REDSHIFT
-      - ROUTE_53
-      - S3
-      - SAGE_MAKER
-      - SNS
-      - SQS
-      - STEP_FUNCTIONS
-      - SWF
-    CloudWatchMetricsNamespace:
-      type: string
-    StackNames:
+          - $ref: '#/components/schemas/CloudWatchMetricsDimensionValue'
+          - description: ' The value of the CloudWatch dimension. '
+      description: ' The dimension of an Amazon CloudWatch metric that is used when DevOps Guru analyzes the resources in your account for operational problems and anomalous behavior. A dimension is a name/value pair that is part of the identity of a metric. A metric can have up to 10 dimensions. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension">Dimensions</a> in the <i>Amazon CloudWatch User Guide</i>. '
+    CloudWatchMetricsDetail:
+      type: object
+      properties:
+        MetricName:
+          allOf:
+          - $ref: '#/components/schemas/CloudWatchMetricsMetricName'
+          - description: ' The name of the CloudWatch metric. '
+        Namespace:
+          allOf:
+          - $ref: '#/components/schemas/CloudWatchMetricsNamespace'
+          - description: ' The namespace of the CloudWatch metric. A namespace is a container for CloudWatch metrics. '
+        Dimensions:
+          allOf:
+          - $ref: '#/components/schemas/CloudWatchMetricsDimensions'
+          - description: ' An array of CloudWatch dimensions associated with '
+        Stat:
+          allOf:
+          - $ref: '#/components/schemas/CloudWatchMetricsStat'
+          - description: ' The type of statistic associated with the CloudWatch metric. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic">Statistics</a> in the <i>Amazon CloudWatch User Guide</i>. '
+        Unit:
+          allOf:
+          - $ref: '#/components/schemas/CloudWatchMetricsUnit'
+          - description: ' The unit of measure used for the CloudWatch metric. For example, <code>Bytes</code>, <code>Seconds</code>, <code>Count</code>, and <code>Percent</code>. '
+        Period:
+          allOf:
+          - $ref: '#/components/schemas/CloudWatchMetricsPeriod'
+          - description: ' The length of time associated with the CloudWatch metric in number of seconds. '
+        MetricDataSummary:
+          allOf:
+          - $ref: '#/components/schemas/CloudWatchMetricsDataSummary'
+          - description: This object returns anomaly metric data.
+      description: ' Information about an Amazon CloudWatch metric. '
+    ReactiveAnomalies:
       type: array
       items:
-        $ref: '#/components/schemas/StackName'
+        $ref: '#/components/schemas/ReactiveAnomalySummary'
+    PerformanceInsightsMetricsDetail:
+      type: object
+      properties:
+        MetricDisplayName:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsMetricDisplayName'
+          - description: The name used for a specific Performance Insights metric.
+        Unit:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsMetricUnit'
+          - description: The unit of measure for a metric. For example, a session or a process.
+        MetricQuery:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsMetricQuery'
+          - description: A single query to be processed for the metric. For more information, see <code> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsMetricQuery.html">PerformanceInsightsMetricQuery</a> </code>.
+        ReferenceData:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsReferenceDataList'
+          - description: ' For more information, see <code> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceData.html">PerformanceInsightsReferenceData</a> </code>. '
+        StatsAtAnomaly:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsStats'
+          - description: The metric statistics during the anomalous period detected by DevOps Guru;
+        StatsAtBaseline:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsStats'
+          - description: Typical metric statistics that are not considered anomalous. When DevOps Guru analyzes metrics, it compares them to <code>StatsAtBaseline</code> to help determine if they are anomalous.
+      description: <p>Details about Performance Insights metrics.</p> <p>Amazon RDS Performance Insights enables you to monitor and explore different dimensions of database load based on data captured from a running DB instance. DB load is measured as average active sessions. Performance Insights provides the data to API consumers as a two-dimensional time-series dataset. The time dimension provides DB load data for each time point in the queried time range. Each time point decomposes overall load in relation to the requested dimensions, measured at that time point. Examples include SQL, Wait event, User, and Host. </p> <ul> <li> <p>To learn more about Performance Insights and Amazon Aurora DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html"> Amazon Aurora User Guide</a>. </p> </li> <li> <p>To learn more about Performance Insights and Amazon RDS DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html"> Amazon RDS User Guide</a>. </p> </li> </ul>
+    AnomalyId:
+      type: string
+      pattern: ^[\w~.-]*$
+      minLength: 1
+      maxLength: 100
+    AnomalyTimeRange:
+      type: object
+      required:
+      - StartTime
+      properties:
+        StartTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time when the anomalous behavior started. '
+        EndTime:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time when the anomalous behavior ended. '
+      description: ' A time range that specifies when the observed unusual behavior in an anomaly started and ended. This is different from <code>AnomalyReportedTimeRange</code>, which specifies the time range when DevOps Guru opens and then closes an anomaly. '
+    AnomalyResources:
+      type: array
+      items:
+        $ref: '#/components/schemas/AnomalyResource'
+    DescribeAnomalyResponse:
+      type: object
+      properties:
+        ProactiveAnomaly:
+          allOf:
+          - $ref: '#/components/schemas/ProactiveAnomaly'
+          - description: ' A <code>ProactiveAnomaly</code> object that represents the requested anomaly. '
+        ReactiveAnomaly:
+          allOf:
+          - $ref: '#/components/schemas/ReactiveAnomaly'
+          - description: ' A <code>ReactiveAnomaly</code> object that represents the requested anomaly. '
+    StackName:
+      type: string
+      pattern: ^[a-zA-Z*]+[a-zA-Z0-9-]*$
+      minLength: 1
+      maxLength: 128
     TagCollection:
       type: object
       required:
@@ -416,64 +606,38 @@ components:
           - $ref: '#/components/schemas/TagValues'
           - description: <p>The values in an Amazon Web Services tag collection.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>
       description: <p>A collection of Amazon Web Services tags.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
-    CloudWatchMetricsUnit:
+    PerformanceInsightsMetricDimension:
       type: string
-    PerformanceInsightsMetricDimensions:
-      type: array
-      items:
-        $ref: '#/components/schemas/PerformanceInsightsMetricDimension'
-    ReactiveAnomaly:
+    Timestamp:
+      type: string
+      format: date-time
+    CloudWatchMetricsStat:
+      type: string
+      enum:
+      - Sum
+      - Average
+      - SampleCount
+      - Minimum
+      - Maximum
+      - p99
+      - p90
+      - p50
+    PredictionTimeRange:
       type: object
+      required:
+      - StartTime
       properties:
-        Id:
+        StartTime:
           allOf:
-          - $ref: '#/components/schemas/AnomalyId'
-          - description: 'The ID of the reactive anomaly. '
-        Severity:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time range during which a metric limit is expected to be exceeded. This applies to proactive insights only. '
+        EndTime:
           allOf:
-          - $ref: '#/components/schemas/AnomalySeverity'
-          - description: The severity of the anomaly. The severity of anomalies that generate an insight determine that insight's severity. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.
-        Status:
-          allOf:
-          - $ref: '#/components/schemas/AnomalyStatus'
-          - description: ' The status of the anomaly. '
-        AnomalyTimeRange:
-          $ref: '#/components/schemas/AnomalyTimeRange'
-        AnomalyReportedTimeRange:
-          allOf:
-          - $ref: '#/components/schemas/AnomalyReportedTimeRange'
-          - description: ' An <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. '
-        SourceDetails:
-          allOf:
-          - $ref: '#/components/schemas/AnomalySourceDetails'
-          - description: ' Details about the source of the analyzed operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. '
-        AssociatedInsightId:
-          allOf:
-          - $ref: '#/components/schemas/InsightId'
-          - description: ' The ID of the insight that contains this anomaly. An insight is composed of related anomalies. '
-        ResourceCollection:
-          $ref: '#/components/schemas/ResourceCollection'
-        Type:
-          allOf:
-          - $ref: '#/components/schemas/AnomalyType'
-          - description: <p>The type of the reactive anomaly. It can be one of the following types.</p> <ul> <li> <p> <code>CAUSAL</code> - the anomaly can cause a new insight.</p> </li> <li> <p> <code>CONTEXTUAL</code> - the anomaly contains additional information about an insight or its causal anomaly.</p> </li> </ul>
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/AnomalyName'
-          - description: The name of the reactive anomaly.
-        Description:
-          allOf:
-          - $ref: '#/components/schemas/AnomalyDescription'
-          - description: A description of the reactive anomaly.
-        CausalAnomalyId:
-          allOf:
-          - $ref: '#/components/schemas/AnomalyId'
-          - description: The ID of the causal anomaly that is associated with this reactive anomaly. The ID of a `CAUSAL` anomaly is always `NULL`.
-        AnomalyResources:
-          allOf:
-          - $ref: '#/components/schemas/AnomalyResources'
-          - description: The Amazon Web Services resources in which anomalous behavior was detected by DevOps Guru.
-      description: Details about a reactive anomaly. This object is returned by <code>ListAnomalies</code>.
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time when the behavior in a proactive insight is expected to end. '
+      description: ' The time range during which anomalous behavior in a proactive anomaly or an insight is expected to occur. '
+    CloudWatchMetricsPeriod:
+      type: integer
     ProactiveAnomaly:
       type: object
       properties:
@@ -528,59 +692,64 @@ components:
           - $ref: '#/components/schemas/AnomalyDescription'
           - description: ' A description of the proactive anomaly. '
       description: Information about an anomaly. This object is returned by <code>ListAnomalies</code>.
-    PerformanceInsightsReferenceDataList:
-      type: array
-      items:
-        $ref: '#/components/schemas/PerformanceInsightsReferenceData'
-    Timestamp:
-      type: string
-      format: date-time
-    CloudWatchMetricsMetricName:
-      type: string
-    CloudWatchMetricsDimensions:
-      type: array
-      items:
-        $ref: '#/components/schemas/CloudWatchMetricsDimension'
-    PerformanceInsightsReferenceScalar:
+    ReactiveAnomaly:
       type: object
       properties:
-        Value:
+        Id:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsValueDouble'
-          - description: The reference value.
-      description: A reference value to compare Performance Insights metrics against to determine if the metrics demonstrate anomalous behavior.
-    ReactiveAnomalies:
-      type: array
-      items:
-        $ref: '#/components/schemas/ReactiveAnomalySummary'
-    CloudWatchMetricsDataSummary:
-      type: object
-      properties:
-        TimestampMetricValuePairList:
+          - $ref: '#/components/schemas/AnomalyId'
+          - description: 'The ID of the reactive anomaly. '
+        Severity:
           allOf:
-          - $ref: '#/components/schemas/TimestampMetricValuePairList'
-          - description: This is a list of Amazon CloudWatch metric values at given timestamp.
-        StatusCode:
+          - $ref: '#/components/schemas/AnomalySeverity'
+          - description: The severity of the anomaly. The severity of anomalies that generate an insight determine that insight's severity. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.
+        Status:
           allOf:
-          - $ref: '#/components/schemas/CloudWatchMetricDataStatusCode'
-          - description: This is an enum of the status showing whether the metric value pair list has partial or complete data, or if there was an error.
-      description: 'Contains information about the analyzed metrics that displayed anomalous behavior. '
-    PerformanceInsightsReferenceComparisonValues:
-      type: object
-      properties:
-        ReferenceScalar:
+          - $ref: '#/components/schemas/AnomalyStatus'
+          - description: ' The status of the anomaly. '
+        AnomalyTimeRange:
+          $ref: '#/components/schemas/AnomalyTimeRange'
+        AnomalyReportedTimeRange:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsReferenceScalar'
-          - description: A scalar value DevOps Guru for a metric that DevOps Guru compares to actual metric values. This reference value is used to determine if an actual metric value should be considered anomalous.
-        ReferenceMetric:
+          - $ref: '#/components/schemas/AnomalyReportedTimeRange'
+          - description: ' An <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. '
+        SourceDetails:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsReferenceMetric'
-          - description: A metric that DevOps Guru compares to actual metric values. This reference metric is used to determine if an actual metric should be considered anomalous.
-      description: Reference scalar values and other metrics that DevOps Guru displays on a graph in its console along with the actual metrics it analyzed. Compare these reference values to your actual metrics to help you understand anomalous behavior that DevOps Guru detected.
-    PerformanceInsightsMetricUnit:
+          - $ref: '#/components/schemas/AnomalySourceDetails'
+          - description: ' Details about the source of the analyzed operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. '
+        AssociatedInsightId:
+          allOf:
+          - $ref: '#/components/schemas/InsightId'
+          - description: ' The ID of the insight that contains this anomaly. An insight is composed of related anomalies. '
+        ResourceCollection:
+          $ref: '#/components/schemas/ResourceCollection'
+        Type:
+          allOf:
+          - $ref: '#/components/schemas/AnomalyType'
+          - description: <p>The type of the reactive anomaly. It can be one of the following types.</p> <ul> <li> <p> <code>CAUSAL</code> - the anomaly can cause a new insight.</p> </li> <li> <p> <code>CONTEXTUAL</code> - the anomaly contains additional information about an insight or its causal anomaly.</p> </li> </ul>
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/AnomalyName'
+          - description: The name of the reactive anomaly.
+        Description:
+          allOf:
+          - $ref: '#/components/schemas/AnomalyDescription'
+          - description: A description of the reactive anomaly.
+        CausalAnomalyId:
+          allOf:
+          - $ref: '#/components/schemas/AnomalyId'
+          - description: The ID of the causal anomaly that is associated with this reactive anomaly. The ID of a `CAUSAL` anomaly is always `NULL`.
+        AnomalyResources:
+          allOf:
+          - $ref: '#/components/schemas/AnomalyResources'
+          - description: The Amazon Web Services resources in which anomalous behavior was detected by DevOps Guru.
+      description: Details about a reactive anomaly. This object is returned by <code>ListAnomalies</code>.
+    CloudWatchMetricDataStatusCode:
       type: string
-    PerformanceInsightsStatType:
-      type: string
+      enum:
+      - Complete
+      - InternalError
+      - PartialData
     AnomalySourceDetails:
       type: object
       properties:
@@ -593,36 +762,148 @@ components:
           - $ref: '#/components/schemas/PerformanceInsightsMetricsDetails'
           - description: An array of <code>PerformanceInsightsMetricsDetail</code> objects that contain information about analyzed Performance Insights metrics that show anomalous behavior.
       description: ' Details about the source of the anomalous operational data that triggered the anomaly.'
-    CloudWatchMetricsStat:
+    AnomalyStatus:
       type: string
       enum:
-      - Sum
-      - Average
-      - SampleCount
-      - Minimum
-      - Maximum
-      - p99
-      - p90
-      - p50
-    PerformanceInsightsMetricDimensionGroup:
+      - ONGOING
+      - CLOSED
+    CloudWatchMetricsDimensionName:
+      type: string
+    PerformanceInsightsReferenceName:
+      type: string
+    PerformanceInsightsReferenceScalar:
       type: object
       properties:
-        Group:
+        Value:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsMetricGroup'
-          - description: <p>The name of the dimension group. Its valid values are:</p> <ul> <li> <p> <code>db</code> - The name of the database to which the client is connected (only Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS MySQL, and MariaDB)</p> </li> <li> <p> <code>db.application</code> - The name of the application that is connected to the database (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.host</code> - The host name of the connected client (all engines)</p> </li> <li> <p> <code>db.session_type</code> - The type of the current session (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.sql</code> - The SQL that is currently executing (all engines)</p> </li> <li> <p> <code>db.sql_tokenized</code> - The SQL digest (all engines)</p> </li> <li> <p> <code>db.wait_event</code> - The event for which the database backend is waiting (all engines)</p> </li> <li> <p> <code>db.wait_event_type</code> - The type of event for which the database backend is waiting (all engines)</p> </li> <li> <p> <code>db.user</code> - The user logged in to the database (all engines)</p> </li> </ul>
-        Dimensions:
+          - $ref: '#/components/schemas/PerformanceInsightsValueDouble'
+          - description: The reference value.
+      description: A reference value to compare Performance Insights metrics against to determine if the metrics demonstrate anomalous behavior.
+    PerformanceInsightsMetricsDetails:
+      type: array
+      items:
+        $ref: '#/components/schemas/PerformanceInsightsMetricsDetail'
+    CloudWatchMetricsDimensionValue:
+      type: string
+    CloudWatchMetricsUnit:
+      type: string
+    PerformanceInsightsReferenceMetric:
+      type: object
+      properties:
+        MetricQuery:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsMetricDimensions'
-          - description: <p>A list of specific dimensions from a dimension group. If this parameter is not present, then it signifies that all of the dimensions in the group were requested or are present in the response.</p> <p>Valid values for elements in the <code>Dimensions</code> array are:</p> <ul> <li> <p> <code>db.application.name</code> - The name of the application that is connected to the database (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.host.id</code> - The host ID of the connected client (all engines)</p> </li> <li> <p> <code>db.host.name</code> - The host name of the connected client (all engines)</p> </li> <li> <p> <code>db.name</code> - The name of the database to which the client is connected (only Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS MySQL, and MariaDB)</p> </li> <li> <p> <code>db.session_type.name</code> - The type of the current session (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.sql.id</code> - The SQL ID generated by Performance Insights (all engines)</p> </li> <li> <p> <code>db.sql.db_id</code> - The SQL ID generated by the database (all engines)</p> </li> <li> <p> <code>db.sql.statement</code> - The SQL text that is being executed (all engines)</p> </li> <li> <p> <code>db.sql.tokenized_id</code> </p> </li> <li> <p> <code>db.sql_tokenized.id</code> - The SQL digest ID generated by Performance Insights (all engines)</p> </li> <li> <p> <code>db.sql_tokenized.db_id</code> - SQL digest ID generated by the database (all engines)</p> </li> <li> <p> <code>db.sql_tokenized.statement</code> - The SQL digest text (all engines)</p> </li> <li> <p> <code>db.user.id</code> - The ID of the user logged in to the database (all engines)</p> </li> <li> <p> <code>db.user.name</code> - The name of the user logged in to the database (all engines)</p> </li> <li> <p> <code>db.wait_event.name</code> - The event for which the backend is waiting (all engines)</p> </li> <li> <p> <code>db.wait_event.type</code> - The type of event for which the backend is waiting (all engines)</p> </li> <li> <p> <code>db.wait_event_type.name</code> - The name of the event type for which the backend is waiting (all engines)</p> </li> </ul>
-        Limit:
+          - $ref: '#/components/schemas/PerformanceInsightsMetricQuery'
+          - description: A query to be processed on the metric.
+      description: Information about a reference metric used to evaluate Performance Insights.
+    CloudFormationCollection:
+      type: object
+      properties:
+        StackNames:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsMetricLimitInteger'
-          - description: The maximum number of items to fetch for this dimension group.
-      description: '<p>A logical grouping of Performance Insights metrics for a related subject area. For example, the <code>db.sql</code> dimension group consists of the following dimensions: <code>db.sql.id</code>, <code>db.sql.db_id</code>, <code>db.sql.statement</code>, and <code>db.sql.tokenized_id</code>.</p> <note> <p>Each response element returns a maximum of 500 bytes. For larger elements, such as SQL statements, only the first 500 bytes are returned.</p> </note> <p>Amazon RDS Performance Insights enables you to monitor and explore different dimensions of database load based on data captured from a running DB instance. DB load is measured as average active sessions. Performance Insights provides the data to API consumers as a two-dimensional time-series dataset. The time dimension provides DB load data for each time point in the queried time range. Each time point decomposes overall load in relation to the requested dimensions, measured at that time point. Examples include SQL, Wait event, User, and Host. </p> <ul> <li> <p>To learn more about Performance Insights and Amazon Aurora DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html"> Amazon Aurora User Guide</a>. </p> </li> <li> <p>To learn more about Performance Insights and Amazon RDS DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html"> Amazon RDS User Guide</a>. </p> </li> </ul>'
+          - $ref: '#/components/schemas/StackNames'
+          - description: ' An array of CloudFormation stack names. '
+      description: ' Information about Amazon Web Services CloudFormation stacks. You can use up to 500 stacks to specify which Amazon Web Services resources in your account to analyze. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>. '
+    PerformanceInsightsMetricDimensions:
+      type: array
+      items:
+        $ref: '#/components/schemas/PerformanceInsightsMetricDimension'
+    PerformanceInsightsMetricUnit:
+      type: string
+    PerformanceInsightsReferenceComparisonValues:
+      type: object
+      properties:
+        ReferenceScalar:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsReferenceScalar'
+          - description: A scalar value DevOps Guru for a metric that DevOps Guru compares to actual metric values. This reference value is used to determine if an actual metric value should be considered anomalous.
+        ReferenceMetric:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsReferenceMetric'
+          - description: A metric that DevOps Guru compares to actual metric values. This reference metric is used to determine if an actual metric should be considered anomalous.
+      description: Reference scalar values and other metrics that DevOps Guru displays on a graph in its console along with the actual metrics it analyzed. Compare these reference values to your actual metrics to help you understand anomalous behavior that DevOps Guru detected.
     MetricValue:
       type: number
       format: double
+    CloudWatchMetricsDataSummary:
+      type: object
+      properties:
+        TimestampMetricValuePairList:
+          allOf:
+          - $ref: '#/components/schemas/TimestampMetricValuePairList'
+          - description: This is a list of Amazon CloudWatch metric values at given timestamp.
+        StatusCode:
+          allOf:
+          - $ref: '#/components/schemas/CloudWatchMetricDataStatusCode'
+          - description: This is an enum of the status showing whether the metric value pair list has partial or complete data, or if there was an error.
+      description: 'Contains information about the analyzed metrics that displayed anomalous behavior. '
+    PerformanceInsightsMetricName:
+      type: string
+    AnomalySourceMetadata:
+      type: object
+      properties:
+        Source:
+          allOf:
+          - $ref: '#/components/schemas/AnomalySource'
+          - description: The source of the anomaly.
+        SourceResourceName:
+          allOf:
+          - $ref: '#/components/schemas/ResourceName'
+          - description: The name of the anomaly's resource.
+        SourceResourceType:
+          allOf:
+          - $ref: '#/components/schemas/ResourceType'
+          - description: The anomaly's resource type.
+      description: Metadata about the detection source that generates proactive anomalies. The anomaly is detected using analysis of the metric data&#x2028; over a period of time
+    PerformanceInsightsMetricQuery:
+      type: object
+      properties:
+        Metric:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsMetricName'
+          - description: <p>The name of the meteric used used when querying an Performance Insights <code>GetResourceMetrics</code> API for anomaly metrics.</p> <p>Valid values for <code>Metric</code> are:</p> <ul> <li> <p> <code>db.load.avg</code> - a scaled representation of the number of active sessions for the database engine.</p> </li> <li> <p> <code>db.sampledload.avg</code> - the raw number of active sessions for the database engine.</p> </li> </ul> <p>If the number of active sessions is less than an internal Performance Insights threshold, <code>db.load.avg</code> and <code>db.sampledload.avg</code> are the same value. If the number of active sessions is greater than the internal threshold, Performance Insights samples the active sessions, with <code>db.load.avg</code> showing the scaled values, <code>db.sampledload.avg</code> showing the raw values, and <code>db.sampledload.avg</code> less than <code>db.load.avg</code>. For most use cases, you can query <code>db.load.avg</code> only. </p>
+        GroupBy:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsMetricDimensionGroup'
+          - description: The specification for how to aggregate the data points from a Performance Insights <code>GetResourceMetrics</code> API query. The Performance Insights query returns all of the dimensions within that group, unless you provide the names of specific dimensions within that group. You can also request that Performance Insights return a limited number of values for a dimension.
+        Filter:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsMetricFilterMap'
+          - description: <p>One or more filters to apply to a Performance Insights <code>GetResourceMetrics</code> API query. Restrictions:</p> <ul> <li> <p>Any number of filters by the same dimension, as specified in the <code>GroupBy</code> parameter.</p> </li> <li> <p>A single filter for any other dimension in this dimension group.</p> </li> </ul>
+      description: <p>A single query to be processed. Use these parameters to query the Performance Insights <code>GetResourceMetrics</code> API to retrieve the metrics for an anomaly. For more information, see <code> <a href="https://docs.aws.amazon.com/performance-insights/latest/APIReference/API_GetResourceMetrics.html">GetResourceMetrics</a> </code> in the <i>Amazon RDS Performance Insights API Reference</i>.</p> <p>Amazon RDS Performance Insights enables you to monitor and explore different dimensions of database load based on data captured from a running DB instance. DB load is measured as average active sessions. Performance Insights provides the data to API consumers as a two-dimensional time-series dataset. The time dimension provides DB load data for each time point in the queried time range. Each time point decomposes overall load in relation to the requested dimensions, measured at that time point. Examples include SQL, Wait event, User, and Host. </p> <ul> <li> <p>To learn more about Performance Insights and Amazon Aurora DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html"> Amazon Aurora User Guide</a>. </p> </li> <li> <p>To learn more about Performance Insights and Amazon RDS DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html"> Amazon RDS User Guide</a>. </p> </li> </ul>
+    PerformanceInsightsStats:
+      type: array
+      items:
+        $ref: '#/components/schemas/PerformanceInsightsStat'
+    AccessDeniedException: {}
+    PerformanceInsightsReferenceData:
+      type: object
+      properties:
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsReferenceName'
+          - description: The name of the reference data.
+        ComparisonValues:
+          allOf:
+          - $ref: '#/components/schemas/PerformanceInsightsReferenceComparisonValues'
+          - description: 'The specific reference values used to evaluate the Performance Insights. For more information, see <code> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceComparisonValues.html">PerformanceInsightsReferenceComparisonValues</a> </code>. '
+      description: Reference data used to evaluate Performance Insights to determine if its performance is anomalous or not.
+    ValidationException: {}
+    StackNames:
+      type: array
+      items:
+        $ref: '#/components/schemas/StackName'
+    TimestampMetricValuePair:
+      type: object
+      properties:
+        Timestamp:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: 'A <code>Timestamp</code> that specifies the time the event occurred. '
+        MetricValue:
+          allOf:
+          - $ref: '#/components/schemas/MetricValue'
+          - description: Value of the anomalous metric data point at respective Timestamp.
+      description: A pair that contains metric values at the respective timestamp.
     ProactiveAnomalySummary:
       type: object
       properties:
@@ -677,6 +958,11 @@ components:
           - $ref: '#/components/schemas/AnomalyDescription'
           - description: ' A description of the proactive anomaly. '
       description: 'Details about a proactive anomaly. This object is returned by <code>DescribeAnomaly.</code> '
+    ResourceType:
+      type: string
+      pattern: ^[a-zA-Z]+[a-zA-Z0-9-_:]*$
+      minLength: 1
+      maxLength: 256
     ServiceCollection:
       type: object
       properties:
@@ -685,63 +971,28 @@ components:
           - $ref: '#/components/schemas/ServiceNames'
           - description: An array of strings that each specifies the name of an Amazon Web Services service.
       description: A collection of the names of Amazon Web Services services.
-    PerformanceInsightsValueDouble:
-      type: number
-      format: double
-    PerformanceInsightsMetricDimension:
+    UuidNextToken:
       type: string
-    StackName:
+      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+      minLength: 36
+      maxLength: 36
+    AnomalyType:
       type: string
-      pattern: ^[a-zA-Z*]+[a-zA-Z0-9-]*$
-      minLength: 1
-      maxLength: 128
+      enum:
+      - CAUSAL
+      - CONTEXTUAL
     CloudWatchMetricsDetails:
       type: array
       items:
         $ref: '#/components/schemas/CloudWatchMetricsDetail'
-    PerformanceInsightsMetricName:
-      type: string
-    AnomalyStatus:
-      type: string
-      enum:
-      - ONGOING
-      - CLOSED
-    CloudWatchMetricDataStatusCode:
-      type: string
-      enum:
-      - Complete
-      - InternalError
-      - PartialData
-    AnomalySource:
-      type: string
-    CloudWatchMetricsDimension:
-      type: object
-      properties:
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/CloudWatchMetricsDimensionName'
-          - description: ' The name of the CloudWatch dimension. '
-        Value:
-          allOf:
-          - $ref: '#/components/schemas/CloudWatchMetricsDimensionValue'
-          - description: ' The value of the CloudWatch dimension. '
-      description: ' The dimension of an Amazon CloudWatch metric that is used when DevOps Guru analyzes the resources in your account for operational problems and anomalous behavior. A dimension is a name/value pair that is part of the identity of a metric. A metric can have up to 10 dimensions. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension">Dimensions</a> in the <i>Amazon CloudWatch User Guide</i>. '
-    AnomalySourceMetadata:
-      type: object
-      properties:
-        Source:
-          allOf:
-          - $ref: '#/components/schemas/AnomalySource'
-          - description: The source of the anomaly.
-        SourceResourceName:
-          allOf:
-          - $ref: '#/components/schemas/ResourceName'
-          - description: The name of the anomaly's resource.
-        SourceResourceType:
-          allOf:
-          - $ref: '#/components/schemas/ResourceType'
-          - description: The anomaly's resource type.
-      description: Metadata about the detection source that generates proactive anomalies. The anomaly is detected using analysis of the metric data&#x2028; over a period of time
+    ServiceNames:
+      type: array
+      items:
+        $ref: '#/components/schemas/ServiceName'
+    PerformanceInsightsReferenceDataList:
+      type: array
+      items:
+        $ref: '#/components/schemas/PerformanceInsightsReferenceData'
     AnomalyReportedTimeRange:
       type: object
       required:
@@ -756,217 +1007,24 @@ components:
           - $ref: '#/components/schemas/Timestamp'
           - description: ' The time when an anomaly is closed. '
       description: ' A time range that specifies when DevOps Guru opens and then closes an anomaly. This is different from <code>AnomalyTimeRange</code>, which specifies the time range when DevOps Guru actually observes the anomalous behavior. '
-    AnomalyLimit:
-      type: number
-      format: double
-    TagValue:
-      type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*|\*)$
-      minLength: 0
-      maxLength: 256
-    CloudWatchMetricsDimensionName:
-      type: string
-    AnomalyDescription:
-      type: string
-    PerformanceInsightsMetricsDetails:
-      type: array
-      items:
-        $ref: '#/components/schemas/PerformanceInsightsMetricsDetail'
-    CloudWatchMetricsDimensionValue:
-      type: string
-    ServiceNames:
-      type: array
-      items:
-        $ref: '#/components/schemas/ServiceName'
-    PerformanceInsightsMetricQuery:
-      type: object
-      properties:
-        Metric:
-          allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsMetricName'
-          - description: <p>The name of the meteric used used when querying an Performance Insights <code>GetResourceMetrics</code> API for anomaly metrics.</p> <p>Valid values for <code>Metric</code> are:</p> <ul> <li> <p> <code>db.load.avg</code> - a scaled representation of the number of active sessions for the database engine.</p> </li> <li> <p> <code>db.sampledload.avg</code> - the raw number of active sessions for the database engine.</p> </li> </ul> <p>If the number of active sessions is less than an internal Performance Insights threshold, <code>db.load.avg</code> and <code>db.sampledload.avg</code> are the same value. If the number of active sessions is greater than the internal threshold, Performance Insights samples the active sessions, with <code>db.load.avg</code> showing the scaled values, <code>db.sampledload.avg</code> showing the raw values, and <code>db.sampledload.avg</code> less than <code>db.load.avg</code>. For most use cases, you can query <code>db.load.avg</code> only. </p>
-        GroupBy:
-          allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsMetricDimensionGroup'
-          - description: The specification for how to aggregate the data points from a Performance Insights <code>GetResourceMetrics</code> API query. The Performance Insights query returns all of the dimensions within that group, unless you provide the names of specific dimensions within that group. You can also request that Performance Insights return a limited number of values for a dimension.
-        Filter:
-          allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsMetricFilterMap'
-          - description: <p>One or more filters to apply to a Performance Insights <code>GetResourceMetrics</code> API query. Restrictions:</p> <ul> <li> <p>Any number of filters by the same dimension, as specified in the <code>GroupBy</code> parameter.</p> </li> <li> <p>A single filter for any other dimension in this dimension group.</p> </li> </ul>
-      description: <p>A single query to be processed. Use these parameters to query the Performance Insights <code>GetResourceMetrics</code> API to retrieve the metrics for an anomaly. For more information, see <code> <a href="https://docs.aws.amazon.com/performance-insights/latest/APIReference/API_GetResourceMetrics.html">GetResourceMetrics</a> </code> in the <i>Amazon RDS Performance Insights API Reference</i>.</p> <p>Amazon RDS Performance Insights enables you to monitor and explore different dimensions of database load based on data captured from a running DB instance. DB load is measured as average active sessions. Performance Insights provides the data to API consumers as a two-dimensional time-series dataset. The time dimension provides DB load data for each time point in the queried time range. Each time point decomposes overall load in relation to the requested dimensions, measured at that time point. Examples include SQL, Wait event, User, and Host. </p> <ul> <li> <p>To learn more about Performance Insights and Amazon Aurora DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html"> Amazon Aurora User Guide</a>. </p> </li> <li> <p>To learn more about Performance Insights and Amazon RDS DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html"> Amazon RDS User Guide</a>. </p> </li> </ul>
-    ResourceName:
-      type: string
-    ListAnomaliesForInsightResponse:
-      type: object
-      properties:
-        ProactiveAnomalies:
-          allOf:
-          - $ref: '#/components/schemas/ProactiveAnomalies'
-          - description: ' An array of <code>ProactiveAnomalySummary</code> objects that represent the requested anomalies '
-        ReactiveAnomalies:
-          allOf:
-          - $ref: '#/components/schemas/ReactiveAnomalies'
-          - description: ' An array of <code>ReactiveAnomalySummary</code> objects that represent the requested anomalies '
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/UuidNextToken'
-          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
-    ResourceType:
-      type: string
-      pattern: ^[a-zA-Z]+[a-zA-Z0-9-_:]*$
-      minLength: 1
-      maxLength: 256
-    TimestampMetricValuePair:
-      type: object
-      properties:
-        Timestamp:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: 'A <code>Timestamp</code> that specifies the time the event occurred. '
-        MetricValue:
-          allOf:
-          - $ref: '#/components/schemas/MetricValue'
-          - description: Value of the anomalous metric data point at respective Timestamp.
-      description: A pair that contains metric values at the respective timestamp.
-    PredictionTimeRange:
-      type: object
-      required:
-      - StartTime
-      properties:
-        StartTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The time range during which a metric limit is expected to be exceeded. This applies to proactive insights only. '
-        EndTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The time when the behavior in a proactive insight is expected to end. '
-      description: ' The time range during which anomalous behavior in a proactive anomaly or an insight is expected to occur. '
     TagCollections:
       type: array
       items:
         $ref: '#/components/schemas/TagCollection'
-    ProactiveAnomalies:
-      type: array
-      items:
-        $ref: '#/components/schemas/ProactiveAnomalySummary'
-    ResourceNotFoundException: {}
-    CloudWatchMetricsDetail:
-      type: object
-      properties:
-        MetricName:
-          allOf:
-          - $ref: '#/components/schemas/CloudWatchMetricsMetricName'
-          - description: ' The name of the CloudWatch metric. '
-        Namespace:
-          allOf:
-          - $ref: '#/components/schemas/CloudWatchMetricsNamespace'
-          - description: ' The namespace of the CloudWatch metric. A namespace is a container for CloudWatch metrics. '
-        Dimensions:
-          allOf:
-          - $ref: '#/components/schemas/CloudWatchMetricsDimensions'
-          - description: ' An array of CloudWatch dimensions associated with '
-        Stat:
-          allOf:
-          - $ref: '#/components/schemas/CloudWatchMetricsStat'
-          - description: ' The type of statistic associated with the CloudWatch metric. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic">Statistics</a> in the <i>Amazon CloudWatch User Guide</i>. '
-        Unit:
-          allOf:
-          - $ref: '#/components/schemas/CloudWatchMetricsUnit'
-          - description: ' The unit of measure used for the CloudWatch metric. For example, <code>Bytes</code>, <code>Seconds</code>, <code>Count</code>, and <code>Percent</code>. '
-        Period:
-          allOf:
-          - $ref: '#/components/schemas/CloudWatchMetricsPeriod'
-          - description: ' The length of time associated with the CloudWatch metric in number of seconds. '
-        MetricDataSummary:
-          allOf:
-          - $ref: '#/components/schemas/CloudWatchMetricsDataSummary'
-          - description: This object returns anomaly metric data.
-      description: ' Information about an Amazon CloudWatch metric. '
-    AccessDeniedException: {}
-    UuidNextToken:
+    PerformanceInsightsStatType:
       type: string
-      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
-      minLength: 36
-      maxLength: 36
-    ValidationException: {}
-    PerformanceInsightsStats:
-      type: array
-      items:
-        $ref: '#/components/schemas/PerformanceInsightsStat'
-    AnomalyTimeRange:
-      type: object
-      required:
-      - StartTime
-      properties:
-        StartTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The time when the anomalous behavior started. '
-        EndTime:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The time when the anomalous behavior ended. '
-      description: ' A time range that specifies when the observed unusual behavior in an anomaly started and ended. This is different from <code>AnomalyReportedTimeRange</code>, which specifies the time range when DevOps Guru opens and then closes an anomaly. '
-    PerformanceInsightsMetricsDetail:
+    AnomalyResource:
       type: object
       properties:
-        MetricDisplayName:
+        Name:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsMetricDisplayName'
-          - description: The name used for a specific Performance Insights metric.
-        Unit:
-          allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsMetricUnit'
-          - description: The unit of measure for a metric. For example, a session or a process.
-        MetricQuery:
-          allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsMetricQuery'
-          - description: A single query to be processed for the metric. For more information, see <code> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsMetricQuery.html">PerformanceInsightsMetricQuery</a> </code>.
-        ReferenceData:
-          allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsReferenceDataList'
-          - description: ' For more information, see <code> <a href="https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceData.html">PerformanceInsightsReferenceData</a> </code>. '
-        StatsAtAnomaly:
-          allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsStats'
-          - description: The metric statistics during the anomalous period detected by DevOps Guru;
-        StatsAtBaseline:
-          allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsStats'
-          - description: Typical metric statistics that are not considered anomalous. When DevOps Guru analyzes metrics, it compares them to <code>StatsAtBaseline</code> to help determine if they are anomalous.
-      description: <p>Details about Performance Insights metrics.</p> <p>Amazon RDS Performance Insights enables you to monitor and explore different dimensions of database load based on data captured from a running DB instance. DB load is measured as average active sessions. Performance Insights provides the data to API consumers as a two-dimensional time-series dataset. The time dimension provides DB load data for each time point in the queried time range. Each time point decomposes overall load in relation to the requested dimensions, measured at that time point. Examples include SQL, Wait event, User, and Host. </p> <ul> <li> <p>To learn more about Performance Insights and Amazon Aurora DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html"> Amazon Aurora User Guide</a>. </p> </li> <li> <p>To learn more about Performance Insights and Amazon RDS DB instances, go to the <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html"> Amazon RDS User Guide</a>. </p> </li> </ul>
-    AnomalySeverity:
-      type: string
-      enum:
-      - LOW
-      - MEDIUM
-      - HIGH
-    CloudWatchMetricsPeriod:
-      type: integer
-    PerformanceInsightsStat:
-      type: object
-      properties:
+          - $ref: '#/components/schemas/ResourceName'
+          - description: The name of the Amazon Web Services resource.
         Type:
           allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsStatType'
-          - description: The statistic type.
-        Value:
-          allOf:
-          - $ref: '#/components/schemas/PerformanceInsightsValueDouble'
-          - description: The value of the statistic.
-      description: A statistic in a Performance Insights collection.
-    DescribeAnomalyResponse:
-      type: object
-      properties:
-        ProactiveAnomaly:
-          allOf:
-          - $ref: '#/components/schemas/ProactiveAnomaly'
-          - description: ' A <code>ProactiveAnomaly</code> object that represents the requested anomaly. '
-        ReactiveAnomaly:
-          allOf:
-          - $ref: '#/components/schemas/ReactiveAnomaly'
-          - description: ' A <code>ReactiveAnomaly</code> object that represents the requested anomaly. '
+          - $ref: '#/components/schemas/ResourceType'
+          - description: The type of the Amazon Web Services resource.
+      description: The Amazon Web Services resources in which DevOps Guru detected unusual behavior that resulted in the generation of an anomaly. When DevOps Guru detects multiple related anomalies, it creates and insight with details about the anomalous behavior and suggestions about how to correct the problem.
     ReactiveAnomalySummary:
       type: object
       properties:
@@ -1019,87 +1077,34 @@ components:
           - $ref: '#/components/schemas/AnomalyResources'
           - description: The Amazon Web Services resources in which anomalous behavior was detected by DevOps Guru.
       description: 'Details about a reactive anomaly. This object is returned by <code>DescribeAnomaly.</code> '
-    AnomalyResources:
-      type: array
-      items:
-        $ref: '#/components/schemas/AnomalyResource'
-    CloudFormationCollection:
-      type: object
-      properties:
-        StackNames:
-          allOf:
-          - $ref: '#/components/schemas/StackNames'
-          - description: ' An array of CloudFormation stack names. '
-      description: ' Information about Amazon Web Services CloudFormation stacks. You can use up to 500 stacks to specify which Amazon Web Services resources in your account to analyze. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>. '
-    PerformanceInsightsMetricGroup:
+    ServiceName:
       type: string
-    PerformanceInsightsMetricFilterValue:
-      type: string
-    PerformanceInsightsMetricFilterMap:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/PerformanceInsightsMetricFilterValue'
-    AnomalyResource:
-      type: object
-      properties:
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/ResourceName'
-          - description: The name of the Amazon Web Services resource.
-        Type:
-          allOf:
-          - $ref: '#/components/schemas/ResourceType'
-          - description: The type of the Amazon Web Services resource.
-      description: The Amazon Web Services resources in which DevOps Guru detected unusual behavior that resulted in the generation of an anomaly. When DevOps Guru detects multiple related anomalies, it creates and insight with details about the anomalous behavior and suggestions about how to correct the problem.
-    PerformanceInsightsMetricLimitInteger:
-      type: integer
-      minimum: 1
-      maximum: 10
-    AnomalyName:
-      type: string
-  parameters:
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
+      enum:
+      - API_GATEWAY
+      - APPLICATION_ELB
+      - AUTO_SCALING_GROUP
+      - CLOUD_FRONT
+      - DYNAMO_DB
+      - EC2
+      - ECS
+      - EKS
+      - ELASTIC_BEANSTALK
+      - ELASTI_CACHE
+      - ELB
+      - ES
+      - KINESIS
+      - LAMBDA
+      - NAT_GATEWAY
+      - NETWORK_ELB
+      - RDS
+      - REDSHIFT
+      - ROUTE_53
+      - S3
+      - SAGE_MAKER
+      - SNS
+      - SQS
+      - STEP_FUNCTIONS
+      - SWF
   securitySchemes:
     hmac:
       type: apiKey

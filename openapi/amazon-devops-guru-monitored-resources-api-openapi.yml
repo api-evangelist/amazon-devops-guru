@@ -1,9 +1,9 @@
 openapi: 3.2.0
 info:
-  version: 1.0.0
+  version: 2020-12-01
   x-release: v4
-  title: Amazon DevOps Guru Accounts Monitored Resources API
-  description: <p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href="https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html">Concepts in DevOps Guru</a>. </p>
+  title: Amazon DevOps Guru Monitored Resources API
+  description: Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications.
   x-logo:
     url: https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.png
     backgroundColor: '#FFFFFF'
@@ -24,6 +24,7 @@ info:
     url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/devops-guru-2020-12-01.normal.json
     converter:
       url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
     x-apisguru-driver: external
   x-apiClientRegistration:
     url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
@@ -112,7 +113,7 @@ servers:
 security:
 - hmac: []
 tags:
-- name: MonitoredResources
+- name: Monitored Resources
 paths:
   /monitoredResources:
     parameters:
@@ -125,7 +126,7 @@ paths:
     - $ref: '#/components/parameters/X-Amz-SignedHeaders'
     post:
       operationId: ListMonitoredResources
-      description: ' Returns the list of all log groups that are being monitored and tagged by DevOps Guru. '
+      description: Returns the list of all log groups that are being monitored and tagged by DevOps Guru.
       responses:
         '200':
           description: Success
@@ -201,41 +202,13 @@ paths:
                   minLength: 36
                   maxLength: 36
       tags:
-      - MonitoredResources
+      - Monitored Resources
+      summary: List monitored resources
+      x-summary-source: derived
 components:
   parameters:
     X-Amz-Content-Sha256:
       name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
       in: header
       schema:
         type: string
@@ -246,26 +219,77 @@ components:
       schema:
         type: string
       required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
   schemas:
-    AppBoundaryKey:
+    TagValues:
+      type: array
+      items:
+        $ref: '#/components/schemas/TagValue'
+    ResourceTypeFilters:
+      type: array
+      items:
+        $ref: '#/components/schemas/ResourceTypeFilter'
+    ValidationException: {}
+    ListMonitoredResourcesResponse:
+      type: object
+      required:
+      - MonitoredResourceIdentifiers
+      properties:
+        MonitoredResourceIdentifiers:
+          allOf:
+          - $ref: '#/components/schemas/MonitoredResourceIdentifiers'
+          - description: ' Information about the resource that is being monitored, including the name of the resource, the type of resource, and whether or not permission is given to DevOps Guru to access that resource. '
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/UuidNextToken'
+          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+    ResourceNotFoundException: {}
+    StackNames:
+      type: array
+      items:
+        $ref: '#/components/schemas/StackName'
+    MonitoredResourceName:
       type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
+      pattern: '[\.\-_\/#A-Za-z0-9]+'
       minLength: 1
-      maxLength: 128
-    ThrottlingException: {}
-    Timestamp:
-      type: string
-      format: date-time
-    ResourcePermission:
-      type: string
-      enum:
-      - FULL_PERMISSION
-      - MISSING_PERMISSION
-    TagValue:
-      type: string
-      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*|\*)$
-      minLength: 0
-      maxLength: 256
+      maxLength: 512
+    CloudFormationCollection:
+      type: object
+      properties:
+        StackNames:
+          allOf:
+          - $ref: '#/components/schemas/StackNames'
+          - description: ' An array of CloudFormation stack names. '
+      description: ' Information about Amazon Web Services CloudFormation stacks. You can use up to 500 stacks to specify which Amazon Web Services resources in your account to analyze. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>. '
     ResourceCollection:
       type: object
       properties:
@@ -278,63 +302,17 @@ components:
           - $ref: '#/components/schemas/TagCollections'
           - description: <p>The Amazon Web Services tags that are used by resources in the resource collection.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
       description: ' A collection of Amazon Web Services resources supported by DevOps Guru. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. '
-    TagValues:
-      type: array
-      items:
-        $ref: '#/components/schemas/TagValue'
-    MonitoredResourceIdentifier:
-      type: object
-      properties:
-        MonitoredResourceName:
-          allOf:
-          - $ref: '#/components/schemas/MonitoredResourceName'
-          - description: ' The name of the resource being monitored. '
-        Type:
-          allOf:
-          - $ref: '#/components/schemas/ResourceType'
-          - description: ' The type of resource being monitored. '
-        ResourcePermission:
-          allOf:
-          - $ref: '#/components/schemas/ResourcePermission'
-          - description: ' The permission status of a resource. '
-        LastUpdated:
-          allOf:
-          - $ref: '#/components/schemas/Timestamp'
-          - description: ' The time at which DevOps Guru last updated this resource. '
-        ResourceCollection:
-          $ref: '#/components/schemas/ResourceCollection'
-      description: ' Information about the resource that is being monitored, including the name of the resource, the type of resource, and whether or not permission is given to DevOps Guru to access that resource. '
-    ResourceTypeFilters:
-      type: array
-      items:
-        $ref: '#/components/schemas/ResourceTypeFilter'
-    CloudFormationCollection:
-      type: object
-      properties:
-        StackNames:
-          allOf:
-          - $ref: '#/components/schemas/StackNames'
-          - description: ' An array of CloudFormation stack names. '
-      description: ' Information about Amazon Web Services CloudFormation stacks. You can use up to 500 stacks to specify which Amazon Web Services resources in your account to analyze. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>. '
-    MonitoredResourceIdentifiers:
-      type: array
-      items:
-        $ref: '#/components/schemas/MonitoredResourceIdentifier'
-    InternalServerException: {}
+    ThrottlingException: {}
+    StackName:
+      type: string
+      pattern: ^[a-zA-Z*]+[a-zA-Z0-9-]*$
+      minLength: 1
+      maxLength: 128
     ResourceType:
       type: string
       pattern: ^[a-zA-Z]+[a-zA-Z0-9-_:]*$
       minLength: 1
       maxLength: 256
-    TagCollections:
-      type: array
-      items:
-        $ref: '#/components/schemas/TagCollection'
-    ResourceNotFoundException: {}
-    StackNames:
-      type: array
-      items:
-        $ref: '#/components/schemas/StackName'
     TagCollection:
       type: object
       required:
@@ -350,11 +328,28 @@ components:
           - $ref: '#/components/schemas/TagValues'
           - description: <p>The values in an Amazon Web Services tag collection.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>
       description: <p>A collection of Amazon Web Services tags.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>DevOps-Guru-deployment-application</code> or <code>devops-guru-rds-application</code>. When you create a <i>key</i>, the case of characters in the <i>key</i> can be whatever you choose. After you create a <i>key</i>, it is case-sensitive. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>, and these act as two different <i>keys</i>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>
-    MonitoredResourceName:
+    UuidNextToken:
       type: string
-      pattern: '[\.\-_\/#A-Za-z0-9]+'
+      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+      minLength: 36
+      maxLength: 36
+    Timestamp:
+      type: string
+      format: date-time
+    AppBoundaryKey:
+      type: string
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$
       minLength: 1
-      maxLength: 512
+      maxLength: 128
+    ResourcePermission:
+      type: string
+      enum:
+      - FULL_PERMISSION
+      - MISSING_PERMISSION
+    MonitoredResourceIdentifiers:
+      type: array
+      items:
+        $ref: '#/components/schemas/MonitoredResourceIdentifier'
     ResourceTypeFilter:
       type: string
       enum:
@@ -385,30 +380,38 @@ components:
       - SQS_QUEUE
       - STEP_FUNCTIONS_ACTIVITY
       - STEP_FUNCTIONS_STATE_MACHINE
-    StackName:
+    TagCollections:
+      type: array
+      items:
+        $ref: '#/components/schemas/TagCollection'
+    TagValue:
       type: string
-      pattern: ^[a-zA-Z*]+[a-zA-Z0-9-]*$
-      minLength: 1
-      maxLength: 128
-    ListMonitoredResourcesResponse:
+      pattern: ^([\p{L}\p{Z}\p{N}_.:/=+\-@]*|\*)$
+      minLength: 0
+      maxLength: 256
+    MonitoredResourceIdentifier:
       type: object
-      required:
-      - MonitoredResourceIdentifiers
       properties:
-        MonitoredResourceIdentifiers:
+        MonitoredResourceName:
           allOf:
-          - $ref: '#/components/schemas/MonitoredResourceIdentifiers'
-          - description: ' Information about the resource that is being monitored, including the name of the resource, the type of resource, and whether or not permission is given to DevOps Guru to access that resource. '
-        NextToken:
+          - $ref: '#/components/schemas/MonitoredResourceName'
+          - description: ' The name of the resource being monitored. '
+        Type:
           allOf:
-          - $ref: '#/components/schemas/UuidNextToken'
-          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
-    UuidNextToken:
-      type: string
-      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
-      minLength: 36
-      maxLength: 36
-    ValidationException: {}
+          - $ref: '#/components/schemas/ResourceType'
+          - description: ' The type of resource being monitored. '
+        ResourcePermission:
+          allOf:
+          - $ref: '#/components/schemas/ResourcePermission'
+          - description: ' The permission status of a resource. '
+        LastUpdated:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: ' The time at which DevOps Guru last updated this resource. '
+        ResourceCollection:
+          $ref: '#/components/schemas/ResourceCollection'
+      description: ' Information about the resource that is being monitored, including the name of the resource, the type of resource, and whether or not permission is given to DevOps Guru to access that resource. '
+    InternalServerException: {}
   securitySchemes:
     hmac:
       type: apiKey
