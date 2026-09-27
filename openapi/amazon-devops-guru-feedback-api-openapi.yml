@@ -253,9 +253,55 @@ paths:
       summary: Put feedback
       x-summary-source: derived
 components:
+  schemas:
+    InternalServerException: {}
+    DescribeFeedbackResponse:
+      type: object
+      properties:
+        InsightFeedback:
+          $ref: '#/components/schemas/InsightFeedback'
+    ResourceNotFoundException: {}
+    InsightFeedbackOption:
+      type: string
+      enum:
+      - VALID_COLLECTION
+      - RECOMMENDATION_USEFUL
+      - ALERT_TOO_SENSITIVE
+      - DATA_NOISY_ANOMALY
+      - DATA_INCORRECT
+    PutFeedbackResponse:
+      type: object
+      properties: {}
+    ValidationException: {}
+    AccessDeniedException: {}
+    InsightFeedback:
+      type: object
+      properties:
+        Id:
+          allOf:
+          - $ref: '#/components/schemas/InsightId'
+          - description: ' The insight feedback ID. '
+        Feedback:
+          allOf:
+          - $ref: '#/components/schemas/InsightFeedbackOption'
+          - description: ' The feedback provided by the customer. '
+      description: ' Information about insight feedback received from a customer. '
+    ConflictException: {}
+    ThrottlingException: {}
+    InsightId:
+      type: string
+      pattern: ^[\w-]*$
+      minLength: 1
+      maxLength: 100
   parameters:
     X-Amz-Content-Sha256:
       name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
       in: header
       schema:
         type: string
@@ -266,8 +312,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Date:
-      name: X-Amz-Date
+    X-Amz-Signature:
+      name: X-Amz-Signature
       in: header
       schema:
         type: string
@@ -284,58 +330,12 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
+    X-Amz-Date:
+      name: X-Amz-Date
       in: header
       schema:
         type: string
       required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-  schemas:
-    InsightFeedbackOption:
-      type: string
-      enum:
-      - VALID_COLLECTION
-      - RECOMMENDATION_USEFUL
-      - ALERT_TOO_SENSITIVE
-      - DATA_NOISY_ANOMALY
-      - DATA_INCORRECT
-    ValidationException: {}
-    InsightId:
-      type: string
-      pattern: ^[\w-]*$
-      minLength: 1
-      maxLength: 100
-    InsightFeedback:
-      type: object
-      properties:
-        Id:
-          allOf:
-          - $ref: '#/components/schemas/InsightId'
-          - description: ' The insight feedback ID. '
-        Feedback:
-          allOf:
-          - $ref: '#/components/schemas/InsightFeedbackOption'
-          - description: ' The feedback provided by the customer. '
-      description: ' Information about insight feedback received from a customer. '
-    PutFeedbackResponse:
-      type: object
-      properties: {}
-    InternalServerException: {}
-    ResourceNotFoundException: {}
-    ConflictException: {}
-    DescribeFeedbackResponse:
-      type: object
-      properties:
-        InsightFeedback:
-          $ref: '#/components/schemas/InsightFeedback'
-    AccessDeniedException: {}
-    ThrottlingException: {}
   securitySchemes:
     hmac:
       type: apiKey

@@ -208,47 +208,86 @@ paths:
       summary: List anomalous log groups
       x-summary-source: derived
 components:
+  parameters:
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
   schemas:
+    UuidNextToken:
+      type: string
+      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+      minLength: 36
+      maxLength: 36
+    LogAnomalyShowcase:
+      type: object
+      properties:
+        LogAnomalyClasses:
+          allOf:
+          - $ref: '#/components/schemas/LogAnomalyClasses'
+          - description: ' A list of anomalous log events that may be related. '
+      description: ' A cluster of similar anomalous log events found within a log group. '
+    LogStreamName:
+      type: string
+      minLength: 1
+      maxLength: 512
+    LogAnomalyType:
+      type: string
+      enum:
+      - KEYWORD
+      - KEYWORD_TOKEN
+      - FORMAT
+      - HTTP_CODE
+      - BLOCK_FORMAT
+      - NUMERICAL_POINT
+      - NUMERICAL_NAN
+      - NEW_FIELD_NAME
+    LogAnomalyToken:
+      type: string
+      minLength: 1
+      maxLength: 2048
     NumberOfLogLinesOccurrences:
       type: integer
     NumberOfLogLinesScanned:
       type: integer
-    ValidationException: {}
-    AnomalousLogGroups:
-      type: array
-      items:
-        $ref: '#/components/schemas/AnomalousLogGroup'
-    ResourceNotFoundException: {}
-    LogAnomalyClasses:
-      type: array
-      items:
-        $ref: '#/components/schemas/LogAnomalyClass'
-      minItems: 0
-      maxItems: 10
-    LogEventId:
-      type: string
-      minLength: 1
-      maxLength: 512
-    InsightId:
-      type: string
-      pattern: ^[\w-]*$
-      minLength: 1
-      maxLength: 100
-    Explanation:
-      type: string
-      minLength: 1
-      maxLength: 2048
-    LogAnomalyShowcases:
-      type: array
-      items:
-        $ref: '#/components/schemas/LogAnomalyShowcase'
-      minItems: 0
-      maxItems: 20
-    LogGroupName:
-      type: string
-      minLength: 1
-      maxLength: 512
-    ThrottlingException: {}
     LogAnomalyClass:
       type: object
       properties:
@@ -281,25 +320,42 @@ components:
           - $ref: '#/components/schemas/Timestamp'
           - description: ' The time of the first occurrence of the anomalous log event. '
       description: ' Information about an anomalous log event found within a log group. '
-    UuidNextToken:
+    ThrottlingException: {}
+    LogAnomalyClasses:
+      type: array
+      items:
+        $ref: '#/components/schemas/LogAnomalyClass'
+      minItems: 0
+      maxItems: 10
+    ResourceNotFoundException: {}
+    Explanation:
       type: string
-      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
-      minLength: 36
-      maxLength: 36
+      minLength: 1
+      maxLength: 2048
+    AnomalousLogGroups:
+      type: array
+      items:
+        $ref: '#/components/schemas/AnomalousLogGroup'
     Timestamp:
       type: string
       format: date-time
-    LogAnomalyType:
+    InsightId:
       type: string
-      enum:
-      - KEYWORD
-      - KEYWORD_TOKEN
-      - FORMAT
-      - HTTP_CODE
-      - BLOCK_FORMAT
-      - NUMERICAL_POINT
-      - NUMERICAL_NAN
-      - NEW_FIELD_NAME
+      pattern: ^[\w-]*$
+      minLength: 1
+      maxLength: 100
+    LogAnomalyShowcases:
+      type: array
+      items:
+        $ref: '#/components/schemas/LogAnomalyShowcase'
+      minItems: 0
+      maxItems: 20
+    LogEventId:
+      type: string
+      minLength: 1
+      maxLength: 512
+    ValidationException: {}
+    AccessDeniedException: {}
     ListAnomalousLogGroupsResponse:
       type: object
       required:
@@ -318,6 +374,11 @@ components:
           allOf:
           - $ref: '#/components/schemas/UuidNextToken'
           - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+    LogGroupName:
+      type: string
+      minLength: 1
+      maxLength: 512
+    InternalServerException: {}
     AnomalousLogGroup:
       type: object
       properties:
@@ -342,67 +403,6 @@ components:
           - $ref: '#/components/schemas/LogAnomalyShowcases'
           - description: ' The log anomalies in the log group. Each log anomaly displayed represents a cluster of similar anomalous log events. '
       description: ' An Amazon CloudWatch log group that contains log anomalies and is used to generate an insight. '
-    LogAnomalyShowcase:
-      type: object
-      properties:
-        LogAnomalyClasses:
-          allOf:
-          - $ref: '#/components/schemas/LogAnomalyClasses'
-          - description: ' A list of anomalous log events that may be related. '
-      description: ' A cluster of similar anomalous log events found within a log group. '
-    LogStreamName:
-      type: string
-      minLength: 1
-      maxLength: 512
-    LogAnomalyToken:
-      type: string
-      minLength: 1
-      maxLength: 2048
-    InternalServerException: {}
-    AccessDeniedException: {}
-  parameters:
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
   securitySchemes:
     hmac:
       type: apiKey

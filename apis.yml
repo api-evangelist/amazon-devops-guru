@@ -739,7 +739,7 @@ tags:
 - Anomaly Detection
 - AWS
 - DevOps
-- Machine-Learning
+- Machine Learning
 - Operational Intelligence
 tags_raw:
 - Anomaly Detection
@@ -747,5 +747,6 @@ tags_raw:
 - DevOps
 - Machine Learning
 - Operational Intelligence
-x-parent: aws
+- Machine-Learning
+x-parent: amazon-web-services
 x-relationship: product
