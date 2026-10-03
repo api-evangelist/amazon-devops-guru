@@ -218,69 +218,15 @@ paths:
       summary: Update event sources config
       x-summary-source: derived
 components:
-  schemas:
-    InternalServerException: {}
-    AmazonCodeGuruProfilerIntegration:
-      type: object
-      properties:
-        Status:
-          allOf:
-          - $ref: '#/components/schemas/EventSourceOptInStatus'
-          - description: The status of the CodeGuru Profiler integration. Specifies if DevOps Guru is enabled to consume recommendations that are generated from Amazon CodeGuru Profiler.
-      description: Information about your account's integration with Amazon CodeGuru Profiler. This returns whether DevOps Guru is configured to consume recommendations generated from Amazon CodeGuru Profiler.
-    EventSourceOptInStatus:
-      type: string
-      enum:
-      - ENABLED
-      - DISABLED
-    ValidationException: {}
-    AccessDeniedException: {}
-    DescribeEventSourcesConfigResponse:
-      type: object
-      properties:
-        EventSources:
-          allOf:
-          - $ref: '#/components/schemas/EventSourcesConfig'
-          - description: Lists the event sources in the configuration.
-    ThrottlingException: {}
-    UpdateEventSourcesConfigResponse:
-      type: object
-      properties: {}
-    EventSourcesConfig:
-      type: object
-      properties:
-        AmazonCodeGuruProfiler:
-          allOf:
-          - $ref: '#/components/schemas/AmazonCodeGuruProfilerIntegration'
-          - description: Information about whether DevOps Guru is configured to consume recommendations which are generated from AWS CodeGuru Profiler.
-      description: Information about the integration of DevOps Guru as consumer with another AWS service, such as AWS CodeGuru Profiler via EventBridge.
   parameters:
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
       required: false
     X-Amz-Signature:
       name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
       in: header
       schema:
         type: string
@@ -297,6 +243,60 @@ components:
       schema:
         type: string
       required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+  schemas:
+    AccessDeniedException: {}
+    DescribeEventSourcesConfigResponse:
+      type: object
+      properties:
+        EventSources:
+          allOf:
+          - $ref: '#/components/schemas/EventSourcesConfig'
+          - description: Lists the event sources in the configuration.
+    InternalServerException: {}
+    ThrottlingException: {}
+    UpdateEventSourcesConfigResponse:
+      type: object
+      properties: {}
+    EventSourceOptInStatus:
+      type: string
+      enum:
+      - ENABLED
+      - DISABLED
+    EventSourcesConfig:
+      type: object
+      properties:
+        AmazonCodeGuruProfiler:
+          allOf:
+          - $ref: '#/components/schemas/AmazonCodeGuruProfilerIntegration'
+          - description: Information about whether DevOps Guru is configured to consume recommendations which are generated from AWS CodeGuru Profiler.
+      description: Information about the integration of DevOps Guru as consumer with another AWS service, such as AWS CodeGuru Profiler via EventBridge.
+    ValidationException: {}
+    AmazonCodeGuruProfilerIntegration:
+      type: object
+      properties:
+        Status:
+          allOf:
+          - $ref: '#/components/schemas/EventSourceOptInStatus'
+          - description: The status of the CodeGuru Profiler integration. Specifies if DevOps Guru is enabled to consume recommendations that are generated from Amazon CodeGuru Profiler.
+      description: Information about your account's integration with Amazon CodeGuru Profiler. This returns whether DevOps Guru is configured to consume recommendations generated from Amazon CodeGuru Profiler.
   securitySchemes:
     hmac:
       type: apiKey
