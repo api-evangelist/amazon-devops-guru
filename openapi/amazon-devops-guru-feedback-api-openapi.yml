@@ -266,20 +266,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string
@@ -290,20 +278,32 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
       in: header
       schema:
         type: string
       required: false
   schemas:
+    InsightId:
+      type: string
+      pattern: ^[\w-]*$
+      minLength: 1
+      maxLength: 100
+    ValidationException: {}
     ConflictException: {}
-    PutFeedbackResponse:
-      type: object
-      properties: {}
-    AccessDeniedException: {}
-    InternalServerException: {}
-    ThrottlingException: {}
     InsightFeedback:
       type: object
       properties:
@@ -316,12 +316,6 @@ components:
           - $ref: '#/components/schemas/InsightFeedbackOption'
           - description: ' The feedback provided by the customer. '
       description: ' Information about insight feedback received from a customer. '
-    InsightId:
-      type: string
-      pattern: ^[\w-]*$
-      minLength: 1
-      maxLength: 100
-    ResourceNotFoundException: {}
     InsightFeedbackOption:
       type: string
       enum:
@@ -330,12 +324,18 @@ components:
       - ALERT_TOO_SENSITIVE
       - DATA_NOISY_ANOMALY
       - DATA_INCORRECT
+    ThrottlingException: {}
+    ResourceNotFoundException: {}
+    PutFeedbackResponse:
+      type: object
+      properties: {}
     DescribeFeedbackResponse:
       type: object
       properties:
         InsightFeedback:
           $ref: '#/components/schemas/InsightFeedback'
-    ValidationException: {}
+    AccessDeniedException: {}
+    InternalServerException: {}
   securitySchemes:
     hmac:
       type: apiKey

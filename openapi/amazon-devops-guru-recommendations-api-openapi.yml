@@ -218,7 +218,110 @@ paths:
       summary: List recommendations
       x-summary-source: derived
 components:
+  parameters:
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
   schemas:
+    RecommendationName:
+      type: string
+    ListRecommendationsResponse:
+      type: object
+      properties:
+        Recommendations:
+          allOf:
+          - $ref: '#/components/schemas/Recommendations'
+          - description: ' An array of the requested recommendations. '
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/UuidNextToken'
+          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+    RecommendationCategory:
+      type: string
+    RecommendationRelatedEventResources:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedEventResource'
+    InternalServerException: {}
+    RecommendationRelatedEvents:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedEvent'
+    ValidationException: {}
+    RelatedAnomalySourceDetails:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedAnomalySourceDetail'
+    RecommendationLink:
+      type: string
+    RecommendationRelatedAnomalyResource:
+      type: object
+      properties:
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedAnomalyResourceName'
+          - description: ' The name of the resource. '
+        Type:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedAnomalyResourceType'
+          - description: ' The type of the resource. Resource types take the same form that is used by Amazon Web Services CloudFormation resource type identifiers, <code>service-provider::service-name::data-type-name</code>. For example, <code>AWS::RDS::DBCluster</code>. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Amazon Web Services resource and property types reference</a> in the <i>Amazon Web Services CloudFormation User Guide</i>.'
+      description: ' Information about a resource in which DevOps Guru detected anomalous behavior. '
+    RecommendationRelatedEventResourceName:
+      type: string
+    ThrottlingException: {}
+    ResourceNotFoundException: {}
+    RecommendationRelatedAnomalyResourceName:
+      type: string
+    AnomalyId:
+      type: string
+      pattern: ^[\w~.-]*$
+      minLength: 1
+      maxLength: 100
+    RecommendationDescription:
+      type: string
+    RecommendationRelatedAnomalyResourceType:
+      type: string
+    RecommendationReason:
+      type: string
     Recommendation:
       type: object
       properties:
@@ -251,83 +354,6 @@ components:
           - $ref: '#/components/schemas/RecommendationCategory'
           - description: The category type of the recommendation.
       description: ' Recommendation information to help you remediate detected anomalous behavior that generated an insight. '
-    RecommendationDescription:
-      type: string
-    RecommendationRelatedEventResourceType:
-      type: string
-    RecommendationRelatedAnomalies:
-      type: array
-      items:
-        $ref: '#/components/schemas/RecommendationRelatedAnomaly'
-    ListRecommendationsResponse:
-      type: object
-      properties:
-        Recommendations:
-          allOf:
-          - $ref: '#/components/schemas/Recommendations'
-          - description: ' An array of the requested recommendations. '
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/UuidNextToken'
-          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
-    RecommendationRelatedCloudWatchMetricsSourceDetails:
-      type: array
-      items:
-        $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceDetail'
-    RecommendationName:
-      type: string
-    RelatedAnomalySourceDetails:
-      type: array
-      items:
-        $ref: '#/components/schemas/RecommendationRelatedAnomalySourceDetail'
-    RecommendationRelatedAnomalyResourceName:
-      type: string
-    RecommendationRelatedAnomalyResource:
-      type: object
-      properties:
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/RecommendationRelatedAnomalyResourceName'
-          - description: ' The name of the resource. '
-        Type:
-          allOf:
-          - $ref: '#/components/schemas/RecommendationRelatedAnomalyResourceType'
-          - description: ' The type of the resource. Resource types take the same form that is used by Amazon Web Services CloudFormation resource type identifiers, <code>service-provider::service-name::data-type-name</code>. For example, <code>AWS::RDS::DBCluster</code>. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">Amazon Web Services resource and property types reference</a> in the <i>Amazon Web Services CloudFormation User Guide</i>.'
-      description: ' Information about a resource in which DevOps Guru detected anomalous behavior. '
-    RecommendationRelatedCloudWatchMetricsSourceDetail:
-      type: object
-      properties:
-        MetricName:
-          allOf:
-          - $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceMetricName'
-          - description: The name of the CloudWatch metric.
-        Namespace:
-          allOf:
-          - $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceNamespace'
-          - description: The namespace of the CloudWatch metric. A namespace is a container for CloudWatch metrics.
-      description: ' Information about an Amazon CloudWatch metric that is analyzed by DevOps Guru. It is one of many analyzed metrics that are used to generate insights. '
-    RecommendationRelatedEventName:
-      type: string
-    ValidationException: {}
-    RecommendationRelatedEvent:
-      type: object
-      properties:
-        Name:
-          allOf:
-          - $ref: '#/components/schemas/RecommendationRelatedEventName'
-          - description: ' The name of the event. This corresponds to the <code>Name</code> field in an <code>Event</code> object. '
-        Resources:
-          allOf:
-          - $ref: '#/components/schemas/RecommendationRelatedEventResources'
-          - description: ' A <code>ResourceCollection</code> object that contains arrays of the names of Amazon Web Services CloudFormation stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. '
-      description: ' Information about an event that is related to a recommendation. '
-    AnomalyId:
-      type: string
-      pattern: ^[\w~.-]*$
-      minLength: 1
-      maxLength: 100
-    RecommendationRelatedCloudWatchMetricsSourceMetricName:
-      type: string
     RecommendationRelatedAnomalySourceDetail:
       type: object
       properties:
@@ -336,26 +362,10 @@ components:
           - $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceDetails'
           - description: ' An array of <code>CloudWatchMetricsDetail</code> objects that contains information about the analyzed metrics that displayed anomalous behavior. '
       description: ' Contains an array of <code>RecommendationRelatedCloudWatchMetricsSourceDetail</code> objects that contain the name and namespace of an Amazon CloudWatch metric. '
-    RecommendationRelatedAnomalyResources:
+    RecommendationRelatedCloudWatchMetricsSourceDetails:
       type: array
       items:
-        $ref: '#/components/schemas/RecommendationRelatedAnomalyResource'
-    UuidNextToken:
-      type: string
-      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
-      minLength: 36
-      maxLength: 36
-    AccessDeniedException: {}
-    RecommendationReason:
-      type: string
-    RecommendationRelatedEventResourceName:
-      type: string
-    RecommendationRelatedAnomalyResourceType:
-      type: string
-    InternalServerException: {}
-    RecommendationCategory:
-      type: string
-    ResourceNotFoundException: {}
+        $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceDetail'
     RecommendationRelatedAnomaly:
       type: object
       properties:
@@ -372,6 +382,52 @@ components:
           - $ref: '#/components/schemas/AnomalyId'
           - description: The ID of an anomaly that generated the insight with this recommendation.
       description: ' Information about an anomaly that is related to a recommendation. '
+    RecommendationRelatedAnomalies:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedAnomaly'
+    AccessDeniedException: {}
+    RecommendationRelatedEventName:
+      type: string
+    RecommendationRelatedAnomalyResources:
+      type: array
+      items:
+        $ref: '#/components/schemas/RecommendationRelatedAnomalyResource'
+    RecommendationRelatedCloudWatchMetricsSourceDetail:
+      type: object
+      properties:
+        MetricName:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceMetricName'
+          - description: The name of the CloudWatch metric.
+        Namespace:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedCloudWatchMetricsSourceNamespace'
+          - description: The namespace of the CloudWatch metric. A namespace is a container for CloudWatch metrics.
+      description: ' Information about an Amazon CloudWatch metric that is analyzed by DevOps Guru. It is one of many analyzed metrics that are used to generate insights. '
+    RecommendationRelatedCloudWatchMetricsSourceMetricName:
+      type: string
+    UuidNextToken:
+      type: string
+      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+      minLength: 36
+      maxLength: 36
+    RecommendationRelatedEvent:
+      type: object
+      properties:
+        Name:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedEventName'
+          - description: ' The name of the event. This corresponds to the <code>Name</code> field in an <code>Event</code> object. '
+        Resources:
+          allOf:
+          - $ref: '#/components/schemas/RecommendationRelatedEventResources'
+          - description: ' A <code>ResourceCollection</code> object that contains arrays of the names of Amazon Web Services CloudFormation stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. '
+      description: ' Information about an event that is related to a recommendation. '
+    RecommendationRelatedEventResourceType:
+      type: string
+    RecommendationRelatedCloudWatchMetricsSourceNamespace:
+      type: string
     RecommendationRelatedEventResource:
       type: object
       properties:
@@ -384,68 +440,12 @@ components:
           - $ref: '#/components/schemas/RecommendationRelatedEventResourceType'
           - description: ' The type of the resource that emitted the event. This corresponds to the <code>Type</code> field in an <code>EventResource</code> object. '
       description: ' Information about an Amazon Web Services resource that emitted and event that is related to a recommendation in an insight. '
-    RecommendationLink:
-      type: string
     Recommendations:
       type: array
       items:
         $ref: '#/components/schemas/Recommendation'
       minItems: 0
       maxItems: 10
-    ThrottlingException: {}
-    RecommendationRelatedEvents:
-      type: array
-      items:
-        $ref: '#/components/schemas/RecommendationRelatedEvent'
-    RecommendationRelatedEventResources:
-      type: array
-      items:
-        $ref: '#/components/schemas/RecommendationRelatedEventResource'
-    RecommendationRelatedCloudWatchMetricsSourceNamespace:
-      type: string
-  parameters:
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
   securitySchemes:
     hmac:
       type: apiKey

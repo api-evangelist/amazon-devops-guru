@@ -234,6 +234,49 @@ paths:
       summary: Update service integration
       x-summary-source: derived
 components:
+  parameters:
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
   schemas:
     ConflictException: {}
     DescribeServiceIntegrationResponse:
@@ -241,14 +284,6 @@ components:
       properties:
         ServiceIntegration:
           $ref: '#/components/schemas/ServiceIntegrationConfig'
-    LogsAnomalyDetectionIntegrationConfig:
-      type: object
-      properties:
-        OptInStatus:
-          allOf:
-          - $ref: '#/components/schemas/OptInStatus'
-          - description: Specifies if DevOps Guru is configured to perform log anomaly detection on CloudWatch log groups.
-      description: ' Information about the integration of DevOps Guru with CloudWatch log groups for log anomaly detection. You can use this to update the configuration. '
     ServiceIntegrationConfig:
       type: object
       properties:
@@ -261,7 +296,24 @@ components:
           - $ref: '#/components/schemas/LogsAnomalyDetectionIntegration'
           - description: ' Information about whether DevOps Guru is configured to perform log anomaly detection on Amazon CloudWatch log groups. '
       description: ' Information about the integration of DevOps Guru with another Amazon Web Services service, such as Amazon Web Services Systems Manager. '
+    InternalServerException: {}
     ValidationException: {}
+    LogsAnomalyDetectionIntegrationConfig:
+      type: object
+      properties:
+        OptInStatus:
+          allOf:
+          - $ref: '#/components/schemas/OptInStatus'
+          - description: Specifies if DevOps Guru is configured to perform log anomaly detection on CloudWatch log groups.
+      description: ' Information about the integration of DevOps Guru with CloudWatch log groups for log anomaly detection. You can use this to update the configuration. '
+    ThrottlingException: {}
+    ResourceNotFoundException: {}
+    OptInStatus:
+      type: string
+      enum:
+      - ENABLED
+      - DISABLED
+      description: ' Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. '
     LogsAnomalyDetectionIntegration:
       type: object
       properties:
@@ -270,26 +322,10 @@ components:
           - $ref: '#/components/schemas/OptInStatus'
           - description: Specifies if DevOps Guru is configured to perform log anomaly detection on CloudWatch log groups.
       description: ' Information about the integration of DevOps Guru with CloudWatch log groups for log anomaly detection. '
-    OpsCenterIntegration:
-      type: object
-      properties:
-        OptInStatus:
-          allOf:
-          - $ref: '#/components/schemas/OptInStatus'
-          - description: ' Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. '
-      description: ' Information about whether DevOps Guru is configured to create an OpsItem in Amazon Web Services Systems Manager OpsCenter for each created insight. '
     AccessDeniedException: {}
-    InternalServerException: {}
-    OptInStatus:
-      type: string
-      enum:
-      - ENABLED
-      - DISABLED
-      description: ' Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. '
     UpdateServiceIntegrationResponse:
       type: object
       properties: {}
-    ResourceNotFoundException: {}
     OpsCenterIntegrationConfig:
       type: object
       properties:
@@ -298,50 +334,14 @@ components:
           - $ref: '#/components/schemas/OptInStatus'
           - description: ' Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. '
       description: ' Information about whether DevOps Guru is configured to create an OpsItem in Amazon Web Services Systems Manager OpsCenter for each created insight. You can use this to update the configuration.'
-    ThrottlingException: {}
-  parameters:
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
+    OpsCenterIntegration:
+      type: object
+      properties:
+        OptInStatus:
+          allOf:
+          - $ref: '#/components/schemas/OptInStatus'
+          - description: ' Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. '
+      description: ' Information about whether DevOps Guru is configured to create an OpsItem in Amazon Web Services Systems Manager OpsCenter for each created insight. '
   securitySchemes:
     hmac:
       type: apiKey

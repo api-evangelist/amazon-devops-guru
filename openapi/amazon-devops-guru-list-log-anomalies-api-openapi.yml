@@ -208,7 +208,84 @@ paths:
       summary: List anomalous log groups
       x-summary-source: derived
 components:
+  parameters:
+    X-Amz-Signature:
+      name: X-Amz-Signature
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-SignedHeaders:
+      name: X-Amz-SignedHeaders
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Security-Token:
+      name: X-Amz-Security-Token
+      in: header
+      schema:
+        type: string
+      required: false
   schemas:
+    AnomalousLogGroups:
+      type: array
+      items:
+        $ref: '#/components/schemas/AnomalousLogGroup'
+    NumberOfLogLinesOccurrences:
+      type: integer
+    ListAnomalousLogGroupsResponse:
+      type: object
+      required:
+      - InsightId
+      - AnomalousLogGroups
+      properties:
+        InsightId:
+          allOf:
+          - $ref: '#/components/schemas/InsightId'
+          - description: ' The ID of the insight containing the log groups. '
+        AnomalousLogGroups:
+          allOf:
+          - $ref: '#/components/schemas/AnomalousLogGroups'
+          - description: ' The list of Amazon CloudWatch log groups that are related to an insight. '
+        NextToken:
+          allOf:
+          - $ref: '#/components/schemas/UuidNextToken'
+          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
+    LogAnomalyShowcases:
+      type: array
+      items:
+        $ref: '#/components/schemas/LogAnomalyShowcase'
+      minItems: 0
+      maxItems: 20
+    LogGroupName:
+      type: string
+      minLength: 1
+      maxLength: 512
     AnomalousLogGroup:
       type: object
       properties:
@@ -233,44 +310,24 @@ components:
           - $ref: '#/components/schemas/LogAnomalyShowcases'
           - description: ' The log anomalies in the log group. Each log anomaly displayed represents a cluster of similar anomalous log events. '
       description: ' An Amazon CloudWatch log group that contains log anomalies and is used to generate an insight. '
-    ListAnomalousLogGroupsResponse:
-      type: object
-      required:
-      - InsightId
-      - AnomalousLogGroups
-      properties:
-        InsightId:
-          allOf:
-          - $ref: '#/components/schemas/InsightId'
-          - description: ' The ID of the insight containing the log groups. '
-        AnomalousLogGroups:
-          allOf:
-          - $ref: '#/components/schemas/AnomalousLogGroups'
-          - description: ' The list of Amazon CloudWatch log groups that are related to an insight. '
-        NextToken:
-          allOf:
-          - $ref: '#/components/schemas/UuidNextToken'
-          - description: The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.
-    Explanation:
-      type: string
-      minLength: 1
-      maxLength: 2048
-    LogEventId:
+    InternalServerException: {}
+    LogStreamName:
       type: string
       minLength: 1
       maxLength: 512
-    LogAnomalyShowcases:
-      type: array
-      items:
-        $ref: '#/components/schemas/LogAnomalyShowcase'
-      minItems: 0
-      maxItems: 20
+    ValidationException: {}
     LogAnomalyClasses:
       type: array
       items:
         $ref: '#/components/schemas/LogAnomalyClass'
       minItems: 0
       maxItems: 10
+    LogEventId:
+      type: string
+      minLength: 1
+      maxLength: 512
+    ThrottlingException: {}
+    ResourceNotFoundException: {}
     LogAnomalyType:
       type: string
       enum:
@@ -282,10 +339,33 @@ components:
       - NUMERICAL_POINT
       - NUMERICAL_NAN
       - NEW_FIELD_NAME
+    LogAnomalyShowcase:
+      type: object
+      properties:
+        LogAnomalyClasses:
+          allOf:
+          - $ref: '#/components/schemas/LogAnomalyClasses'
+          - description: ' A list of anomalous log events that may be related. '
+      description: ' A cluster of similar anomalous log events found within a log group. '
     LogAnomalyToken:
       type: string
       minLength: 1
       maxLength: 2048
+    InsightId:
+      type: string
+      pattern: ^[\w-]*$
+      minLength: 1
+      maxLength: 100
+    AccessDeniedException: {}
+    Explanation:
+      type: string
+      minLength: 1
+      maxLength: 2048
+    UuidNextToken:
+      type: string
+      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
+      minLength: 36
+      maxLength: 36
     LogAnomalyClass:
       type: object
       properties:
@@ -318,91 +398,11 @@ components:
           - $ref: '#/components/schemas/Timestamp'
           - description: ' The time of the first occurrence of the anomalous log event. '
       description: ' Information about an anomalous log event found within a log group. '
-    NumberOfLogLinesOccurrences:
-      type: integer
-    InsightId:
-      type: string
-      pattern: ^[\w-]*$
-      minLength: 1
-      maxLength: 100
-    LogAnomalyShowcase:
-      type: object
-      properties:
-        LogAnomalyClasses:
-          allOf:
-          - $ref: '#/components/schemas/LogAnomalyClasses'
-          - description: ' A list of anomalous log events that may be related. '
-      description: ' A cluster of similar anomalous log events found within a log group. '
-    AnomalousLogGroups:
-      type: array
-      items:
-        $ref: '#/components/schemas/AnomalousLogGroup'
-    ValidationException: {}
-    UuidNextToken:
-      type: string
-      pattern: ^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$
-      minLength: 36
-      maxLength: 36
-    AccessDeniedException: {}
-    InternalServerException: {}
     Timestamp:
       type: string
       format: date-time
-    LogGroupName:
-      type: string
-      minLength: 1
-      maxLength: 512
-    ResourceNotFoundException: {}
     NumberOfLogLinesScanned:
       type: integer
-    LogStreamName:
-      type: string
-      minLength: 1
-      maxLength: 512
-    ThrottlingException: {}
-  parameters:
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Signature:
-      name: X-Amz-Signature
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-SignedHeaders:
-      name: X-Amz-SignedHeaders
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Security-Token:
-      name: X-Amz-Security-Token
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
-      in: header
-      schema:
-        type: string
-      required: false
   securitySchemes:
     hmac:
       type: apiKey

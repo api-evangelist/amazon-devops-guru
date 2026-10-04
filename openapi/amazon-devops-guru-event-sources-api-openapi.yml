@@ -231,20 +231,8 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Credential:
-      name: X-Amz-Credential
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Date:
-      name: X-Amz-Date
-      in: header
-      schema:
-        type: string
-      required: false
-    X-Amz-Algorithm:
-      name: X-Amz-Algorithm
+    X-Amz-Content-Sha256:
+      name: X-Amz-Content-Sha256
       in: header
       schema:
         type: string
@@ -255,14 +243,25 @@ components:
       schema:
         type: string
       required: false
-    X-Amz-Content-Sha256:
-      name: X-Amz-Content-Sha256
+    X-Amz-Algorithm:
+      name: X-Amz-Algorithm
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Date:
+      name: X-Amz-Date
+      in: header
+      schema:
+        type: string
+      required: false
+    X-Amz-Credential:
+      name: X-Amz-Credential
       in: header
       schema:
         type: string
       required: false
   schemas:
-    AccessDeniedException: {}
     DescribeEventSourcesConfigResponse:
       type: object
       properties:
@@ -270,16 +269,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/EventSourcesConfig'
           - description: Lists the event sources in the configuration.
-    InternalServerException: {}
-    ThrottlingException: {}
-    UpdateEventSourcesConfigResponse:
-      type: object
-      properties: {}
-    EventSourceOptInStatus:
-      type: string
-      enum:
-      - ENABLED
-      - DISABLED
+    ValidationException: {}
     EventSourcesConfig:
       type: object
       properties:
@@ -288,7 +278,17 @@ components:
           - $ref: '#/components/schemas/AmazonCodeGuruProfilerIntegration'
           - description: Information about whether DevOps Guru is configured to consume recommendations which are generated from AWS CodeGuru Profiler.
       description: Information about the integration of DevOps Guru as consumer with another AWS service, such as AWS CodeGuru Profiler via EventBridge.
-    ValidationException: {}
+    UpdateEventSourcesConfigResponse:
+      type: object
+      properties: {}
+    ThrottlingException: {}
+    EventSourceOptInStatus:
+      type: string
+      enum:
+      - ENABLED
+      - DISABLED
+    AccessDeniedException: {}
+    InternalServerException: {}
     AmazonCodeGuruProfilerIntegration:
       type: object
       properties:
