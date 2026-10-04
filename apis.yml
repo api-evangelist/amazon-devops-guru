@@ -631,6 +631,9 @@ apis:
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
 common:
+- type: CapabilityMap
+  url: capabilities/amazon-devops-guru-capability-edges.yml
+  name: Amazon DevOps Guru Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/amazon-devops-guru/overview
 - type: AgenticAccess
