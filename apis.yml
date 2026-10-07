@@ -631,6 +631,8 @@ apis:
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
 common:
+- type: Plans
+  url: plans/amazon-devops-guru-plans-pricing.yml
 - type: CapabilityMap
   url: capabilities/amazon-devops-guru-capability-edges.yml
   name: Amazon DevOps Guru Business Capability Map
