@@ -631,6 +631,12 @@ apis:
   - type: Examples
     url: examples/amazon-devops-guru-recommendation-example.json
 common:
+- type: Pricing
+  url: https://aws.amazon.com/devops-guru/pricing/
+- type: RateLimits
+  url: rate-limits/amazon-devops-guru-rate-limits.yml
+- type: FinOps
+  url: finops/amazon-devops-guru-finops.yml
 - type: Plans
   url: plans/amazon-devops-guru-plans-pricing.yml
 - type: CapabilityMap
