@@ -1,4 +1,4 @@
-# Amazon DevOps Guru (amazon-devops-guru)
+# Amazon DevOps Guru
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,157 +66,262 @@
 
 Amazon DevOps Guru is a machine learning-powered service that makes it easy to improve an application's operational performance and availability. It detects behaviors that deviate from normal operating patterns so you can identify operational issues long before they impact your customers.
 
-**URL:** [Visit Amazon DevOps Guru](https://aws.amazon.com/devops-guru/)
+**Areas:** Anomaly Detection · AWS · DevOps · Machine Learning · Operational Intelligence
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Amazon DevOps Guru on APIs.io
 
-## Tags:
+Everything profiled for Amazon DevOps Guru is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/amazon-devops-guru/](https://apis.io/providers/amazon-devops-guru/)** — or go straight to one of the APIs or properties below.
 
- - Anomaly Detection, AWS, DevOps, Machine Learning, Operational Intelligence
+### APIs (14)
 
-## Timestamps
+- [Amazon DevOps Guru Accounts API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-accounts-api/) — The Accounts API from Amazon DevOps Guru — 3 operation(s) for accounts.
+- [Amazon DevOps Guru Anomalies API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-anomalies-api/) — The Anomalies API from Amazon DevOps Guru — 2 operation(s) for anomalies.
+- [Amazon DevOps Guru Channels API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-channels-api/) — The Channels API from Amazon DevOps Guru — 2 operation(s) for channels.
+- [Amazon DevOps Guru Cost Estimation API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-cost-estimation-api/) — The Cost Estimation API from Amazon DevOps Guru — 1 operation(s) for cost estimation.
+- [Amazon DevOps Guru Event Sources API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-event-sources-api/) — The Event Sources API from Amazon DevOps Guru — 1 operation(s) for event sources.
+- [Amazon DevOps Guru Events API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-events-api/) — The Events API from Amazon DevOps Guru — 1 operation(s) for events.
+- [Amazon DevOps Guru Feedback API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-feedback-api/) — The Feedback API from Amazon DevOps Guru — 1 operation(s) for feedback.
+- [Amazon DevOps Guru Insights API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-insights-api/) — The Insights API from Amazon DevOps Guru — 3 operation(s) for insights.
+- [Amazon DevOps Guru List Log Anomalies API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-list-log-anomalies-api/) — The List Log Anomalies API from Amazon DevOps Guru — 1 operation(s) for list log anomalies.
+- [Amazon DevOps Guru Organization API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-organization-api/) — The Organization API from Amazon DevOps Guru — 5 operation(s) for organization.
+- [Amazon DevOps Guru Recommendations API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-recommendations-api/) — The Recommendations API from Amazon DevOps Guru — 1 operation(s) for recommendations.
+- [Amazon DevOps Guru Resource Collections API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-resource-collections-api/) — The Resource Collections API from Amazon DevOps Guru — 2 operation(s) for resource collections.
+- [Amazon DevOps Guru Service Integrations API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-service-integrations-api/) — The Service Integrations API from Amazon DevOps Guru — 1 operation(s) for service integrations.
+- [Amazon DevOps Guru Monitored Resources API](https://apis.io/apis/amazon-devops-guru/amazon-devops-guru-monitored-resources-api/) — The Monitored Resources API from Amazon DevOps Guru — 1 operation(s) for monitored resources.
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Amazon DevOps Guru API
-The Amazon DevOps Guru API provides programmatic access to manage resource collections, insights, anomalies, and recommendations for improving application operational performance and availability. Covers 31 operations including insight management, anomaly investigation, remediation recommendations, notification configuration, and AWS Organizations integration.
+#### Agentic access (1)
 
-**Human URL:** [https://aws.amazon.com/devops-guru/](https://aws.amazon.com/devops-guru/)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Amazon Devops Guru Agentic Access](https://apis.io/agentic-access/amazon-devops-guru/amazon-devops-guru-agentic-access/)
 
- - Anomaly Detection, DevOps, Machine Learning, Operational Intelligence
+#### JSON Schema (22)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html)
-- [OpenAPI](openapi/amazon-devops-guru-openapi.yaml)
-- [GettingStarted](https://aws.amazon.com/devops-guru/getting-started/)
-- [Pricing](https://aws.amazon.com/devops-guru/pricing/)
-- [FAQ](https://aws.amazon.com/devops-guru/faqs/)
-- [JSONSchema - Proactive Insight](json-schema/amazon-devops-guru-proactive-insight-schema.json)
-- [JSONSchema - Reactive Insight](json-schema/amazon-devops-guru-reactive-insight-schema.json)
-- [JSONSchema - Recommendation](json-schema/amazon-devops-guru-recommendation-schema.json)
-- [JSONSchema - Proactive Anomaly](json-schema/amazon-devops-guru-proactive-anomaly-schema.json)
-- [JSONSchema - Reactive Anomaly](json-schema/amazon-devops-guru-reactive-anomaly-schema.json)
-- [JSONStructure - Proactive Insight](json-structure/amazon-devops-guru-proactive-insight-structure.json)
-- [JSONStructure - Reactive Insight](json-structure/amazon-devops-guru-reactive-insight-structure.json)
-- [JSONStructure - Recommendation](json-structure/amazon-devops-guru-recommendation-structure.json)
-- [JSON-LD](json-ld/amazon-devops-guru-context.jsonld)
-- [Example - Proactive Insight](examples/amazon-devops-guru-proactive-insight-example.json)
-- [Example - Reactive Insight](examples/amazon-devops-guru-reactive-insight-example.json)
-- [Example - Recommendation](examples/amazon-devops-guru-recommendation-example.json)
+- [AnomalousLogGroup](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-anomalous-log-group/)
+- [CloudFormationCollection](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-cloud-formation-collection/)
+- [CloudFormationHealth](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-cloud-formation-health/)
+- [Event](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-event/)
+- [EventSourcesConfig](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-event-sources-config/)
+- [InsightHealth](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-insight-health/)
+- [LogAnomalyShowcase](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-log-anomaly-showcase/)
+- [NotificationChannel](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-notification-channel/)
+- [OpsCenterIntegration](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-ops-center-integration/)
+- [PerformanceInsightsMetricQuery](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-performance-insights-metric-query/)
+- [ProactiveAnomaly](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-proactive-anomaly/)
+- [ProactiveInsight](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-proactive-insight/)
+- [ReactiveAnomaly](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-reactive-anomaly/)
+- [ReactiveInsight](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-reactive-insight/)
+- [Recommendation](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-recommendation/)
+- [ResourceCollection](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-resource-collection/)
+- [ServiceCollection](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-service-collection/)
+- [ServiceHealth](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-service-health/)
+- [ServiceInsightHealth](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-service-insight-health/)
+- [SnsChannelConfig](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-sns-channel-config/)
+- [TagCollection](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-tag-collection/)
+- [TagHealth](https://apis.io/schemas/amazon-devops-guru/amazon-devops-guru-tag-health/)
 
-## Common Properties
+#### JSON Structure (22)
 
-- [Portal](https://aws.amazon.com/devops-guru/)
+Data models expressed in JSON Structure.
+
+- [Amazon Devops Guru Anomalous Log Group Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-anomalous-log-group-structure/)
+- [Amazon Devops Guru Cloud Formation Collection Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-cloud-formation-collection-structure/)
+- [Amazon Devops Guru Cloud Formation Health Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-cloud-formation-health-structure/)
+- [Amazon Devops Guru Event Sources Config Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-event-sources-config-structure/)
+- [Amazon Devops Guru Event Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-event-structure/)
+- [Amazon Devops Guru Insight Health Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-insight-health-structure/)
+- [Amazon Devops Guru Log Anomaly Showcase Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-log-anomaly-showcase-structure/)
+- [Amazon Devops Guru Notification Channel Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-notification-channel-structure/)
+- [Amazon Devops Guru Ops Center Integration Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-ops-center-integration-structure/)
+- [Amazon Devops Guru Performance Insights Metric Query Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-performance-insights-metric-query-structure/)
+- [Amazon Devops Guru Proactive Anomaly Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-proactive-anomaly-structure/)
+- [Amazon Devops Guru Proactive Insight Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-proactive-insight-structure/)
+- [Amazon Devops Guru Reactive Anomaly Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-reactive-anomaly-structure/)
+- [Amazon Devops Guru Reactive Insight Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-reactive-insight-structure/)
+- [Amazon Devops Guru Recommendation Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-recommendation-structure/)
+- [Amazon Devops Guru Resource Collection Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-resource-collection-structure/)
+- [Amazon Devops Guru Service Collection Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-service-collection-structure/)
+- [Amazon Devops Guru Service Health Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-service-health-structure/)
+- [Amazon Devops Guru Service Insight Health Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-service-insight-health-structure/)
+- [Amazon Devops Guru Sns Channel Config Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-sns-channel-config-structure/)
+- [Amazon Devops Guru Tag Collection Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-tag-collection-structure/)
+- [Amazon Devops Guru Tag Health Structure](https://apis.io/json-structure/amazon-devops-guru/amazon-devops-guru-tag-health-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Amazon Devops Guru Context](https://apis.io/jsonld/amazon-devops-guru/amazon-devops-guru-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Amazon Devops Guru Vocabulary](https://apis.io/vocabularies/amazon-devops-guru/amazon-devops-guru-vocabulary/)
+
+#### Examples (22)
+
+Example requests and responses.
+
+- [Amazon Devops Guru Anomalous Log Group Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-anomalous-log-group-example/)
+- [Amazon Devops Guru Cloud Formation Collection Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-cloud-formation-collection-example/)
+- [Amazon Devops Guru Cloud Formation Health Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-cloud-formation-health-example/)
+- [Amazon Devops Guru Event Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-event-example/)
+- [Amazon Devops Guru Event Sources Config Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-event-sources-config-example/)
+- [Amazon Devops Guru Insight Health Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-insight-health-example/)
+- [Amazon Devops Guru Log Anomaly Showcase Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-log-anomaly-showcase-example/)
+- [Amazon Devops Guru Notification Channel Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-notification-channel-example/)
+- [Amazon Devops Guru Ops Center Integration Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-ops-center-integration-example/)
+- [Amazon Devops Guru Performance Insights Metric Query Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-performance-insights-metric-query-example/)
+- [Amazon Devops Guru Proactive Anomaly Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-proactive-anomaly-example/)
+- [Amazon Devops Guru Proactive Insight Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-proactive-insight-example/)
+- [Amazon Devops Guru Reactive Anomaly Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-reactive-anomaly-example/)
+- [Amazon Devops Guru Reactive Insight Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-reactive-insight-example/)
+- [Amazon Devops Guru Recommendation Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-recommendation-example/)
+- [Amazon Devops Guru Resource Collection Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-resource-collection-example/)
+- [Amazon Devops Guru Service Collection Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-service-collection-example/)
+- [Amazon Devops Guru Service Health Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-service-health-example/)
+- [Amazon Devops Guru Service Insight Health Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-service-insight-health-example/)
+- [Amazon Devops Guru Sns Channel Config Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-sns-channel-config-example/)
+- [Amazon Devops Guru Tag Collection Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-tag-collection-example/)
+- [Amazon Devops Guru Tag Health Example](https://apis.io/examples/amazon-devops-guru/amazon-devops-guru-tag-health-example/)
+
+#### Collections (28)
+
+Postman and Open Collection request collections.
+
+- [Amazon DevOps Guru Accounts API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-accounts-api/)
+- [Amazon DevOps Guru Accounts Anomalies API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-anomalies-api/)
+- [Amazon DevOps Guru Accounts Channels API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-channels-api/)
+- [Amazon DevOps Guru Accounts Cost Estimation API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-cost-estimation-api/)
+- [Amazon DevOps Guru Accounts Event Sources API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-event-sources-api/)
+- [Amazon DevOps Guru Accounts Events API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-events-api/)
+- [Amazon DevOps Guru Accounts Feedback API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-feedback-api/)
+- [Amazon DevOps Guru Accounts Insights API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-insights-api/)
+- [Amazon DevOps Guru Accounts List Log Anomalies API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-list-log-anomalies-api/)
+- [Amazon DevOps Guru Accounts MonitoredResources API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-monitoredresources-api/)
+- [Amazon DevOps Guru Accounts Organization API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-organization-api/)
+- [Amazon DevOps Guru Accounts Recommendations API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-recommendations-api/)
+- [Amazon DevOps Guru Accounts Resource Collections API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-resource-collections-api/)
+- [Amazon DevOps Guru Accounts Service Integrations API](https://apis.io/collections/amazon-devops-guru/open-amazon-devops-guru-service-integrations-api/)
+- [Amazon DevOps Guru Accounts API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-accounts-api/)
+- [Amazon DevOps Guru Accounts Anomalies API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-anomalies-api/)
+- [Amazon DevOps Guru Accounts Channels API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-channels-api/)
+- [Amazon DevOps Guru Accounts Cost Estimation API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-cost-estimation-api/)
+- [Amazon DevOps Guru Accounts Event Sources API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-event-sources-api/)
+- [Amazon DevOps Guru Accounts Events API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-events-api/)
+- [Amazon DevOps Guru Accounts Feedback API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-feedback-api/)
+- [Amazon DevOps Guru Accounts Insights API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-insights-api/)
+- [Amazon DevOps Guru Accounts List Log Anomalies API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-list-log-anomalies-api/)
+- [Amazon DevOps Guru Accounts MonitoredResources API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-monitoredresources-api/)
+- [Amazon DevOps Guru Accounts Organization API](https://apis.io/collections/amazon-devops-guru/postman-amazon-devops-guru-organization-api/)
+- …and 3 more published on APIs.io
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Amazon DevOps Guru — jsonschema rules](https://apis.io/rules/amazon-devops-guru/amazon-devops-guru-jsonschema-spectral-rules/)
+- [Amazon DevOps Guru API Rules](https://apis.io/rules/amazon-devops-guru/amazon-devops-guru-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Amazon Devops Guru Authentication](https://apis.io/security/amazon-devops-guru/amazon-devops-guru-authentication/)
+- [Amazon Devops Guru Domain Security](https://apis.io/security/amazon-devops-guru/amazon-devops-guru-domain-security/)
+- [Amazon Devops Guru Trust Center](https://apis.io/security/amazon-devops-guru/amazon-devops-guru-trust-center/)
+- [Amazon Devops Guru Vulnerability Disclosure](https://apis.io/security/amazon-devops-guru/amazon-devops-guru-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Amazon Devops Guru Plans Pricing](https://apis.io/plans/amazon-devops-guru/amazon-devops-guru-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Amazon Devops Guru Rate Limits](https://apis.io/rate-limits/amazon-devops-guru/amazon-devops-guru-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Amazon Devops Guru Finops](https://apis.io/finops/amazon-devops-guru/amazon-devops-guru-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://aws.amazon.com/devops-guru/)
 - [Documentation](https://docs.aws.amazon.com/devops-guru/)
-- [TermsOfService](https://aws.amazon.com/service-terms/)
-- [PrivacyPolicy](https://aws.amazon.com/privacy/)
+- [Pricing](https://aws.amazon.com/devops-guru/pricing/)
 - [Support](https://aws.amazon.com/premiumsupport/)
 - [Blog](https://aws.amazon.com/blogs/devops/category/artificial-intelligence/amazon-devops-guru/)
-- [GitHubOrganization](https://github.com/aws)
-- [Console](https://console.aws.amazon.com/devops-guru/)
-- [SignUp](https://portal.aws.amazon.com/billing/signup)
-- [Login](https://signin.aws.amazon.com/)
-- [StatusPage](https://health.aws.amazon.com/health/status)
-- [Contact](https://aws.amazon.com/contact-us/)
-- [SpectralRules](rules/amazon-devops-guru-spectral-rules.yml)
-- [Vocabulary](vocabulary/amazon-devops-guru-vocabulary.yaml)
-- [NaftikoCapability](capabilities/operational-intelligence.yaml)
+- [Terms of service](https://aws.amazon.com/service-terms/)
+- [Privacy policy](https://aws.amazon.com/privacy/)
+- [GitHub](https://github.com/aws)
+- [Status](https://health.aws.amazon.com/health/status)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| ML-Powered Anomaly Detection | Uses machine learning to detect behavioral deviations across hundreds of AWS metrics without manual threshold configuration. |
-| Proactive Insights | Identifies anomalies before they become operational issues, allowing teams to remediate before customer impact. |
-| Reactive Insights | Surfaces insights when active operational issues are detected to accelerate root cause analysis. |
-| Actionable Recommendations | Provides specific remediation recommendations with links to relevant documentation and AWS console pages. |
-| CloudWatch Logs Integration | Analyzes CloudWatch Logs for log-based anomalies to include log patterns in operational insights. |
-| AWS OpsCenter Integration | Automatically creates OpsCenter OpsItems for detected insights to streamline incident management. |
-| CloudFormation-Based Coverage | Define which applications to monitor by specifying CloudFormation stack names for precise application-scoped coverage. |
-| Organizations Integration | Enable DevOps Guru across an entire AWS Organization to centrally monitor all accounts and regions. |
+**Kin Score 58.5** — strong · rubric 0.25.0 · scored 2026-10-23
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 69.0 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 46.4 |
+| Access clarity | 77.6 |
 
-| Name | Description |
-|------|-------------|
-| Proactive Operational Monitoring | Detect potential issues in application behavior before they impact end users using ML-powered proactive insights. |
-| Incident Root Cause Analysis | Rapidly identify the root cause of operational incidents by correlating anomalies, events, and recommendations. |
-| Application Performance Optimization | Use continuous behavioral monitoring to identify performance bottlenecks and optimization opportunities. |
-| Multi-Account Operations | Monitor operational health across all accounts in an AWS Organization from a single pane of glass. |
-| DevOps Pipeline Integration | Integrate DevOps Guru insights into CI/CD pipelines to gate deployments on operational health status. |
+**Agent readiness 34.1** — agent-ready
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
 
-| Name | Description |
-|------|-------------|
-| Amazon CloudWatch | Ingests CloudWatch metrics and logs for anomaly detection and event correlation. |
-| AWS CloudFormation | Uses CloudFormation stacks to define application boundaries for targeted monitoring coverage. |
-| AWS OpsCenter | Automatically creates OpsCenter OpsItems for detected insights to enable incident management workflows. |
-| Amazon SNS | Sends insight notifications to SNS topics for routing to teams via email, Slack, PagerDuty, or other channels. |
-| AWS Organizations | Enables organization-wide monitoring by aggregating insights across multiple AWS accounts. |
-| Amazon EventBridge | Emits DevOps Guru events to EventBridge for custom automation and routing workflows. |
+**Regulatory alignment 32.7** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/amazon-devops-guru/](https://apis.io/providers/amazon-devops-guru/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Amazon DevOps Guru OpenAPI](openapi/amazon-devops-guru-openapi.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Amazon DevOps Guru: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [Proactive Insight Schema](json-schema/amazon-devops-guru-proactive-insight-schema.json)
-- [Reactive Insight Schema](json-schema/amazon-devops-guru-reactive-insight-schema.json)
-- [Recommendation Schema](json-schema/amazon-devops-guru-recommendation-schema.json)
-- [Proactive Anomaly Schema](json-schema/amazon-devops-guru-proactive-anomaly-schema.json)
-- [Reactive Anomaly Schema](json-schema/amazon-devops-guru-reactive-anomaly-schema.json)
-- [Resource Collection Schema](json-schema/amazon-devops-guru-resource-collection-schema.json)
-- [Notification Channel Schema](json-schema/amazon-devops-guru-notification-channel-schema.json)
-- [Insight Health Schema](json-schema/amazon-devops-guru-insight-health-schema.json)
-
-### JSON Structure
-
-- [Proactive Insight Structure](json-structure/amazon-devops-guru-proactive-insight-structure.json)
-- [Reactive Insight Structure](json-structure/amazon-devops-guru-reactive-insight-structure.json)
-- [Recommendation Structure](json-structure/amazon-devops-guru-recommendation-structure.json)
-- [Proactive Anomaly Structure](json-structure/amazon-devops-guru-proactive-anomaly-structure.json)
-
-### JSON-LD
-
-- [Amazon DevOps Guru Context](json-ld/amazon-devops-guru-context.jsonld)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Amazon DevOps Guru API](capabilities/shared/devops-guru-api.yaml) — 18 operations for insight management, anomaly investigation, recommendations, notifications, and resource coverage
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Operational Intelligence](capabilities/operational-intelligence.yaml) | devops-guru | 14 | DevOps Engineer, Site Reliability Engineer |
-
-## Vocabulary
-
-- [Amazon DevOps Guru Vocabulary](vocabulary/amazon-devops-guru-vocabulary.yaml) — Unified taxonomy mapping 10 resources, 8 actions, 1 workflow, and 2 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Amazon DevOps Guru Spectral Rules](rules/amazon-devops-guru-spectral-rules.yml) — 17 rules across 8 categories enforcing Amazon DevOps Guru API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/amazon-devops-guru/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
