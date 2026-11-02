@@ -1,0 +1,89 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://aws.amazon.com/devops-guru/pricing/
+sources:
+- https://aws.amazon.com/devops-guru/pricing/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: usage-other
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: true
+note: 'AWS pay-as-you-go pricing: resource-hour analysis charges in two price groups plus per-API-call
+  charges; free tier for 3 months.'
+plan_count: 4
+currency: USD
+plans:
+- name: Resource Price Group A
+  price_text: $0.0028 per Resource per Hour
+  price: 0.0028
+  currency: USD
+  period: per-use
+  unit: resource hour
+- name: Resource Price Group B
+  price_text: $0.0042 per Resource per Hour
+  price: 0.0042
+  currency: USD
+  period: per-use
+  unit: resource hour
+- name: DevOps Guru API
+  price_text: $0.000040 per API Call ($0.40 for 10K API Calls)
+  currency: USD
+  period: per-use
+  unit: API call
+- name: Free Tier
+  price_text: AWS Free Tier includes DevOps Guru analysis of 7,200 AWS resource hours each for resource
+    group A and B and usage of 10,000 DevOps Guru API calls per month for 3 months.
+  currency: USD
+  period: month
+  included_quota: 7,200 resource hours each for group A and B; 10,000 API calls per month for 3 months
+rate_limit_statements:
+- DevOps Guru will charge per EC2 instance in an ASG, with a maximum charge for 100 EC2 instances in each
+  ASG.
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units:
+  - compute
+  - request
+  plans:
+  - name: Resource Price Group A
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Resource Price Group B
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: DevOps Guru API
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - request
+    periods:
+    - other
+  - name: Free Tier
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - month
