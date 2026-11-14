@@ -5,12 +5,27 @@ artifacts:
   agentic-access/amazon-devops-guru-agentic-access.yml:
     method: generated
     evidence: declared in the artifact
+  ai-preferences/amazon-devops-guru-ai-preferences.yml:
+    method: harvested
+    evidence: declared in the artifact
   authentication/amazon-devops-guru-authentication.yml:
     method: derived
     evidence: declared in the artifact
   capabilities/amazon-devops-guru-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  certification/observations-2026-11-11.jsonl:
+    method: unknown
+    evidence: no authorship recorded
+  certification/status.yml:
+    method: unknown
+    evidence: no authorship recorded
+  changelog/amazon-devops-guru-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
+  cli/amazon-devops-guru-cli.yml:
+    method: searched
+    evidence: declared in the artifact
   collections/amazon-devops-guru-accounts-api.opencollection.json:
     method: derived
     evidence: openapi/amazon-devops-guru-accounts-api
@@ -95,6 +110,21 @@ artifacts:
   collections/amazon-devops-guru-service-integrations-api.postman_collection.json:
     method: derived
     evidence: openapi/amazon-devops-guru-service-integrations-api
+  compliance/amazon-devops-guru-compliance.yml:
+    method: harvested
+    evidence: declared in the artifact
+  conformance/amazon-devops-guru-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/amazon-devops-guru-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  eligibility/amazon-devops-guru-eligibility.yml:
+    method: harvested
+    evidence: declared in the artifact
+  errors/amazon-devops-guru-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   examples/amazon-devops-guru-anomalous-log-group-example.json:
     method: unknown
     evidence: no authorship recorded
@@ -167,6 +197,9 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/amazon-devops-guru-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -176,28 +209,109 @@ artifacts:
   json-ld/amazon-devops-guru-context.jsonld:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-devops-guru-add-notification-channel-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-amazon-code-guru-profiler-integration-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-devops-guru-anomalous-log-group-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-devops-guru-cloud-formation-collection-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-devops-guru-cloud-formation-cost-estimation-resource-collection-filter-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-devops-guru-cloud-formation-health-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-describe-account-health-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-describe-account-overview-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-describe-event-sources-config-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-describe-feedback-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-describe-organization-health-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-describe-organization-resource-collection-health-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-describe-resource-collection-health-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-describe-service-integration-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-event-class-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-devops-guru-event-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-devops-guru-event-source-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-devops-guru-event-sources-config-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-event-time-range-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-get-cost-estimation-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-get-resource-collection-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-insight-feedback-option-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-devops-guru-insight-health-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-devops-guru-insight-id-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-list-anomalous-log-groups-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-list-events-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-list-insights-closed-status-filter-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-list-monitored-resources-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-list-notification-channels-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-list-organization-insights-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-devops-guru-log-anomaly-showcase-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-devops-guru-logs-anomaly-detection-integration-config-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-devops-guru-notification-channel-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-notification-filter-config-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-ops-center-integration-config-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-devops-guru-ops-center-integration-schema.json:
@@ -212,6 +326,9 @@ artifacts:
   json-schema/amazon-devops-guru-proactive-insight-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-devops-guru-put-feedback-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-devops-guru-reactive-anomaly-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -221,7 +338,19 @@ artifacts:
   json-schema/amazon-devops-guru-recommendation-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-devops-guru-remove-notification-channel-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-devops-guru-resource-collection-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-resource-permission-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-resource-type-filters-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-search-organization-insights-response-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/amazon-devops-guru-service-collection-schema.json:
@@ -236,10 +365,31 @@ artifacts:
   json-schema/amazon-devops-guru-sns-channel-config-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-devops-guru-start-cost-estimation-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-devops-guru-tag-collection-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/amazon-devops-guru-tag-cost-estimation-resource-collection-filters-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/amazon-devops-guru-tag-health-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-update-cloud-formation-collection-filter-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-update-event-sources-config-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-update-resource-collection-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-update-service-integration-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/amazon-devops-guru-update-tag-collection-filters-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-structure/amazon-devops-guru-anomalous-log-group-structure.json:
@@ -311,7 +461,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-02T082323.yml:
+  kin/checks-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -380,52 +530,69 @@ artifacts:
   kin/score-2026-11-02T082323.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  openapi/_original/amazon-devops-guru-openapi.yaml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+  kin/score-2026-11-06T143934.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  lifecycle/amazon-devops-guru-lifecycle.yml:
+    method: searched
+    evidence: declared in the artifact
+  llms/amazon-devops-guru-llms-provenance.yml:
+    method: unknown
+    evidence: no authorship recorded
+  llms/amazon-devops-guru-llms.txt:
+    method: unknown
+    evidence: no authorship recorded
+  mcp/amazon-devops-guru-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/amazon-devops-guru-accounts-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-anomalies-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-channels-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-cost-estimation-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-event-sources-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-events-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-feedback-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-insights-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-list-log-anomalies-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-monitored-resources-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-organization-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-recommendations-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-resource-collections-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    method: unknown
+    evidence: no authorship recorded
   openapi/amazon-devops-guru-service-integrations-api-openapi.yml:
+    method: unknown
+    evidence: no authorship recorded
+  packages/amazon-devops-guru-packages.yml:
+    method: searched
+    evidence: declared in the artifact
+  patterns/amazon-devops-guru-patterns.yml:
     method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+    evidence: declared in the artifact
   plans/amazon-devops-guru-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
@@ -471,10 +638,16 @@ artifacts:
   postman/amazon-devops-guru-service-integrations-api.postman_collection.json:
     method: derived
     evidence: openapi/amazon-devops-guru-service-integrations-api
+  privacy/amazon-devops-guru-privacy-policy.yml:
+    method: harvested
+    evidence: declared in the artifact
   rate-limits/amazon-devops-guru-rate-limits.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-devops-guru-jsonschema-spectral-rules.yml:
+    method: generated
+    evidence: declared in the artifact
+  rules/amazon-devops-guru-rules.yml:
     method: generated
     evidence: declared in the artifact
   rules/amazon-devops-guru-spectral-rules.yml:
@@ -493,8 +666,27 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   smithy/devops-guru-2020-12-01.json:
+    method: harvested
+    evidence: byte-identical to https://raw.githubusercontent.com/aws/api-models-aws/3cd98287b471c106254abd89279cc87308d38bfd/models/devops-guru/service/2020-12-01/devops-guru-2020-12-01.json
+      (sha256 2e7201d1c7c3, fetched 2026-11-11T21:08:24+00:00)
+  terms/amazon-devops-guru-terms-of-service.yml:
+    method: harvested
+    evidence: declared in the artifact
+  vendors/amazon-devops-guru-vendors.yml:
     method: unknown
     evidence: no authorship recorded
   vocabulary/amazon-devops-guru-vocabulary.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  vocabulary/amazon-devops-guru-vocabulary.yml:
+    method: derived
+    evidence: declared in the artifact
+  well-known/amazon-devops-guru-midway-auth-openid-configuration.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-devops-guru-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/amazon-devops-guru-well-known.yml:
     method: unknown
     evidence: no authorship recorded

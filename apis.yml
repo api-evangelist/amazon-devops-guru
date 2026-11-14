@@ -1,7 +1,9 @@
 name: Amazon DevOps Guru
-description: Amazon DevOps Guru is a machine learning-powered service that makes it easy to improve an application's operational
-  performance and availability. It detects behaviors that deviate from normal operating patterns so you can identify operational
-  issues long before they impact your customers.
+
+description: Amazon DevOps Guru is a machine learning-powered service that makes it easy to improve an application's operational performance and
+  availability. It detects behaviors that deviate from normal operating patterns so you can identify operational issues long before they impact
+  your customers.
+
 deliveryModel:
   model: saas
   open_source: false
@@ -14,7 +16,9 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 specificationVersion: '0.23'
+
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -30,610 +34,79 @@ accessModel:
   - plans
   - authentication
   - security
-  generated: '2026-11-06'
+  generated: '2026-11-13'
   method: derived
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
+
 url: https://aws.amazon.com/devops-guru/
+
 created: '2026-03-16'
+
 modified: '2026-05-19'
-apis:
-- aid: amazon-devops-guru:amazon-devops-guru-accounts-api
-  name: Amazon DevOps Guru Accounts API
-  description: The Accounts API from Amazon DevOps Guru — 3 operation(s) for accounts.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Account
-  tags_raw:
-  - Accounts
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-accounts-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-anomalies-api
-  name: Amazon DevOps Guru Anomalies API
-  description: The Anomalies API from Amazon DevOps Guru — 2 operation(s) for anomalies.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Anomalies
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-anomalies-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-channels-api
-  name: Amazon DevOps Guru Channels API
-  description: The Channels API from Amazon DevOps Guru — 2 operation(s) for channels.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Channels
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-channels-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-cost-estimation-api
-  name: Amazon DevOps Guru Cost Estimation API
-  description: The Cost Estimation API from Amazon DevOps Guru — 1 operation(s) for cost estimation.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Cost Estimation
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-cost-estimation-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-event-sources-api
-  name: Amazon DevOps Guru Event Sources API
-  description: The Event Sources API from Amazon DevOps Guru — 1 operation(s) for event sources.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Event Sources
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-event-sources-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-events-api
-  name: Amazon DevOps Guru Events API
-  description: The Events API from Amazon DevOps Guru — 1 operation(s) for events.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Event
-  tags_raw:
-  - Events
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-events-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-feedback-api
-  name: Amazon DevOps Guru Feedback API
-  description: The Feedback API from Amazon DevOps Guru — 1 operation(s) for feedback.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Feedback
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-feedback-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-insights-api
-  name: Amazon DevOps Guru Insights API
-  description: The Insights API from Amazon DevOps Guru — 3 operation(s) for insights.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Insights
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-insights-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-list-log-anomalies-api
-  name: Amazon DevOps Guru List Log Anomalies API
-  description: >-
-    The List Log Anomalies API from Amazon DevOps Guru — 1 operation(s) for list log anomalies.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - List Log Anomalies
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-list-log-anomalies-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-organization-api
-  name: Amazon DevOps Guru Organization API
-  description: The Organization API from Amazon DevOps Guru — 5 operation(s) for organization.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Organization
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-organization-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-recommendations-api
-  name: Amazon DevOps Guru Recommendations API
-  description: The Recommendations API from Amazon DevOps Guru — 1 operation(s) for recommendations.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Recommendations
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-recommendations-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-resource-collections-api
-  name: Amazon DevOps Guru Resource Collections API
-  description: >-
-    The Resource Collections API from Amazon DevOps Guru — 2 operation(s) for resource collections.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Resource Collections
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-resource-collections-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-service-integrations-api
-  name: Amazon DevOps Guru Service Integrations API
-  description: >-
-    The Service Integrations API from Amazon DevOps Guru — 1 operation(s) for service integrations.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Service Integrations
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-service-integrations-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
-- aid: amazon-devops-guru:amazon-devops-guru-monitored-resources-api
-  name: Amazon DevOps Guru Monitored Resources API
-  description: >-
-    The Monitored Resources API from Amazon DevOps Guru — 1 operation(s) for monitored resources.
-  humanURL: https://aws.amazon.com/devops-guru/
-  baseURL: https://devops-guru.amazonaws.com
-  tags:
-  - Monitored Resources
-  properties:
-  - type: OpenAPI
-    url: openapi/amazon-devops-guru-monitored-resources-api-openapi.yml
-  - type: Documentation
-    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
-  - type: GettingStarted
-    url: https://aws.amazon.com/devops-guru/getting-started/
-  - type: Pricing
-    url: https://aws.amazon.com/devops-guru/pricing/
-  - type: FAQ
-    url: https://aws.amazon.com/devops-guru/faqs/
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-recommendation-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
-  - type: JSONSchema
-    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
-  - type: JSONStructure
-    url: json-structure/amazon-devops-guru-recommendation-structure.json
-  - type: JSONLD
-    url: json-ld/amazon-devops-guru-context.jsonld
-  - type: Examples
-    url: examples/amazon-devops-guru-proactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-reactive-insight-example.json
-  - type: Examples
-    url: examples/amazon-devops-guru-recommendation-example.json
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
+
+tags:
+- Anomaly Detection
+- Amazon Web Services
+- DevOps
+- Machine Learning
+- Operational Intelligence
+tags_raw:
+- Anomaly Detection
+- AWS
+- DevOps
+- Machine Learning
+- Operational Intelligence
+
 common:
+- type: Spectral
+  url: rules/amazon-devops-guru-spectral-rules.yml
+- type: Spectral
+  url: rules/amazon-devops-guru-rules.yml
+- type: Spectral
+  url: rules/amazon-devops-guru-jsonschema-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/amazon-devops-guru-vocabulary.yml
+- type: DataModel
+  url: data-model/amazon-devops-guru-data-model.yml
+- type: CLI
+  url: cli/amazon-devops-guru-cli.yml
+- type: ChangeLog
+  url: changelog/amazon-devops-guru-changelog.yml
+- type: Compliance
+  url: https://aws.amazon.com/compliance/
+- type: Deprecation
+  url: https://docs.aws.amazon.com/devops-guru/latest/userguide/devops-guru-end-of-support.html
+- type: Lifecycle
+  url: lifecycle/amazon-devops-guru-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/amazon-devops-guru-problem-types.yml
+- type: Conformance
+  url: conformance/amazon-devops-guru-conformance.yml
+- type: LLMsTxt
+  url: llms/amazon-devops-guru-llms.txt
+- type: SecurityTxt
+  url: well-known/amazon-devops-guru-security.txt
+- type: WellKnown
+  url: well-known/amazon-devops-guru-well-known.yml
+- type: Hosts
+  url: hosts/amazon-devops-guru-hosts.yml
+- type: Vendors
+  url: vendors/amazon-devops-guru-vendors.yml
+- type: SDKs
+  url: packages/amazon-devops-guru-packages.yml
+- type: Packages
+  url: packages/amazon-devops-guru-packages.yml
+- type: Security
+  url: https://aws.amazon.com/security/?nc2=h_dsc_aa_sec
+- type: Newsroom
+  url: https://aws.amazon.com/media/?nc2=h_sol_ind_med
+- type: GettingStarted
+  url: https://docs.aws.amazon.com/AmazonRDS/latest/gettingstartedguide/what-is-rds
 - type: Pricing
   url: https://aws.amazon.com/devops-guru/pricing/
 - type: RateLimits
@@ -690,8 +163,7 @@ common:
 - type: Features
   data:
   - name: ML-Powered Anomaly Detection
-    description: Uses machine learning to detect behavioral deviations across hundreds of AWS metrics without manual threshold
-      configuration.
+    description: Uses machine learning to detect behavioral deviations across hundreds of AWS metrics without manual threshold configuration.
   - name: Proactive Insights
     description: Identifies anomalies before they become operational issues, allowing teams to remediate before customer impact.
   - name: Reactive Insights
@@ -703,8 +175,7 @@ common:
   - name: AWS OpsCenter Integration
     description: Automatically creates OpsCenter OpsItems for detected insights to streamline incident management.
   - name: CloudFormation-Based Coverage
-    description: Define which applications to monitor by specifying CloudFormation stack names for precise application-scoped
-      coverage.
+    description: Define which applications to monitor by specifying CloudFormation stack names for precise application-scoped coverage.
   - name: Organizations Integration
     description: Enable DevOps Guru across an entire AWS Organization to centrally monitor all accounts and regions.
 - type: UseCases
@@ -735,6 +206,545 @@ common:
     description: Emits DevOps Guru events to EventBridge for custom automation and routing workflows.
 - type: Integrations
   url: https://aws.amazon.com/marketplace
+- type: UsageTerms
+  url: terms/amazon-devops-guru-terms-of-service.yml
+- type: DataProcessing
+  url: privacy/amazon-devops-guru-privacy-policy.yml
+- type: Attestations
+  url: compliance/amazon-devops-guru-compliance.yml
+- type: Eligibility
+  url: eligibility/amazon-devops-guru-eligibility.yml
+- type: AIPreferences
+  url: ai-preferences/amazon-devops-guru-ai-preferences.yml
+
+apis:
+- aid: amazon-devops-guru:amazon-devops-guru-accounts-api
+  name: Amazon DevOps Guru Accounts API
+  description: The Accounts API from Amazon DevOps Guru — 3 operation(s) for accounts.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Account
+  tags_raw:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-describe-resource-collection-health-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-describe-account-health-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-describe-account-overview-response-schema.json
+- aid: amazon-devops-guru:amazon-devops-guru-anomalies-api
+  name: Amazon DevOps Guru Anomalies API
+  description: The Anomalies API from Amazon DevOps Guru — 2 operation(s) for anomalies.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Anomalies
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-anomalies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-proactive-anomaly-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-reactive-anomaly-schema.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+- aid: amazon-devops-guru:amazon-devops-guru-channels-api
+  name: Amazon DevOps Guru Channels API
+  description: The Channels API from Amazon DevOps Guru — 2 operation(s) for channels.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Channels
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-channels-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-sns-channel-config-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-notification-filter-config-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-list-notification-channels-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-add-notification-channel-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-remove-notification-channel-response-schema.json
+- aid: amazon-devops-guru:amazon-devops-guru-cost-estimation-api
+  name: Amazon DevOps Guru Cost Estimation API
+  description: The Cost Estimation API from Amazon DevOps Guru — 1 operation(s) for cost estimation.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Cost Estimation
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-cost-estimation-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-get-cost-estimation-response-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/amazon-devops-guru-cloud-formation-cost-estimation-resource-collection-filter-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/amazon-devops-guru-tag-cost-estimation-resource-collection-filters-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-start-cost-estimation-response-schema.json
+- aid: amazon-devops-guru:amazon-devops-guru-event-sources-api
+  name: Amazon DevOps Guru Event Sources API
+  description: The Event Sources API from Amazon DevOps Guru — 1 operation(s) for event sources.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Event Sources
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-event-sources-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-amazon-code-guru-profiler-integration-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-describe-event-sources-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-update-event-sources-config-response-schema.json
+- aid: amazon-devops-guru:amazon-devops-guru-events-api
+  name: Amazon DevOps Guru Events API
+  description: The Events API from Amazon DevOps Guru — 1 operation(s) for events.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Event
+  tags_raw:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-resource-collection-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-event-time-range-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-list-events-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-event-source-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-event-class-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-insight-id-schema.json
+- aid: amazon-devops-guru:amazon-devops-guru-feedback-api
+  name: Amazon DevOps Guru Feedback API
+  description: The Feedback API from Amazon DevOps Guru — 1 operation(s) for feedback.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Feedback
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-feedback-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-insight-feedback-option-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-describe-feedback-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-insight-id-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-put-feedback-response-schema.json
+- aid: amazon-devops-guru:amazon-devops-guru-insights-api
+  name: Amazon DevOps Guru Insights API
+  description: The Insights API from Amazon DevOps Guru — 3 operation(s) for insights.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Insights
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-insights-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-proactive-insight-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-reactive-insight-schema.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+- aid: amazon-devops-guru:amazon-devops-guru-list-log-anomalies-api
+  name: Amazon DevOps Guru List Log Anomalies API
+  description: >-
+    The List Log Anomalies API from Amazon DevOps Guru — 1 operation(s) for list log anomalies.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - List Log Anomalies
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-list-log-anomalies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-list-anomalous-log-groups-response-schema.json
+- aid: amazon-devops-guru:amazon-devops-guru-organization-api
+  name: Amazon DevOps Guru Organization API
+  description: The Organization API from Amazon DevOps Guru — 5 operation(s) for organization.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Organization
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-organization-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-resource-collection-schema.json
+  - type: JSONSchema
+    url: >-
+      json-schema/amazon-devops-guru-describe-organization-resource-collection-health-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-describe-organization-health-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-list-organization-insights-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-search-organization-insights-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-list-insights-closed-status-filter-schema.json
+- aid: amazon-devops-guru:amazon-devops-guru-recommendations-api
+  name: Amazon DevOps Guru Recommendations API
+  description: The Recommendations API from Amazon DevOps Guru — 1 operation(s) for recommendations.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Recommendations
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-recommendations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-recommendation-schema.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+- aid: amazon-devops-guru:amazon-devops-guru-resource-collections-api
+  name: Amazon DevOps Guru Resource Collections API
+  description: >-
+    The Resource Collections API from Amazon DevOps Guru — 2 operation(s) for resource collections.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Resource Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-resource-collections-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-get-resource-collection-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-update-cloud-formation-collection-filter-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-update-tag-collection-filters-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-update-resource-collection-response-schema.json
+- aid: amazon-devops-guru:amazon-devops-guru-service-integrations-api
+  name: Amazon DevOps Guru Service Integrations API
+  description: >-
+    The Service Integrations API from Amazon DevOps Guru — 1 operation(s) for service integrations.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Service Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-service-integrations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-ops-center-integration-config-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-logs-anomaly-detection-integration-config-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-describe-service-integration-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-update-service-integration-response-schema.json
+- aid: amazon-devops-guru:amazon-devops-guru-monitored-resources-api
+  name: Amazon DevOps Guru Monitored Resources API
+  description: >-
+    The Monitored Resources API from Amazon DevOps Guru — 1 operation(s) for monitored resources.
+  humanURL: https://aws.amazon.com/devops-guru/
+  baseURL: https://devops-guru.amazonaws.com
+  tags:
+  - Monitored Resources
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-devops-guru-monitored-resources-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/devops-guru/latest/APIReference/Welcome.html
+  - type: Pricing
+    url: https://aws.amazon.com/devops-guru/pricing/
+  - type: FAQ
+    url: https://aws.amazon.com/devops-guru/faqs/
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-proactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-reactive-insight-structure.json
+  - type: JSONStructure
+    url: json-structure/amazon-devops-guru-recommendation-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-devops-guru-context.jsonld
+  - type: Examples
+    url: examples/amazon-devops-guru-proactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-reactive-insight-example.json
+  - type: Examples
+    url: examples/amazon-devops-guru-recommendation-example.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-list-monitored-resources-response-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-resource-type-filters-schema.json
+  - type: JSONSchema
+    url: json-schema/amazon-devops-guru-resource-permission-schema.json
 integrations:
 - name: Sign in
 - name: Agent Mode
@@ -745,16 +755,7 @@ integrations:
 - name: Become a Channel Partner
 - name: Sell in AWS Marketplace
 - name: Manage Your Account
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-  url: https://apievangelist.com
-tags:
-- Anomaly Detection
-- Amazon Web Services
-- DevOps
-- Machine Learning
-- Operational Intelligence
+
 tags_raw:
 - Anomaly Detection
 - AWS
@@ -762,5 +763,12 @@ tags_raw:
 - Machine Learning
 - Operational Intelligence
 - Machine-Learning
+
 x-parent: amazon-web-services
+
 x-relationship: product
+x-enrichment:
+  date: '2026-11-11'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v6
