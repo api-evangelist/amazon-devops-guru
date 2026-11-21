@@ -1,3 +1,4 @@
+aid: amazon-devops-guru
 name: Amazon DevOps Guru
 
 description: Amazon DevOps Guru is a machine learning-powered service that makes it easy to improve an application's operational performance and
@@ -34,7 +35,7 @@ accessModel:
   - plans
   - authentication
   - security
-  generated: '2026-11-13'
+  generated: '2026-11-20'
   method: derived
 image: https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png
 
